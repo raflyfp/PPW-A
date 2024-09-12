@@ -383,12 +383,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleansing">Cleansing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-folding">CASE FOLDING</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenization">TOKENIZATION</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stopword-removal">STOPWORD REMOVAL</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#stopword-removal">### STOPWORD REMOVAL</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency"><strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong></a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency"><strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong></a></li>
 </ul>
 
             </nav>
@@ -403,6 +401,8 @@ document.write(`
                   
   <section id="tugas-2">
 <h1>Tugas 2<a class="headerlink" href="#tugas-2" title="Link to this heading">#</a></h1>
+<p>Rafly Faldiansyah Putra</p>
+<p>210411100063</p>
 <p>Preprocessing hasil crawling data dari <a class="reference external" href="http://jatim.tribunnews.com">jatim.tribunnews.com</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1014,9 +1014,8 @@ Proses penambangan data selesai, data tersimpan dalam &#39;tribunnews_articles.c
 </div></div></div>
 </div>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="stopword-removal">
-<h1>### STOPWORD REMOVAL<a class="headerlink" href="#stopword-removal" title="Link to this heading">#</a></h1>
+<section id="stopword-removal">
+<h2>STOPWORD REMOVAL<a class="headerlink" href="#stopword-removal" title="Link to this heading">#</a></h2>
 <p>Stopword removal adalah proses menghapus kata-kata yang dianggap tidak penting atau tidak memiliki makna signifikan dalam analisis teks, seperti “dan,” “di,” “yang,” atau “itu.” Kata-kata ini sering muncul dalam kalimat tetapi tidak memberikan informasi penting untuk pemrosesan atau analisis lebih lanjut. Dengan menghapus stopwords, data teks menjadi lebih ringkas dan fokus hanya pada kata-kata yang memiliki bobot lebih besar dalam analisis, seperti saat melakukan klasifikasi atau pemodelan teks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1142,8 +1141,10 @@ Proses penambangan data selesai, data tersimpan dalam &#39;tribunnews_articles.c
 </table>
 </div></div></div>
 </div>
+</section>
+</section>
 <section id="tf-idf-term-frequency-inverse-document-frequency">
-<h2><strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong><a class="headerlink" href="#tf-idf-term-frequency-inverse-document-frequency" title="Link to this heading">#</a></h2>
+<h1><strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong><a class="headerlink" href="#tf-idf-term-frequency-inverse-document-frequency" title="Link to this heading">#</a></h1>
 <p>TF-IDF adalah metode statistik yang digunakan untuk mengevaluasi pentingnya suatu kata dalam sebuah dokumen relatif terhadap koleksi dokumen lainnya. TF-IDF sering digunakan dalam tugas seperti penggalian teks, penambangan informasi, dan pemodelan pembelajaran mesin berbasis teks.
 Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam dokumen, dan Inverse Document Frequency (IDF), yang menilai seberapa jarang kata tersebut muncul di seluruh dokumen dalam koleksi.</p>
 <p>TF-IDF bekerja dengan memberikan bobot lebih tinggi pada kata-kata yang sering muncul dalam sebuah dokumen, tetapi jarang muncul di dokumen lain, sehingga membantu mengidentifikasi kata-kata yang paling relevan.</p>
@@ -1460,7 +1461,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
 </div></div></div>
 </div>
 </section>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1522,12 +1522,10 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleansing">Cleansing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-folding">CASE FOLDING</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenization">TOKENIZATION</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stopword-removal">STOPWORD REMOVAL</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#stopword-removal">### STOPWORD REMOVAL</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency"><strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong></a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency"><strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong></a></li>
 </ul>
 
   </nav></div>
