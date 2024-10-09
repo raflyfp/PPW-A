@@ -15,53 +15,117 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-df=pd.read_csv("tribunnews_articles.csv")
-df.head(1000)
+# Fungsi untuk mendapatkan detail artikel dari halaman detail
+def get_article_details(detail_url, category_name):
+    detail_soup = get_soup(detail_url)
+    if detail_soup:
+        # Ambil isi berita
+        content = ' '.join([p.text for p in detail_soup.find_all('p')])
+
+        # Ambil tanggal publikasi
+        date_tag = detail_soup.find('date')
+        date = date_tag.text.strip() if date_tag else 'Tidak ada tanggal'
+
+        # Ambil judul berita
+        title_tag = detail_soup.find('h1')
+        title = title_tag.text.strip() if title_tag else 'Tidak ada judul'
+
+        # Kategori diambil dari parameter
+        return {
+            'judul': title,
+            'isi_berita': content,
+            'tanggal': date,
+            'kategori': category_name,  # Menggunakan nama kategori dari parameter
+            'url': detail_url
+        }
+    return None
+
+# Fungsi untuk mendapatkan artikel dari suatu kategori
+def get_articles(category_url, category_name, max_articles=10):
+    articles = []
+    page = 1
+    
+    while len(articles) < max_articles:
+        url = f'{category_url}?page={page}'  # Gunakan format paginasi yang diberikan
+        print(f"Mengambil: {url}")  # Output debug
+        soup = get_soup(url)
+        
+        if soup is None:
+            break
+        
+        # Cari artikel di halaman
+        article_list = soup.find_all('h2')  # Berdasarkan tata letak yang diamati
+        
+        if not article_list:
+            print(f"Tidak ada artikel ditemukan di halaman {page}.")
+            break
+        
+        for article in article_list:
+            if len(articles) >= max_articles:
+                break
+            
+            # Ambil URL detail artikel
+            title_tag = article.find('a')  # Sesuaikan sesuai dengan struktur Jawapos
+            detail_url = title_tag['href'] if title_tag else None
+            
+            if detail_url:
+                # Ambil detail artikel
+                article_details = get_article_details(detail_url, category_name)  # Kirimkan kategori
+                if article_details:
+                    # Tambahkan ke daftar artikel
+                    articles.append(article_details)
+        
+        page += 1
+        time.sleep(2)  # Beri jeda agar tidak terlalu cepat melakukan permintaan
+        
+    return articles
+
+# URL Kategori Jawapos
+categories = {
+    'Olahraga': 'https://www.jawapos.com/sports',
+    'Politik': 'https://www.jawapos.com/politik',
+}
+
+# Mengumpulkan semua data
+all_articles = []
+for category_name, category_url in categories.items():
+    print(f"Menambang kategori {category_name}...")
+    articles = get_articles(category_url, category_name, max_articles=10)  # Kirimkan kategori
+    all_articles.extend(articles)
+
+# Simpan ke dalam DataFrame
+df = pd.DataFrame(all_articles)
+
+# Simpan ke dalam file CSV
+df.to_csv('jawapos_articles.csv', index=False)
+
+# Tampilkan 10 data pertama dalam bentuk tabel
+print(df.head(10))
+
+print("Proses penambangan data selesai, data tersimpan dalam 'jawapos_articles.csv' dan 10 data pertama ditampilkan.")
+
 ------------------
 
+----- stdout -----
+Menambang kategori Olahraga...
+Mengambil: https://www.jawapos.com/sports?page=1
+------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mEmptyDataError[0m                            Traceback (most recent call last)
-[0;32m<ipython-input-2-b3919f82cdfb>[0m in [0;36m<cell line: 1>[0;34m()[0m
-[0;32m----> 1[0;31m [0mdf[0m[0;34m=[0m[0mpd[0m[0;34m.[0m[0mread_csv[0m[0;34m([0m[0;34m"tribunnews_articles.csv"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0mdf[0m[0;34m.[0m[0mhead[0m[0;34m([0m[0;36m1000[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-1-d3840b2211b2>[0m in [0;36m<cell line: 74>[0;34m()[0m
+[1;32m     74[0m [0;32mfor[0m [0mcategory_name[0m[0;34m,[0m [0mcategory_url[0m [0;32min[0m [0mcategories[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     75[0m     [0mprint[0m[0;34m([0m[0;34mf"Menambang kategori {category_name}..."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 76[0;31m     [0marticles[0m [0;34m=[0m [0mget_articles[0m[0;34m([0m[0mcategory_url[0m[0;34m,[0m [0mcategory_name[0m[0;34m,[0m [0mmax_articles[0m[0;34m=[0m[0;36m10[0m[0;34m)[0m  [0;31m# Kirimkan kategori[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     77[0m     [0mall_articles[0m[0;34m.[0m[0mextend[0m[0;34m([0m[0marticles[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     78[0m [0;34m[0m[0m
 
-[0;32m/usr/local/lib/python3.10/dist-packages/pandas/io/parsers/readers.py[0m in [0;36mread_csv[0;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)[0m
-[1;32m    946[0m     [0mkwds[0m[0;34m.[0m[0mupdate[0m[0;34m([0m[0mkwds_defaults[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    947[0m [0;34m[0m[0m
-[0;32m--> 948[0;31m     [0;32mreturn[0m [0m_read[0m[0;34m([0m[0mfilepath_or_buffer[0m[0;34m,[0m [0mkwds[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    949[0m [0;34m[0m[0m
-[1;32m    950[0m [0;34m[0m[0m
+[0;32m<ipython-input-1-d3840b2211b2>[0m in [0;36mget_articles[0;34m(category_url, category_name, max_articles)[0m
+[1;32m     32[0m         [0murl[0m [0;34m=[0m [0;34mf'{category_url}?page={page}'[0m  [0;31m# Gunakan format paginasi yang diberikan[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     33[0m         [0mprint[0m[0;34m([0m[0;34mf"Mengambil: {url}"[0m[0;34m)[0m  [0;31m# Output debug[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 34[0;31m         [0msoup[0m [0;34m=[0m [0mget_soup[0m[0;34m([0m[0murl[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     35[0m [0;34m[0m[0m
+[1;32m     36[0m         [0;32mif[0m [0msoup[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m/usr/local/lib/python3.10/dist-packages/pandas/io/parsers/readers.py[0m in [0;36m_read[0;34m(filepath_or_buffer, kwds)[0m
-[1;32m    609[0m [0;34m[0m[0m
-[1;32m    610[0m     [0;31m# Create the parser.[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 611[0;31m     [0mparser[0m [0;34m=[0m [0mTextFileReader[0m[0;34m([0m[0mfilepath_or_buffer[0m[0;34m,[0m [0;34m**[0m[0mkwds[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    612[0m [0;34m[0m[0m
-[1;32m    613[0m     [0;32mif[0m [0mchunksize[0m [0;32mor[0m [0miterator[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/usr/local/lib/python3.10/dist-packages/pandas/io/parsers/readers.py[0m in [0;36m__init__[0;34m(self, f, engine, **kwds)[0m
-[1;32m   1446[0m [0;34m[0m[0m
-[1;32m   1447[0m         [0mself[0m[0;34m.[0m[0mhandles[0m[0;34m:[0m [0mIOHandles[0m [0;34m|[0m [0;32mNone[0m [0;34m=[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 1448[0;31m         [0mself[0m[0;34m.[0m[0m_engine[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_make_engine[0m[0;34m([0m[0mf[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mengine[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   1449[0m [0;34m[0m[0m
-[1;32m   1450[0m     [0;32mdef[0m [0mclose[0m[0;34m([0m[0mself[0m[0;34m)[0m [0;34m->[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/usr/local/lib/python3.10/dist-packages/pandas/io/parsers/readers.py[0m in [0;36m_make_engine[0;34m(self, f, engine)[0m
-[1;32m   1721[0m [0;34m[0m[0m
-[1;32m   1722[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 1723[0;31m             [0;32mreturn[0m [0mmapping[0m[0;34m[[0m[0mengine[0m[0;34m][0m[0;34m([0m[0mf[0m[0;34m,[0m [0;34m**[0m[0mself[0m[0;34m.[0m[0moptions[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   1724[0m         [0;32mexcept[0m [0mException[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   1725[0m             [0;32mif[0m [0mself[0m[0;34m.[0m[0mhandles[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/usr/local/lib/python3.10/dist-packages/pandas/io/parsers/c_parser_wrapper.py[0m in [0;36m__init__[0;34m(self, src, **kwds)[0m
-[1;32m     91[0m             [0;31m# Fail here loudly instead of in cython after reading[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     92[0m             [0mimport_optional_dependency[0m[0;34m([0m[0;34m"pyarrow"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 93[0;31m         [0mself[0m[0;34m.[0m[0m_reader[0m [0;34m=[0m [0mparsers[0m[0;34m.[0m[0mTextReader[0m[0;34m([0m[0msrc[0m[0;34m,[0m [0;34m**[0m[0mkwds[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     94[0m [0;34m[0m[0m
-[1;32m     95[0m         [0mself[0m[0;34m.[0m[0munnamed_cols[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_reader[0m[0;34m.[0m[0munnamed_cols[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32mparsers.pyx[0m in [0;36mpandas._libs.parsers.TextReader.__cinit__[0;34m()[0m
-
-[0;31mEmptyDataError[0m: No columns to parse from file
+[0;31mNameError[0m: name 'get_soup' is not defined
 
