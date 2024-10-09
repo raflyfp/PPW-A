@@ -1,0 +1,131 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/lib/python3.10/dist-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Fungsi untuk mendapatkan detail artikel dari halaman detail
+def get_article_details(detail_url, category_name):
+    detail_soup = get_soup(detail_url)
+    if detail_soup:
+        # Ambil isi berita
+        content = ' '.join([p.text for p in detail_soup.find_all('p')])
+
+        # Ambil tanggal publikasi
+        date_tag = detail_soup.find('date')
+        date = date_tag.text.strip() if date_tag else 'Tidak ada tanggal'
+
+        # Ambil judul berita
+        title_tag = detail_soup.find('h1')
+        title = title_tag.text.strip() if title_tag else 'Tidak ada judul'
+
+        # Kategori diambil dari parameter
+        return {
+            'judul': title,
+            'isi_berita': content,
+            'tanggal': date,
+            'kategori': category_name,  # Menggunakan nama kategori dari parameter
+            'url': detail_url
+        }
+    return None
+
+# Fungsi untuk mendapatkan artikel dari suatu kategori
+def get_articles(category_url, category_name, max_articles=100):
+    articles = []
+    page = 1
+    
+    while len(articles) < max_articles:
+        url = f'{category_url}?page={page}'  # Gunakan format paginasi yang diberikan
+        print(f"Mengambil: {url}")  # Output debug
+        soup = get_soup(url)
+        
+        if soup is None:
+            break
+        
+        # Cari artikel di halaman
+        article_list = soup.find_all('h2')  # Berdasarkan tata letak yang diamati
+        
+        if not article_list:
+            print(f"Tidak ada artikel ditemukan di halaman {page}.")
+            break
+        
+        for article in article_list:
+            if len(articles) >= max_articles:
+                break
+            
+            # Ambil URL detail artikel
+            title_tag = article.find('a')  # Sesuaikan sesuai dengan struktur Jawapos
+            detail_url = title_tag['href'] if title_tag else None
+            
+            if detail_url:
+                # Ambil detail artikel
+                article_details = get_article_details(detail_url, category_name)  # Kirimkan kategori
+                if article_details:
+                    # Tambahkan ke daftar artikel
+                    articles.append(article_details)
+        
+        page += 1
+        time.sleep(2)  # Beri jeda agar tidak terlalu cepat melakukan permintaan
+        
+    return articles
+
+# URL Kategori Jawapos
+categories = {
+    'Olahraga': 'https://www.jawapos.com/sports',
+    'Politik': 'https://www.jawapos.com/politik',
+}
+
+# Mengumpulkan semua data
+all_articles = []
+for category_name, category_url in categories.items():
+    print(f"Menambang kategori {category_name}...")
+    articles = get_articles(category_url, category_name, max_articles=100)  # Kirimkan kategori
+    all_articles.extend(articles)
+
+# Simpan ke dalam DataFrame
+df = pd.DataFrame(all_articles)
+
+# Simpan ke dalam file CSV
+df.to_csv('jawapos_articles.csv', index=False)
+
+# Tampilkan 10 data pertama dalam bentuk tabel
+print(df.head(10))
+
+print("Proses penambangan data selesai, data tersimpan dalam 'jawapos_articles.csv' dan 10 data pertama ditampilkan.")
+
+------------------
+
+----- stdout -----
+Menambang kategori Olahraga...
+Mengambil: https://www.jawapos.com/sports?page=1
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-1-dc8e8e4fce8e>[0m in [0;36m<cell line: 74>[0;34m()[0m
+[1;32m     74[0m [0;32mfor[0m [0mcategory_name[0m[0;34m,[0m [0mcategory_url[0m [0;32min[0m [0mcategories[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     75[0m     [0mprint[0m[0;34m([0m[0;34mf"Menambang kategori {category_name}..."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 76[0;31m     [0marticles[0m [0;34m=[0m [0mget_articles[0m[0;34m([0m[0mcategory_url[0m[0;34m,[0m [0mcategory_name[0m[0;34m,[0m [0mmax_articles[0m[0;34m=[0m[0;36m100[0m[0;34m)[0m  [0;31m# Kirimkan kategori[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     77[0m     [0mall_articles[0m[0;34m.[0m[0mextend[0m[0;34m([0m[0marticles[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     78[0m [0;34m[0m[0m
+
+[0;32m<ipython-input-1-dc8e8e4fce8e>[0m in [0;36mget_articles[0;34m(category_url, category_name, max_articles)[0m
+[1;32m     32[0m         [0murl[0m [0;34m=[0m [0;34mf'{category_url}?page={page}'[0m  [0;31m# Gunakan format paginasi yang diberikan[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     33[0m         [0mprint[0m[0;34m([0m[0;34mf"Mengambil: {url}"[0m[0;34m)[0m  [0;31m# Output debug[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 34[0;31m         [0msoup[0m [0;34m=[0m [0mget_soup[0m[0;34m([0m[0murl[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     35[0m [0;34m[0m[0m
+[1;32m     36[0m         [0;32mif[0m [0msoup[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'get_soup' is not defined
+
