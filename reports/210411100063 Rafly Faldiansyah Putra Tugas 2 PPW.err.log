@@ -15,121 +15,98 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import requests
-from bs4 import BeautifulSoup
+import re
 import pandas as pd
-import time
-# Fungsi untuk mendapatkan detail artikel dari halaman detail
-def get_article_details(detail_url, category_name):
-    detail_soup = get_soup(detail_url)
-    if detail_soup:
-        # Ambil isi berita
-        content = ' '.join([p.text for p in detail_soup.find_all('p')])
+import nltk
+import string
 
-        # Ambil tanggal publikasi
-        date_tag = detail_soup.find('date')
-        date = date_tag.text.strip() if date_tag else 'Tidak ada tanggal'
+def remove_url(text):
+    #Fungsi untuk menghapus URL dari teks.
+    url = re.compile(r'https?://\S+|www\.\S+')
+    return url.sub(r'', text)
 
-        # Ambil judul berita
-        title_tag = detail_soup.find('h1')
-        title = title_tag.text.strip() if title_tag else 'Tidak ada judul'
+def remove_html(text):
+    #Fungsi untuk menghapus tag HTML dari teks.
+    html = re.compile(r'<.*?>')
+    return html.sub(r'', text)
 
-        # Kategori diambil dari parameter
-        return {
-            'judul': title,
-            'isi_berita': content,
-            'tanggal': date,
-            'kategori': category_name,  # Menggunakan nama kategori dari parameter
-            'url': detail_url
-        }
-    return None
+def remove_emoji(text):
 
-# Fungsi untuk mendapatkan artikel dari suatu kategori
-def get_articles(category_url, category_name, max_articles=100):
-    articles = []
-    page = 1
-    
-    while len(articles) < max_articles:
-        url = f'{category_url}?page={page}'  # Gunakan format paginasi yang diberikan
-        print(f"Mengambil: {url}")  # Output debug
-        soup = get_soup(url)
-        
-        if soup is None:
-            break
-        
-        # Cari artikel di halaman
-        article_list = soup.find_all('h2')  # Berdasarkan tata letak yang diamati
-        
-        if not article_list:
-            print(f"Tidak ada artikel ditemukan di halaman {page}.")
-            break
-        
-        for article in article_list:
-            if len(articles) >= max_articles:
-                break
-            
-            # Ambil URL detail artikel
-            title_tag = article.find('a')  # Sesuaikan sesuai dengan struktur Jawapos
-            detail_url = title_tag['href'] if title_tag else None
-            
-            if detail_url:
-                # Ambil detail artikel
-                article_details = get_article_details(detail_url, category_name)  # Kirimkan kategori
-                if article_details:
-                    # Tambahkan ke daftar artikel
-                    articles.append(article_details)
-        
-        page += 1
-        time.sleep(2)  # Beri jeda agar tidak terlalu cepat melakukan permintaan
-        
-    return articles
+    #Fungsi untuk menghapus emoji dari teks.
+    emoji_pattern = re.compile("["
+        u"\U0001F600-\U0001F64F"  # emotikon wajah
+        u"\U0001F300-\U0001F5FF"  # simbol & gambar
+        u"\U0001F680-\U0001F6FF"  # transportasi & simbol
+        u"\U0001F1E0-\U0001F1FF"  # bendera negara
+        "]+", flags=re.UNICODE)
+    return emoji_pattern.sub(r'', text)
 
-# URL Kategori Jawapos
-categories = {
-    'Olahraga': 'https://www.jawapos.com/sports',
-    'Politik': 'https://www.jawapos.com/politik',
-}
+def remove_numbers(text):
+    #Fungsi untuk menghapus angka dari teks.
+    return re.sub(r'\d+', '', text)
 
-# Mengumpulkan semua data
-all_articles = []
-for category_name, category_url in categories.items():
-    print(f"Menambang kategori {category_name}...")
-    articles = get_articles(category_url, category_name, max_articles=100)  # Kirimkan kategori
-    all_articles.extend(articles)
+def remove_symbols(text):
+    #Fungsi untuk menghapus simbol dan karakter khusus dari teks.
+    return re.sub(r'[^a-zA-Z0-9\s]', '', text)
 
-# Simpan ke dalam DataFrame
-df = pd.DataFrame(all_articles)
+# Asumsikan df adalah DataFrame yang berisi data CNN (judul, berita, tanggal, kategori)
+# Contoh: df = pd.read_csv('berita-cnn.csv')
 
-# Simpan ke dalam file CSV
-df.to_csv('jawapos_articles.csv', index=False)
+# Terapkan fungsi cleansing untuk kolom 'berita'
+df['berita_clean'] = df['isi_berita'].apply(remove_url)
+df['berita_clean'] = df['berita_clean'].apply(remove_html)
+df['berita_clean'] = df['berita_clean'].apply(remove_emoji)
+df['berita_clean'] = df['berita_clean'].apply(remove_symbols)
+df['berita_clean'] = df['berita_clean'].apply(remove_numbers)
 
-# Tampilkan 10 data pertama dalam bentuk tabel
-print(df.head(10))
 
-print("Proses penambangan data selesai, data tersimpan dalam 'jawapos_articles.csv' dan 10 data pertama ditampilkan.")
+
+# Tampilkan beberapa baris dari hasil yang sudah dibersihkan
+df.head(5)
 
 ------------------
 
------ stdout -----
-Menambang kategori Olahraga...
-Mengambil: https://www.jawapos.com/sports?page=1
-------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m<ipython-input-1-275f205918f1>[0m in [0;36m<cell line: 78>[0;34m()[0m
-[1;32m     78[0m [0;32mfor[0m [0mcategory_name[0m[0;34m,[0m [0mcategory_url[0m [0;32min[0m [0mcategories[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     79[0m     [0mprint[0m[0;34m([0m[0;34mf"Menambang kategori {category_name}..."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 80[0;31m     [0marticles[0m [0;34m=[0m [0mget_articles[0m[0;34m([0m[0mcategory_url[0m[0;34m,[0m [0mcategory_name[0m[0;34m,[0m [0mmax_articles[0m[0;34m=[0m[0;36m100[0m[0;34m)[0m  [0;31m# Kirimkan kategori[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     81[0m     [0mall_articles[0m[0;34m.[0m[0mextend[0m[0;34m([0m[0marticles[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     82[0m [0;34m[0m[0m
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/core/indexes/base.py[0m in [0;36mget_loc[0;34m(self, key)[0m
+[1;32m   3804[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 3805[0;31m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_engine[0m[0;34m.[0m[0mget_loc[0m[0;34m([0m[0mcasted_key[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   3806[0m         [0;32mexcept[0m [0mKeyError[0m [0;32mas[0m [0merr[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m<ipython-input-1-275f205918f1>[0m in [0;36mget_articles[0;34m(category_url, category_name, max_articles)[0m
-[1;32m     36[0m         [0murl[0m [0;34m=[0m [0;34mf'{category_url}?page={page}'[0m  [0;31m# Gunakan format paginasi yang diberikan[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     37[0m         [0mprint[0m[0;34m([0m[0;34mf"Mengambil: {url}"[0m[0;34m)[0m  [0;31m# Output debug[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 38[0;31m         [0msoup[0m [0;34m=[0m [0mget_soup[0m[0;34m([0m[0murl[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     39[0m [0;34m[0m[0m
-[1;32m     40[0m         [0;32mif[0m [0msoup[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32mindex.pyx[0m in [0;36mpandas._libs.index.IndexEngine.get_loc[0;34m()[0m
 
-[0;31mNameError[0m: name 'get_soup' is not defined
+[0;32mindex.pyx[0m in [0;36mpandas._libs.index.IndexEngine.get_loc[0;34m()[0m
+
+[0;32mpandas/_libs/hashtable_class_helper.pxi[0m in [0;36mpandas._libs.hashtable.PyObjectHashTable.get_item[0;34m()[0m
+
+[0;32mpandas/_libs/hashtable_class_helper.pxi[0m in [0;36mpandas._libs.hashtable.PyObjectHashTable.get_item[0;34m()[0m
+
+[0;31mKeyError[0m: 'isi_berita'
+
+The above exception was the direct cause of the following exception:
+
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+[0;32m<ipython-input-5-67a8a78e0c87>[0m in [0;36m<cell line: 39>[0;34m()[0m
+[1;32m     37[0m [0;34m[0m[0m
+[1;32m     38[0m [0;31m# Terapkan fungsi cleansing untuk kolom 'berita'[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 39[0;31m [0mdf[0m[0;34m[[0m[0;34m'berita_clean'[0m[0;34m][0m [0;34m=[0m [0mdf[0m[0;34m[[0m[0;34m'isi_berita'[0m[0;34m][0m[0;34m.[0m[0mapply[0m[0;34m([0m[0mremove_url[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     40[0m [0mdf[0m[0;34m[[0m[0;34m'berita_clean'[0m[0;34m][0m [0;34m=[0m [0mdf[0m[0;34m[[0m[0;34m'berita_clean'[0m[0;34m][0m[0;34m.[0m[0mapply[0m[0;34m([0m[0mremove_html[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     41[0m [0mdf[0m[0;34m[[0m[0;34m'berita_clean'[0m[0;34m][0m [0;34m=[0m [0mdf[0m[0;34m[[0m[0;34m'berita_clean'[0m[0;34m][0m[0;34m.[0m[0mapply[0m[0;34m([0m[0mremove_emoji[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/core/frame.py[0m in [0;36m__getitem__[0;34m(self, key)[0m
+[1;32m   4100[0m             [0;32mif[0m [0mself[0m[0;34m.[0m[0mcolumns[0m[0;34m.[0m[0mnlevels[0m [0;34m>[0m [0;36m1[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   4101[0m                 [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_getitem_multilevel[0m[0;34m([0m[0mkey[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 4102[0;31m             [0mindexer[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mcolumns[0m[0;34m.[0m[0mget_loc[0m[0;34m([0m[0mkey[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   4103[0m             [0;32mif[0m [0mis_integer[0m[0;34m([0m[0mindexer[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   4104[0m                 [0mindexer[0m [0;34m=[0m [0;34m[[0m[0mindexer[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/core/indexes/base.py[0m in [0;36mget_loc[0;34m(self, key)[0m
+[1;32m   3810[0m             ):
+[1;32m   3811[0m                 [0;32mraise[0m [0mInvalidIndexError[0m[0;34m([0m[0mkey[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 3812[0;31m             [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0mkey[0m[0;34m)[0m [0;32mfrom[0m [0merr[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   3813[0m         [0;32mexcept[0m [0mTypeError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   3814[0m             [0;31m# If we have a listlike key, _check_indexing_error will raise[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mKeyError[0m: 'isi_berita'
 

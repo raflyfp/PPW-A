@@ -414,69 +414,66 @@ document.write(`
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Fungsi untuk mengambil dan mem-parsing HTML dari URL</span>
+<span class="k">def</span> <span class="nf">get_soup</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3&#39;</span>
+    <span class="p">}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> saat mengambil </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
 <span class="c1"># Fungsi untuk mendapatkan detail artikel dari halaman detail</span>
 <span class="k">def</span> <span class="nf">get_article_details</span><span class="p">(</span><span class="n">detail_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">):</span>
     <span class="n">detail_soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">detail_url</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">detail_soup</span><span class="p">:</span>
-        <span class="c1"># Ambil isi berita</span>
         <span class="n">content</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)])</span>
-
-        <span class="c1"># Ambil tanggal publikasi</span>
         <span class="n">date_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
         <span class="n">date</span> <span class="o">=</span> <span class="n">date_tag</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">date_tag</span> <span class="k">else</span> <span class="s1">&#39;Tidak ada tanggal&#39;</span>
-
-        <span class="c1"># Ambil judul berita</span>
         <span class="n">title_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span>
         <span class="n">title</span> <span class="o">=</span> <span class="n">title_tag</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">title_tag</span> <span class="k">else</span> <span class="s1">&#39;Tidak ada judul&#39;</span>
-
-        <span class="c1"># Kategori diambil dari parameter</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;judul&#39;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
             <span class="s1">&#39;isi_berita&#39;</span><span class="p">:</span> <span class="n">content</span><span class="p">,</span>
             <span class="s1">&#39;tanggal&#39;</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span>
-            <span class="s1">&#39;kategori&#39;</span><span class="p">:</span> <span class="n">category_name</span><span class="p">,</span>  <span class="c1"># Menggunakan nama kategori dari parameter</span>
+            <span class="s1">&#39;kategori&#39;</span><span class="p">:</span> <span class="n">category_name</span><span class="p">,</span>
             <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">detail_url</span>
         <span class="p">}</span>
     <span class="k">return</span> <span class="kc">None</span>
 
 <span class="c1"># Fungsi untuk mendapatkan artikel dari suatu kategori</span>
-<span class="k">def</span> <span class="nf">get_articles</span><span class="p">(</span><span class="n">category_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">max_articles</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_articles</span><span class="p">(</span><span class="n">category_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">max_articles</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
     <span class="n">articles</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">page</span> <span class="o">=</span> <span class="mi">1</span>
-    
     <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">max_articles</span><span class="p">:</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">category_url</span><span class="si">}</span><span class="s1">?page=</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s1">&#39;</span>  <span class="c1"># Gunakan format paginasi yang diberikan</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mengambil: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Output debug</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">category_url</span><span class="si">}</span><span class="s1">?page=</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mengambil: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-        
         <span class="k">if</span> <span class="n">soup</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">break</span>
-        
-        <span class="c1"># Cari artikel di halaman</span>
-        <span class="n">article_list</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">)</span>  <span class="c1"># Berdasarkan tata letak yang diamati</span>
-        
+        <span class="n">article_list</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">article_list</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tidak ada artikel ditemukan di halaman </span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
             <span class="k">break</span>
-        
         <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">article_list</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_articles</span><span class="p">:</span>
                 <span class="k">break</span>
-            
-            <span class="c1"># Ambil URL detail artikel</span>
-            <span class="n">title_tag</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>  <span class="c1"># Sesuaikan sesuai dengan struktur Jawapos</span>
+            <span class="n">title_tag</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
             <span class="n">detail_url</span> <span class="o">=</span> <span class="n">title_tag</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">title_tag</span> <span class="k">else</span> <span class="kc">None</span>
-            
             <span class="k">if</span> <span class="n">detail_url</span><span class="p">:</span>
-                <span class="c1"># Ambil detail artikel</span>
-                <span class="n">article_details</span> <span class="o">=</span> <span class="n">get_article_details</span><span class="p">(</span><span class="n">detail_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">)</span>  <span class="c1"># Kirimkan kategori</span>
+                <span class="n">article_details</span> <span class="o">=</span> <span class="n">get_article_details</span><span class="p">(</span><span class="n">detail_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">article_details</span><span class="p">:</span>
-                    <span class="c1"># Tambahkan ke daftar artikel</span>
                     <span class="n">articles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">article_details</span><span class="p">)</span>
-        
         <span class="n">page</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Beri jeda agar tidak terlalu cepat melakukan permintaan</span>
-        
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">articles</span>
 
 <span class="c1"># URL Kategori Jawapos</span>
@@ -489,7 +486,7 @@ document.write(`
 <span class="n">all_articles</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">category_url</span> <span class="ow">in</span> <span class="n">categories</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Menambang kategori </span><span class="si">{</span><span class="n">category_name</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
-    <span class="n">articles</span> <span class="o">=</span> <span class="n">get_articles</span><span class="p">(</span><span class="n">category_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">max_articles</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># Kirimkan kategori</span>
+    <span class="n">articles</span> <span class="o">=</span> <span class="n">get_articles</span><span class="p">(</span><span class="n">category_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">max_articles</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
     <span class="n">all_articles</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span>
 
 <span class="c1"># Simpan ke dalam DataFrame</span>
@@ -508,28 +505,48 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Menambang kategori Olahraga...
 Mengambil: https://www.jawapos.com/sports?page=1
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-1-275f205918f1&gt;</span> in <span class="ni">&lt;cell line: 78&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="k">for</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">category_url</span> <span class="ow">in</span> <span class="n">categories</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Menambang kategori </span><span class="si">{</span><span class="n">category_name</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">80</span>     <span class="n">articles</span> <span class="o">=</span> <span class="n">get_articles</span><span class="p">(</span><span class="n">category_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">max_articles</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># Kirimkan kategori</span>
-<span class="g g-Whitespace">     </span><span class="mi">81</span>     <span class="n">all_articles</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span> 
-
-<span class="nn">&lt;ipython-input-1-275f205918f1&gt;</span> in <span class="ni">get_articles</span><span class="nt">(category_url, category_name, max_articles)</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span>         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">category_url</span><span class="si">}</span><span class="s1">?page=</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s1">&#39;</span>  <span class="c1"># Gunakan format paginasi yang diberikan</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span>         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mengambil: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Output debug</span>
-<span class="ne">---&gt; </span><span class="mi">38</span>         <span class="n">soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span> 
-<span class="g g-Whitespace">     </span><span class="mi">40</span>         <span class="k">if</span> <span class="n">soup</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="ne">NameError</span>: name &#39;get_soup&#39; is not defined
+Error 403 saat mengambil https://www.jawapos.com/sports?page=1
+Menambang kategori Politik...
+Mengambil: https://www.jawapos.com/politik?page=1
+Error 403 saat mengambil https://www.jawapos.com/politik?page=1
+Empty DataFrame
+Columns: []
+Index: []
+Proses penambangan data selesai, data tersimpan dalam &#39;jawapos_articles.csv&#39; dan 10 data pertama ditampilkan.
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+
+<span class="c1"># Contoh DataFrame</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Judul&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Berita 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Berita 2&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Isi&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Ini adalah isi berita 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Ini adalah isi berita 2&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Tanggal&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;2024-10-10&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-10-09&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Kategori&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Olahraga&#39;</span><span class="p">,</span> <span class="s1">&#39;Politik&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Simpan DataFrame ke file CSV</span>
+<span class="n">csv_filename</span> <span class="o">=</span> <span class="s1">&#39;jawapos_articles.csv&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Fungsi untuk membuat tombol download file CSV</span>
+<span class="k">def</span> <span class="nf">create_download_link</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;a href=&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&quot; download&gt;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">&lt;/a&gt;&#39;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan link untuk mengunduh file CSV</span>
+<span class="n">create_download_link</span><span class="p">(</span><span class="n">csv_filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><a href="jawapos_articles.csv" download>jawapos_articles.csv</a></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -539,7 +556,9 @@ Mengambil: https://www.jawapos.com/sports?page=1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-1852631d-d326-4ae6-b265-d855611d6c1f" class="colab-df-container">
+    <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -557,177 +576,112 @@ Mengambil: https://www.jawapos.com/sports?page=1
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>judul</th>
-      <th>isi_berita</th>
-      <th>tanggal</th>
-      <th>kategori</th>
-      <th>url</th>
+      <th>Judul</th>
+      <th>Isi</th>
+      <th>Tanggal</th>
+      <th>Kategori</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Gokart Avenue Bisa Jadi Ladang Pembibitan Pemb...</td>
-      <td>JawaPos.com - Melihat industri motorsport In...</td>
-      <td>Senin, 7 Oktober 2024 | 23:56 WIB</td>
+      <td>Berita 1</td>
+      <td>Ini adalah isi berita 1</td>
+      <td>2024-10-10</td>
       <td>Olahraga</td>
-      <td>https://www.jawapos.com/all-sports/015179615/g...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Runners Wajib Ikut! Pospay Run 2024 Digelar 3 ...</td>
-      <td>JawaPos.com–Olahraga lari kini menjadi salah...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015178386/runne...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Mills Gelar Product Launching Spring Summer 20...</td>
-      <td>JawaPos.com–Sport Apparel dari PT Mitra Krea...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015175513/mills...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Tiga Atlet Olympian Indonesia Berangkat ke Kej...</td>
-      <td>JawaPos.com–Olympia, sebagai ajang tertinggi...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015175506/tiga-...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Indonesia Jadi Tuan Rumah Kejuaraan Dunia MMA ...</td>
-      <td>JawaPos.com – Satu lagi ajang prestisius lev...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015175445/indon...</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Dominasi Ducati Lenovo Team, Bagnaia Pertegas ...</td>
-      <td>JawaPos.com — Jepang tak dipungkiri merupaka...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015173896/domin...</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Sudah Bergabung dengan Klub Lari? Temukan 5 Ha...</td>
-      <td>JawaPos.com – Sudah bergabung dengan klub ...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015172462/sudah...</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Apresiasi PON XXI, Rektor Unesa Prof. Nurhasan...</td>
-      <td>JawaPos.com-Rektor Universitas Negeri Suraba...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/all-sports/015171575/a...</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Jawa Tengah Raih 15 Medali Emas pada Hari Pert...</td>
-      <td>JawaPos.com - Atlet Jawa Tengah tancap gas...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/all-sports/015170603/j...</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Dihelat di Puluhan Kota Jatim dan Jateng, Turn...</td>
-      <td>JawaPos.com - Turnamen voli 76 Smash Heppiii...</td>
-      <td>Rabu, 9 Oktober 2024 | 17:54 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015170274/dihel...</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Legislator PDIP Sebut Mendikbudristek Kabinet ...</td>
-      <td>JawaPos.com - Layanan pendidikan Indonesia m...</td>
-      <td>Rabu, 9 Oktober 2024 | 06:46 WIB</td>
+      <td>Berita 2</td>
+      <td>Ini adalah isi berita 2</td>
+      <td>2024-10-09</td>
       <td>Politik</td>
-      <td>https://www.jawapos.com/politik/015179645/legi...</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Jubir RIDO Jelaskan Program Magrib Mengaji RK ...</td>
-      <td>\nEditor: Kuswandi\n \nPT Jawa Pos Grup Mult...</td>
-      <td>Rabu, 9 Oktober 2024 | 06:46 WIB</td>
-      <td>Politik</td>
-      <td>https://www.jawapos.com/politik/015175743/jubi...</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Sepuluh Tahun Berdiri, Angela Taoesoedibjo Ung...</td>
-      <td>JawaPos.com-Ketua Umum Partai Perindo Ange...</td>
-      <td>Rabu, 9 Oktober 2024 | 06:46 WIB</td>
-      <td>Politik</td>
-      <td>https://www.jawapos.com/politik/015174991/sepu...</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>DPR Ingatkan Kenaikan Kesejahteraan Harus Diim...</td>
-      <td>\nEditor: Bintang Pradewo\n \nPT Jawa Pos Gr...</td>
-      <td>Rabu, 9 Oktober 2024 | 06:46 WIB</td>
-      <td>Politik</td>
-      <td>https://www.jawapos.com/politik/015173560/dpr-...</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Sekjen DPR Sebut, Tunjangan Perumahan Anggota ...</td>
-      <td>\nEditor: Kuswandi\n \nPT Jawa Pos Grup Multim...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:43 WIB</td>
-      <td>Politik</td>
-      <td>https://www.jawapos.com/politik/015171983/sekj...</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Bendahara Umum DPP PDIP Olly Dondokambey Bocor...</td>
-      <td>\nEditor: Dinarsa Kurniawan\n \nPT Jawa Pos Gr...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:43 WIB</td>
-      <td>Politik</td>
-      <td>https://www.jawapos.com/politik/015171417/bend...</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Ahmad Ali-Abdul Karim Janji Lunasi Tunggakan, ...</td>
-      <td>\nEditor: Banu Adikara\n \nPT Jawa Pos Grup Mu...</td>
-      <td>Rabu, 9 Oktober 2024 | 06:46 WIB</td>
-      <td>Politik</td>
-      <td>https://www.jawapos.com/politik/015170004/ahma...</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Mardani Ali Sera Nilai Debat Pilkada Jakarta K...</td>
-      <td>JawaPos.com - Ketua DPP PKS Mardani Ali Ser...</td>
-      <td>Rabu, 9 Oktober 2024 | 06:46 WIB</td>
-      <td>Politik</td>
-      <td>https://www.jawapos.com/politik/015169589/mard...</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Anggap Debat Sebagai Beban, Dharma Pongrekun: ...</td>
-      <td>JawaPos.com - Pasangan Calon Gubernur dan C...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:43 WIB</td>
-      <td>Politik</td>
-      <td>https://www.jawapos.com/politik/015169456/angg...</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Banyak Anak Muda Jadi Anggota DPR berkat Dinas...</td>
-      <td>JawaPos.com – Banyaknya politikus muda yan...</td>
-      <td>Rabu, 9 Oktober 2024 | 06:46 WIB</td>
-      <td>Politik</td>
-      <td>https://www.jawapos.com/politik/015169257/bany...</td>
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-1852631d-d326-4ae6-b265-d855611d6c1f')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-1852631d-d326-4ae6-b265-d855611d6c1f button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-1852631d-d326-4ae6-b265-d855611d6c1f');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -740,7 +694,9 @@ Mengambil: https://www.jawapos.com/sports?page=1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-b7929fd0-16c8-433b-9124-6aad901e98ae" class="colab-df-container">
+    <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -758,57 +714,112 @@ Mengambil: https://www.jawapos.com/sports?page=1
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>judul</th>
-      <th>isi_berita</th>
-      <th>tanggal</th>
-      <th>kategori</th>
-      <th>url</th>
+      <th>Judul</th>
+      <th>Isi</th>
+      <th>Tanggal</th>
+      <th>Kategori</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Gokart Avenue Bisa Jadi Ladang Pembibitan Pemb...</td>
-      <td>JawaPos.com - Melihat industri motorsport In...</td>
-      <td>Senin, 7 Oktober 2024 | 23:56 WIB</td>
+      <td>Berita 1</td>
+      <td>Ini adalah isi berita 1</td>
+      <td>2024-10-10</td>
       <td>Olahraga</td>
-      <td>https://www.jawapos.com/all-sports/015179615/g...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Runners Wajib Ikut! Pospay Run 2024 Digelar 3 ...</td>
-      <td>JawaPos.com–Olahraga lari kini menjadi salah...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015178386/runne...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Mills Gelar Product Launching Spring Summer 20...</td>
-      <td>JawaPos.com–Sport Apparel dari PT Mitra Krea...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015175513/mills...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Tiga Atlet Olympian Indonesia Berangkat ke Kej...</td>
-      <td>JawaPos.com–Olympia, sebagai ajang tertinggi...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015175506/tiga-...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Indonesia Jadi Tuan Rumah Kejuaraan Dunia MMA ...</td>
-      <td>JawaPos.com – Satu lagi ajang prestisius lev...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015175445/indon...</td>
+      <td>Berita 2</td>
+      <td>Ini adalah isi berita 2</td>
+      <td>2024-10-09</td>
+      <td>Politik</td>
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-b7929fd0-16c8-433b-9124-6aad901e98ae')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-b7929fd0-16c8-433b-9124-6aad901e98ae button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-b7929fd0-16c8-433b-9124-6aad901e98ae');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
 </div>
 </section>
 <section id="preprocessing">
@@ -871,81 +882,51 @@ Mengambil: https://www.jawapos.com/sports?page=1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">/usr/local/lib/python3.10/dist-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3804</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3805</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3806</span>         <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>judul</th>
-      <th>isi_berita</th>
-      <th>tanggal</th>
-      <th>kategori</th>
-      <th>url</th>
-      <th>berita_clean</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Gokart Avenue Bisa Jadi Ladang Pembibitan Pemb...</td>
-      <td>JawaPos.com - Melihat industri motorsport In...</td>
-      <td>Senin, 7 Oktober 2024 | 23:56 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/all-sports/015179615/g...</td>
-      <td>JawaPoscom  Melihat industri motorsport Indo...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Runners Wajib Ikut! Pospay Run 2024 Digelar 3 ...</td>
-      <td>JawaPos.com–Olahraga lari kini menjadi salah...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015178386/runne...</td>
-      <td>JawaPoscomOlahraga lari kini menjadi salah s...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Mills Gelar Product Launching Spring Summer 20...</td>
-      <td>JawaPos.com–Sport Apparel dari PT Mitra Krea...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015175513/mills...</td>
-      <td>JawaPoscomSport Apparel dari PT Mitra Kreasi...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Tiga Atlet Olympian Indonesia Berangkat ke Kej...</td>
-      <td>JawaPos.com–Olympia, sebagai ajang tertinggi...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015175506/tiga-...</td>
-      <td>JawaPoscomOlympia sebagai ajang tertinggi di...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Indonesia Jadi Tuan Rumah Kejuaraan Dunia MMA ...</td>
-      <td>JawaPos.com – Satu lagi ajang prestisius lev...</td>
-      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
-      <td>Olahraga</td>
-      <td>https://www.jawapos.com/sports/015175445/indon...</td>
-      <td>JawaPoscom  Satu lagi ajang prestisius level...</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="nn">index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="ne">KeyError</span>: &#39;isi_berita&#39;
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-5-67a8a78e0c87&gt;</span> in <span class="ni">&lt;cell line: 39&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> 
+<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="c1"># Terapkan fungsi cleansing untuk kolom &#39;berita&#39;</span>
+<span class="ne">---&gt; </span><span class="mi">39</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;isi_berita&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_url</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_html</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita_clean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">remove_emoji</span><span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/pandas/core/frame.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4100</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">nlevels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4101</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_multilevel</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">4102</span>             <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4103</span>             <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">indexer</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4104</span>                 <span class="n">indexer</span> <span class="o">=</span> <span class="p">[</span><span class="n">indexer</span><span class="p">]</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3810</span>             <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3811</span>                 <span class="k">raise</span> <span class="n">InvalidIndexError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3812</span>             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">   </span><span class="mi">3813</span>         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3814</span>             <span class="c1"># If we have a listlike key, _check_indexing_error will raise</span>
+
+<span class="ne">KeyError</span>: &#39;isi_berita&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="case-folding">
@@ -999,7 +980,7 @@ Mengambil: https://www.jawapos.com/sports?page=1
       <th>0</th>
       <td>Gokart Avenue Bisa Jadi Ladang Pembibitan Pemb...</td>
       <td>JawaPos.com - Melihat industri motorsport In...</td>
-      <td>Senin, 7 Oktober 2024 | 23:56 WIB</td>
+      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
       <td>Olahraga</td>
       <td>https://www.jawapos.com/all-sports/015179615/g...</td>
       <td>JawaPoscom  Melihat industri motorsport Indo...</td>
@@ -1099,7 +1080,7 @@ Mengambil: https://www.jawapos.com/sports?page=1
       <th>0</th>
       <td>Gokart Avenue Bisa Jadi Ladang Pembibitan Pemb...</td>
       <td>JawaPos.com - Melihat industri motorsport In...</td>
-      <td>Senin, 7 Oktober 2024 | 23:56 WIB</td>
+      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
       <td>Olahraga</td>
       <td>https://www.jawapos.com/all-sports/015179615/g...</td>
       <td>JawaPoscom  Melihat industri motorsport Indo...</td>
@@ -1222,7 +1203,7 @@ Mengambil: https://www.jawapos.com/sports?page=1
       <th>0</th>
       <td>Gokart Avenue Bisa Jadi Ladang Pembibitan Pemb...</td>
       <td>JawaPos.com - Melihat industri motorsport In...</td>
-      <td>Senin, 7 Oktober 2024 | 23:56 WIB</td>
+      <td>Rabu, 9 Oktober 2024 | 23:27 WIB</td>
       <td>Olahraga</td>
       <td>https://www.jawapos.com/all-sports/015179615/g...</td>
       <td>JawaPoscom  Melihat industri motorsport Indo...</td>
@@ -1332,273 +1313,273 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>aang</th>
       <th>abad</th>
+      <th>abcandra</th>
       <th>abdullah</th>
-      <th>acara</th>
-      <th>aceh</th>
-      <th>acehsumatera</th>
-      <th>acehsumut</th>
-      <th>acuan</th>
-      <th>adikara</th>
-      <th>adil</th>
-      <th>adinda</th>
+      <th>abl</th>
+      <th>abraham</th>
+      <th>absen</th>
+      <th>abuabu</th>
+      <th>abvi</th>
+      <th>academy</th>
       <th>...</th>
-      <th>yamaha</th>
-      <th>yani</th>
-      <th>yi</th>
-      <th>yola</th>
-      <th>you</th>
-      <th>yuliana</th>
-      <th>yulianto</th>
-      <th>zealand</th>
+      <th>zii</th>
       <th>ziko</th>
+      <th>zodiak</th>
+      <th>zona</th>
+      <th>zone</th>
+      <th>zonta</th>
+      <th>zuckerberg</th>
+      <th>zulhas</th>
       <th>zulkifli</th>
+      <th>zurloni</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.078354</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.07453</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.0000</td>
       <td>0.0</td>
-      <td>0.155243</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.0000</td>
       <td>0.0</td>
-      <td>0.028153</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.0521</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.059124</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0521</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.0000</td>
       <td>0.0</td>
-      <td>0.034135</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.058216</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.051173</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.079533</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.034955</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.0000</td>
       <td>0.0</td>
-      <td>0.026347</td>
-      <td>0.089867</td>
-      <td>0.044933</td>
-      <td>0.044933</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.039497</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.0000</td>
       <td>0.0</td>
-      <td>0.049347</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.030575</td>
-      <td>0.000000</td>
-      <td>0.04208</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.04208</td>
       <td>0.0</td>
-      <td>0.084159</td>
-      <td>0.0</td>
-      <td>0.084159</td>
       <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>10 rows × 1439 columns</p>
+<p>10 rows × 5864 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1636,273 +1617,273 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>aang</th>
       <th>abad</th>
+      <th>abcandra</th>
       <th>abdullah</th>
-      <th>acara</th>
-      <th>aceh</th>
-      <th>acehsumatera</th>
-      <th>acehsumut</th>
-      <th>acuan</th>
-      <th>adikara</th>
-      <th>adil</th>
-      <th>adinda</th>
+      <th>abl</th>
+      <th>abraham</th>
+      <th>absen</th>
+      <th>abuabu</th>
+      <th>abvi</th>
+      <th>academy</th>
       <th>...</th>
-      <th>yamaha</th>
-      <th>yani</th>
-      <th>yi</th>
-      <th>yola</th>
-      <th>you</th>
-      <th>yuliana</th>
-      <th>yulianto</th>
-      <th>zealand</th>
+      <th>zii</th>
       <th>ziko</th>
+      <th>zodiak</th>
+      <th>zona</th>
+      <th>zone</th>
+      <th>zonta</th>
+      <th>zuckerberg</th>
+      <th>zulhas</th>
       <th>zulkifli</th>
+      <th>zurloni</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.078354</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.07453</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.0000</td>
       <td>0.0</td>
-      <td>0.155243</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.0000</td>
       <td>0.0</td>
-      <td>0.028153</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.0521</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.059124</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0521</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.0000</td>
       <td>0.0</td>
-      <td>0.034135</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.058216</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.051173</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.079533</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.034955</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.0000</td>
       <td>0.0</td>
-      <td>0.026347</td>
-      <td>0.089867</td>
-      <td>0.044933</td>
-      <td>0.044933</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.039497</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.0000</td>
       <td>0.0</td>
-      <td>0.049347</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.030575</td>
-      <td>0.000000</td>
-      <td>0.04208</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.04208</td>
       <td>0.0</td>
-      <td>0.084159</td>
-      <td>0.0</td>
-      <td>0.084159</td>
       <td>0.000000</td>
-      <td>0.0000</td>
-      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>10 rows × 1439 columns</p>
+<p>10 rows × 5864 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1958,18 +1939,18 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix:
-[[2 0]
- [0 2]]
+[[21  0]
+ [ 2 17]]
 
 Hasil Klasifikasi:
               precision    recall  f1-score   support
 
-    Olahraga       1.00      1.00      1.00         2
-     Politik       1.00      1.00      1.00         2
+    Olahraga       0.91      1.00      0.95        21
+     Politik       1.00      0.89      0.94        19
 
-    accuracy                           1.00         4
-   macro avg       1.00      1.00      1.00         4
-weighted avg       1.00      1.00      1.00         4
+    accuracy                           0.95        40
+   macro avg       0.96      0.95      0.95        40
+weighted avg       0.95      0.95      0.95        40
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;model_regresi_logistik.pkl&#39;]
