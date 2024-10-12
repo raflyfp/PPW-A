@@ -184,6 +184,7 @@
 <li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%202%20PPW.html">Tugas 2</a></li>
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%204%20PPW.html">Rafly Faldiansyah Putra</a></li>
 
 
@@ -386,8 +387,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-import-library-yang-dibutuhkan">1. Melakukan import library yang dibutuhkan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-halaman-website-dan-memeriksa-status-request">2. Mengambil Halaman Website dan Memeriksa status request</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menemukan-dan-mengekstrak-10-berita">3. Menemukan dan Mengekstrak 10 Berita</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-data-dari-setiap-artikel-berita">4. Mengambil data dari setiap artikel berita</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-yang-di-crowling-ke-dalam-tabel">5. Menampilkan data yang di crowling ke dalam tabel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-yang-di-crowling-ke-dalam-tabel">4. Menampilkan data yang di crowling ke dalam tabel</a></li>
 </ul>
             </nav>
         </div>
@@ -437,9 +437,12 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-pac
 <h2>1. Melakukan import library yang dibutuhkan<a class="headerlink" href="#melakukan-import-library-yang-dibutuhkan" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing Libraries</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
 </pre></div>
 </div>
 </div>
@@ -452,33 +455,27 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-pac
 <h2>2. Mengambil Halaman Website dan Memeriksa status request<a class="headerlink" href="#mengambil-halaman-website-dan-memeriksa-status-request" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://jatim.tribunnews.com/&#39;</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-
-<span class="c1"># Periksa apakah request berhasil</span>
-<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Request berhasil!&quot;</span><span class="p">)</span>
-    <span class="n">page_content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gagal mengambil halaman, status code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Parsing HTML</span>
-<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page_content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gagal mengambil halaman, status code: 403
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-3-2a68fc1ae31a&gt;</span> in <span class="ni">&lt;cell line: 12&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> 
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># Parsing HTML</span>
-<span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page_content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;page_content&#39; is not defined
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Daftar user agents yang akan dirotasi</span>
+<span class="n">USER_AGENTS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="c1"># Fungsi untuk mengambil dan mem-parsing HTML dari URL</span>
+<span class="k">def</span> <span class="nf">get_soup</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">USER_AGENTS</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> saat mengambil </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -488,95 +485,148 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-pac
 <h2>3. Menemukan dan Mengekstrak 10 Berita<a class="headerlink" href="#menemukan-dan-mengekstrak-10-berita" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cari semua &lt;h3&gt; yang mengandung &lt;a&gt;</span>
-<span class="n">articles</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;h3&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fungsi untuk mendapatkan detail artikel dari halaman detail</span>
+<span class="k">def</span> <span class="nf">get_article_details</span><span class="p">(</span><span class="n">detail_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">):</span>
+    <span class="n">detail_soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">detail_url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">detail_soup</span><span class="p">:</span>
+        <span class="c1"># Ambil konten dari div dengan class &#39;read__content&#39;</span>
+        <span class="n">content_div</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;read__content&#39;</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">content_div</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)])</span> <span class="k">if</span> <span class="n">content_div</span> <span class="k">else</span> <span class="s1">&#39;Tidak ada isi berita&#39;</span>
+        
+        <span class="c1"># Ambil tanggal dari div dengan class &#39;read__time&#39;</span>
+        <span class="n">date_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;read__time&#39;</span><span class="p">)</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">date_tag</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">date_tag</span> <span class="k">else</span> <span class="s1">&#39;Tidak ada tanggal&#39;</span>
+        
+        <span class="n">title_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">title_tag</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">title_tag</span> <span class="k">else</span> <span class="s1">&#39;Tidak ada judul&#39;</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;judul&#39;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+            <span class="s1">&#39;isi_berita&#39;</span><span class="p">:</span> <span class="n">content</span><span class="p">,</span>
+            <span class="s1">&#39;tanggal&#39;</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span>
+            <span class="s1">&#39;kategori&#39;</span><span class="p">:</span> <span class="n">category_name</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">None</span>
 
-<span class="c1"># Ekstrak URL dari &lt;a&gt; di dalam &lt;h3&gt; dan simpan dalam list</span>
-<span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">articles</span> <span class="k">if</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)][:</span><span class="mi">10</span><span class="p">]</span>
+<span class="c1"># Fungsi untuk mendapatkan artikel dari suatu kategori</span>
+<span class="k">def</span> <span class="nf">get_articles</span><span class="p">(</span><span class="n">category_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">max_articles</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">articles</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">max_articles</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">category_url</span><span class="si">}</span><span class="s1">?page=</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mengambil: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">soup</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">article_list</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;h3&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;article__title&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">article_list</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tidak ada artikel ditemukan di halaman </span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">article_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_articles</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">title_tag</span> <span class="o">=</span> <span class="n">article</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+            <span class="n">detail_url</span> <span class="o">=</span> <span class="n">title_tag</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">title_tag</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">detail_url</span><span class="p">:</span>
+                <span class="n">article_details</span> <span class="o">=</span> <span class="n">get_article_details</span><span class="p">(</span><span class="n">detail_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">article_details</span><span class="p">:</span>
+                    <span class="n">articles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">article_details</span><span class="p">)</span>
+        
+        <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>
+        
+        <span class="n">page</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">articles</span>
 
-<span class="c1"># Tampilkan 10 URL berita yang ditemukan</span>
-<span class="n">urls</span>
+<span class="c1"># URL Kategori Kompas</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Olahraga&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.kompas.com/tag/olahraga&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Politik&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.kompas.com/tag/politik&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Mengumpulkan semua data</span>
+<span class="n">all_articles</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">category_url</span> <span class="ow">in</span> <span class="n">categories</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Menambang kategori </span><span class="si">{</span><span class="n">category_name</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="n">articles</span> <span class="o">=</span> <span class="n">get_articles</span><span class="p">(</span><span class="n">category_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">max_articles</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">all_articles</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span>
+<span class="c1"># Simpan ke dalam DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_articles</span><span class="p">)</span>
+
+<span class="c1"># Simpan ke dalam file CSV tanpa kolom &#39;url&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;kompas_articles.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;https://jatim.tribunnews.com/2024/09/04/arti-kata-bokem-dalam-bahasa-gaul-istilah-populer-di-media-sosial-ada-kaitannya-dengan-karakter&#39;,
- &#39;https://jatim.tribunnews.com/2024/09/04/disambut-ratusan-santri-di-jombang-risma-mengaku-senang-dan-bahagia&#39;,
- &#39;https://jatim.tribunnews.com/2024/09/04/ziarahi-makam-pendiri-nu-di-tebuireng-jombang-risma-saya-memang-bagian-dari-keluarga&#39;,
- &#39;https://jatim.tribunnews.com/2024/09/04/jelang-pilgub-jatim-2024-risma-gus-hans-nyekar-makam-bung-karno-dan-tokoh-ulama&#39;,
- &#39;https://jatim.tribunnews.com/2024/09/04/kondisi-jalan-kaligede-tempursari-terputus-pemkab-lumajang-beber-sebabnya-air-laut-tinggi&#39;,
- &#39;https://jatim.tribunnews.com/2024/09/04/bmkg-nilai-musim-kemarau-2024-tak-wajar-imbasnya-di-bojonegoro-masuki-kekeringan-ekstrem-krisis&#39;,
- &#39;https://jatim.tribunnews.com/2024/09/04/update-pencarian-pria-yang-menceburkan-diri-ke-sungai-jagir-surabaya-petugas-terkendala-air-pasang&#39;,
- &#39;https://jatim.tribunnews.com/2024/09/02/air-mata-haru-1-aula-lihat-yeni-digendong-ayah-terima-ijazah-dari-rektor-sempat-terancam-tak-wisuda?utm_source=topstories&#39;,
- &#39;https://jatim.tribunnews.com/2024/09/02/pihak-grab-langsung-temui-owner-kafe-usai-driver-ojol-hina-pegawai-disabilitas-nasib-tak-tertolong?utm_source=topstories&#39;,
- &#39;https://jatim.tribunnews.com/2024/09/01/tak-tahu-tika-yang-dilamar-di-stadion-sudah-punya-suami-gilang-kini-minta-maaf-saya-khilaf?utm_source=topstories&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Menambang kategori Olahraga...
+Mengambil: https://www.kompas.com/tag/olahraga?page=1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Menambang kategori Politik...
+Mengambil: https://www.kompas.com/tag/politik?page=1
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="mengambil-data-dari-setiap-artikel-berita">
-<h2>4. Mengambil data dari setiap artikel berita<a class="headerlink" href="#mengambil-data-dari-setiap-artikel-berita" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_list</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">url</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
-    
-    <span class="c1"># Mendapatkan judul</span>
-    <span class="n">judul</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-
-    <span class="c1"># Mendapatkan tanggal</span>
-    <span class="n">tanggal</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-
-    <span class="c1"># Mendapatkan isi artikel</span>
-    <span class="n">isi</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">))</span>
-    
-    <span class="c1"># Mencari breadcrumb</span>
-    <span class="n">breadcrumb</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;breadcrumb&#39;</span><span class="p">})</span>
-
-    <span class="c1"># Mengambil kategori terakhir dari breadcrumb</span>
-    <span class="n">kategori</span> <span class="o">=</span> <span class="n">breadcrumb</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    
-    <span class="c1"># Simpan data ke dalam list</span>
-    <span class="n">data_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-        <span class="s1">&#39;No&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
-        <span class="s1">&#39;Judul Berita&#39;</span><span class="p">:</span> <span class="n">judul</span><span class="p">,</span>
-        <span class="s1">&#39;Tanggal Berita&#39;</span><span class="p">:</span> <span class="n">tanggal</span><span class="p">,</span>
-        <span class="s1">&#39;Kategori Berita&#39;</span><span class="p">:</span> <span class="n">kategori</span><span class="p">,</span>
-        <span class="s1">&#39;Isi Berita&#39;</span><span class="p">:</span> <span class="n">isi</span><span class="p">,</span>
-        <span class="s1">&#39;URL&#39;</span><span class="p">:</span> <span class="n">url</span>
-    <span class="p">})</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>data_list: List untuk menyimpan data dari setiap artikel berita.</p>
-<p>for i, url in enumerate(urls, start=1): Looping untuk setiap URL yang ditemukan, di mana i adalah index mulai dari 1.</p>
-<p>requests.get(url): Mengambil konten halaman dari URL artikel.</p>
-<p>judul = soup.find(‘h1’).text.strip(): Menemukan judul berita di dalam elemen h1.</p>
-<p>tanggal = soup.find(‘time’).text.strip(): Menemukan tanggal berita di dalam elemen time.</p>
-<p>isi = ‘ ‘.join(p.text.strip() for p in soup.find_all(‘p’)): Menggabungkan semua paragraf <p> di dalam artikel untuk mendapatkan isi berita.</p>
-<p>breadcrumb = soup.find(‘ul’, {‘class’: ‘breadcrumb’}): Mencari elemen breadcrumb untuk menemukan kategori berita.</p>
-<p>kategori = breadcrumb.find_all(‘li’)[-1].find(‘span’).text.strip(): Mengambil kategori terakhir dalam breadcrumb.</p>
-<p>data_list.append({…}): Menyimpan data yang telah diekstrak ke dalam list data_list.</p>
 </section>
 <section id="menampilkan-data-yang-di-crowling-ke-dalam-tabel">
-<h2>5. Menampilkan data yang di crowling ke dalam tabel<a class="headerlink" href="#menampilkan-data-yang-di-crowling-ke-dalam-tabel" title="Link to this heading">#</a></h2>
+<h2>4. Menampilkan data yang di crowling ke dalam tabel<a class="headerlink" href="#menampilkan-data-yang-di-crowling-ke-dalam-tabel" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Konversi ke DataFrame</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tampilkan 10 data acak dalam bentuk tabel</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
 
-<span class="c1"># Tampilkan tabel</span>
-<span class="n">df</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proses penambangan data selesai, data tersimpan dalam &#39;kompas_articles.csv&#39; dan 10 data pertama ditampilkan.&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="c1"># Tampilkan 10 data acak dalam bentuk tabel</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                judul  \
+8   Dugaan Penipuan Acara Olahraga Berkedok HUT Ko...   
+7   Menuju Indonesia Emas 2045, Kemenpora dan LPDP...   
+11  Terima Kunjungan Elite PKS, Prabowo: Teman Lam...   
+17  Makan Malam Bareng Prabowo, Jokowi: 2,5 Jam, B...   
+0   Keluar Rumah Hendak Olahraga, Anak Polisi di P...   
+19  Pakai Dasi Hijau ke Acara PKB, Prabowo: Kalau ...   
+14  Survei Litbang &quot;Kompas&quot;: Sektor Politik dan Ke...   
+4   Bagaimana Olahraga Bisa Menurunkan Gula Darah?...   
+13  Ketika Paguyuban Adat Ikut Menjaga Harmoni di ...   
+18  Port Visit KRI WSH-991, Perkuat Politik Bebas ...   
+
+                                           isi_berita                tanggal  \
+8   KOMPAS.com - Unggahan bernarasi dugaan penipua...  07/10/2024, 11:15 WIB   
+7   KOMPAS.com - Pemerintah berkomitmen untuk meni...  07/10/2024, 22:00 WIB   
+11  JAKARTA, KOMPAS.com - Presiden terpilih Prabow...  11/10/2024, 17:13 WIB   
+17  JAKARTA, KOMPAS.com - Presiden Joko Widodo men...  10/10/2024, 21:37 WIB   
+0   KOMPAS.com - Anak seorang anggota polisi di Ko...  10/10/2024, 14:45 WIB   
+19  JAKARTA, KOMPAS.com - Presiden terpilih sekali...  10/10/2024, 19:45 WIB   
+14  JAKARTA, KOMPAS.com - Masyarakat merasa puas d...  11/10/2024, 10:38 WIB   
+4   KOMPAS.com - Olahraga atau aktivitas fisik mer...  09/10/2024, 12:00 WIB   
+13  LAMPUNG, KOMPAS.com - Paguyuban adat di Lampun...  11/10/2024, 11:46 WIB   
+18  Pangkoarmada RI Laksamana Madya Denih Hendrata...      Tidak ada tanggal   
+
+    kategori  
+8   Olahraga  
+7   Olahraga  
+11   Politik  
+17   Politik  
+0   Olahraga  
+19   Politik  
+14   Politik  
+4   Olahraga  
+13   Politik  
+18   Politik  
+Proses penambangan data selesai, data tersimpan dalam &#39;kompas_articles.csv&#39; dan 10 data pertama ditampilkan.
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-c9cc66aa-c6fc-4a13-92ea-6a798c47afc9" class="colab-df-container">
+    <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -594,108 +644,168 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-pac
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>No</th>
-      <th>Judul Berita</th>
-      <th>Tanggal Berita</th>
-      <th>Kategori Berita</th>
-      <th>Isi Berita</th>
-      <th>URL</th>
+      <th>judul</th>
+      <th>isi_berita</th>
+      <th>tanggal</th>
+      <th>kategori</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>Arti Kata Bokem dalam Bahasa Gaul, Istilah Pop...</td>
-      <td>Tayang: Rabu, 4 September 2024 22:48 WIB</td>
-      <td>Lainnya</td>
-      <td>TRIBUNJATIM.COM - Tribunners kali ini kita aka...</td>
-      <td>https://jatim.tribunnews.com/2024/09/04/arti-k...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>Disambut Ratusan Santri di Jombang, Risma Meng...</td>
-      <td>Tayang: Rabu, 4 September 2024 22:25 WIB</td>
-      <td>Pilkada</td>
-      <td>TRIBUNJATIM.COM, JOMBANG - Bakal Calon Gubernu...</td>
-      <td>https://jatim.tribunnews.com/2024/09/04/disamb...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>Ziarahi Makam Pendiri NU di Tebuireng Jombang,...</td>
-      <td>Tayang: Rabu, 4 September 2024 22:16 WIB</td>
-      <td>Pilkada</td>
-      <td>TRIBUNJATIM.COM, JOMBANG - Calon Gubernur Jawa...</td>
-      <td>https://jatim.tribunnews.com/2024/09/04/ziarah...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>Jelang Pilgub Jatim 2024, Risma-Gus Hans Nyeka...</td>
-      <td>Tayang: Rabu, 4 September 2024 22:07 WIB</td>
-      <td>Pilkada</td>
-      <td>TRIBUNJATIM.COM, BLITAR - Jelang Pilgub 2024, ...</td>
-      <td>https://jatim.tribunnews.com/2024/09/04/jelang...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>Kondisi Jalan Kaligede Tempursari Terputus, Pe...</td>
-      <td>Tayang: Rabu, 4 September 2024 21:59 WIB</td>
-      <td>Jatim</td>
-      <td>Laporan Wartawan Tribun Jatim Network, Erwin W...</td>
-      <td>https://jatim.tribunnews.com/2024/09/04/kondis...</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>6</td>
-      <td>BMKG Nilai Musim Kemarau 2024 Tak Wajar, Imbas...</td>
-      <td>Tayang: Rabu, 4 September 2024 21:40 WIB</td>
-      <td>Bojonegoro</td>
-      <td>Laporan Wartawan Tribun Jatim Network, Yusab A...</td>
-      <td>https://jatim.tribunnews.com/2024/09/04/bmkg-n...</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>7</td>
-      <td>Update Pencarian Pria yang Menceburkan Diri ke...</td>
-      <td>Tayang: Rabu, 4 September 2024 21:34 WIB</td>
-      <td>Metro Surabaya</td>
-      <td>Laporan Wartawan TribunJatim.com, Luhur Pambud...</td>
-      <td>https://jatim.tribunnews.com/2024/09/04/update...</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>8</td>
-      <td>Air Mata Haru 1 Aula Lihat Yeni Digendong Ayah...</td>
-      <td>Tayang: Senin, 2 September 2024 11:20 WIB</td>
-      <td>Nasional</td>
-      <td>TRIBUNJATIM.COM - Beginilah momen Yeni digendo...</td>
-      <td>https://jatim.tribunnews.com/2024/09/02/air-ma...</td>
+      <th>11</th>
+      <td>Terima Kunjungan Elite PKS, Prabowo: Teman Lam...</td>
+      <td>JAKARTA, KOMPAS.com - Presiden terpilih Prabow...</td>
+      <td>11/10/2024, 17:13 WIB</td>
+      <td>Politik</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>9</td>
-      <td>Pihak Grab Langsung Temui Owner Kafe usai Driv...</td>
-      <td>Tayang: Senin, 2 September 2024 19:03 WIB</td>
-      <td>Regional</td>
-      <td>TRIBUNJATIM.COM - Disoroti karena mitra driver...</td>
-      <td>https://jatim.tribunnews.com/2024/09/02/pihak-...</td>
+      <td>Dugaan Penipuan Acara Olahraga Berkedok HUT Ko...</td>
+      <td>KOMPAS.com - Unggahan bernarasi dugaan penipua...</td>
+      <td>07/10/2024, 11:15 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Ketika Paguyuban Adat Ikut Menjaga Harmoni di ...</td>
+      <td>LAMPUNG, KOMPAS.com - Paguyuban adat di Lampun...</td>
+      <td>11/10/2024, 11:46 WIB</td>
+      <td>Politik</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Makan Malam Bareng Prabowo, Jokowi: 2,5 Jam, B...</td>
+      <td>JAKARTA, KOMPAS.com - Presiden Joko Widodo men...</td>
+      <td>10/10/2024, 21:37 WIB</td>
+      <td>Politik</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Pramono Kunjungi Uskup Agung Jakarta, Bahas Ke...</td>
+      <td>JAKARTA, KOMPAS.com - Calon Wakil Gubernur Jak...</td>
+      <td>11/10/2024, 18:50 WIB</td>
+      <td>Politik</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Menuju Indonesia Emas 2045, Kemenpora dan LPDP...</td>
+      <td>KOMPAS.com - Pemerintah berkomitmen untuk meni...</td>
+      <td>07/10/2024, 22:00 WIB</td>
+      <td>Olahraga</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>10</td>
-      <td>Tak Tahu Tika yang Dilamar di Stadion Sudah Pu...</td>
-      <td>Tayang: Minggu, 1 September 2024 18:11 WIB</td>
-      <td>Regional</td>
-      <td>TRIBUNJATIM.COM - Pede lamar istri orang di St...</td>
-      <td>https://jatim.tribunnews.com/2024/09/01/tak-ta...</td>
+      <td>Menpora: Peparnas XVII Solo, Olahraga untuk Se...</td>
+      <td>SOLO, KOMPAS.com - Menteri Pemuda dan Olahraga...</td>
+      <td>07/10/2024, 07:47 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Ekonomi Hijau dan Politik Kotor</td>
+      <td>TAHUN 2024 menjadi penanda penting dalam perja...</td>
+      <td>11/10/2024, 08:45 WIB</td>
+      <td>Politik</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>"Event" Olahraga Bikin Okupansi Hotel di Bali ...</td>
+      <td>JAKARTA, KOMPAS.com - Diselengarakannya berbag...</td>
+      <td>08/10/2024, 11:46 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
+      <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
+      <td>10/10/2024, 08:45 WIB</td>
+      <td>Olahraga</td>
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-c9cc66aa-c6fc-4a13-92ea-6a798c47afc9')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-c9cc66aa-c6fc-4a13-92ea-6a798c47afc9 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-c9cc66aa-c6fc-4a13-92ea-6a798c47afc9');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
 </div>
 </section>
 </section>
@@ -768,8 +878,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-pac
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-import-library-yang-dibutuhkan">1. Melakukan import library yang dibutuhkan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-halaman-website-dan-memeriksa-status-request">2. Mengambil Halaman Website dan Memeriksa status request</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menemukan-dan-mengekstrak-10-berita">3. Menemukan dan Mengekstrak 10 Berita</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-data-dari-setiap-artikel-berita">4. Mengambil data dari setiap artikel berita</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-yang-di-crowling-ke-dalam-tabel">5. Menampilkan data yang di crowling ke dalam tabel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-yang-di-crowling-ke-dalam-tabel">4. Menampilkan data yang di crowling ke dalam tabel</a></li>
 </ul>
   </nav></div>
 
