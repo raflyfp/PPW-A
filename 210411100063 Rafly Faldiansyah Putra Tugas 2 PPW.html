@@ -605,18 +605,32 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
 <span class="g g-Whitespace">    </span><span class="mi">172</span><span class="s2">                     k = self.parse_endtag(i)</span>
 
 <span class="nn">/usr/lib/python3.10/html/parser.py</span> in <span class="ni">parse_starttag</span><span class="nt">(self, i)</span>
-<span class="g g-Whitespace">    </span><span class="mi">344</span><span class="s2">             self.handle_starttag(tag, attrs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="s2">             self.handle_startendtag(tag, attrs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="s2">         else:</span>
+<span class="ne">--&gt; </span><span class="mi">344</span><span class="s2">             self.handle_starttag(tag, attrs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">345</span><span class="s2">             if tag in self.CDATA_CONTENT_ELEMENTS:</span>
-<span class="ne">--&gt; </span><span class="mi">346</span><span class="s2">                 self.set_cdata_mode(tag)</span>
-<span class="g g-Whitespace">    </span><span class="mi">347</span><span class="s2">         return endpos</span>
-<span class="g g-Whitespace">    </span><span class="mi">348</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span><span class="s2">                 self.set_cdata_mode(tag)</span>
 
-<span class="nn">/usr/lib/python3.10/html/parser.py</span> in <span class="ni">set_cdata_mode</span><span class="nt">(self, elem)</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span><span class="s2">         return self.__starttag_text</span>
-<span class="g g-Whitespace">    </span><span class="mi">121</span><span class="s2"> </span>
-<span class="ne">--&gt; </span><span class="mi">122</span><span class="s2">     def set_cdata_mode(self, elem):</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span><span class="s2">         self.cdata_elem = elem.lower()</span>
-<span class="g g-Whitespace">    </span><span class="mi">124</span><span class="s2">         self.interesting = re.compile(r&#39;&lt;/\s*</span><span class="si">%s</span><span class="s2">\s*&gt;&#39; </span><span class="si">% s</span><span class="s2">elf.cdata_elem, re.I)</span>
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/builder/_htmlparser.py</span> in <span class="ni">handle_starttag</span><span class="nt">(self, name, attrs, handle_empty_element)</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span><span class="s2">         #print(&quot;START&quot;, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span><span class="s2">         sourceline, sourcepos = self.getpos()</span>
+<span class="ne">--&gt; </span><span class="mi">137</span><span class="s2">         tag = self.soup.handle_starttag(</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span><span class="s2">             name, None, None, attr_dict, sourceline=sourceline,</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span><span class="s2">             sourcepos=sourcepos</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/__init__.py</span> in <span class="ni">handle_starttag</span><span class="nt">(self, name, namespace, nsprefix, attrs, sourceline, sourcepos, namespaces)</span>
+<span class="g g-Whitespace">    </span><span class="mi">747</span><span class="s2">             return None</span>
+<span class="g g-Whitespace">    </span><span class="mi">748</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">749</span><span class="s2">         tag = self.element_classes.get(Tag, Tag)(</span>
+<span class="g g-Whitespace">    </span><span class="mi">750</span><span class="s2">             self, self.builder, name, namespace, nsprefix, attrs,</span>
+<span class="g g-Whitespace">    </span><span class="mi">751</span><span class="s2">             self.currentTag, self._most_recent_element,</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/element.py</span> in <span class="ni">__init__</span><span class="nt">(self, parser, builder, name, namespace, prefix, attrs, parent, previous, is_xml, sourceline, sourcepos, can_be_empty_element, cdata_list_attributes, preserve_whitespace_tags, interesting_string_types, namespaces)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1253</span><span class="s2">         self.prefix = prefix</span>
+<span class="g g-Whitespace">   </span><span class="mi">1254</span><span class="s2">         if ((not builder or builder.store_line_numbers)</span>
+<span class="ne">-&gt; </span><span class="mi">1255</span><span class="s2">             and (sourceline is not None or sourcepos is not None)):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1256</span><span class="s2">             self.sourceline = sourceline</span>
+<span class="g g-Whitespace">   </span><span class="mi">1257</span><span class="s2">             self.sourcepos = sourcepos</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
