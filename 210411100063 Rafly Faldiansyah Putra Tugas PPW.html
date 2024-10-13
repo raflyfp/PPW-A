@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Crawling Website &#8212; My sample book</title>
+    <title>Tugas 1 &#8212; My sample book</title>
   
   
   
@@ -180,7 +180,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Crawling Website</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%202%20PPW.html">Tugas 2</a></li>
 
 
@@ -373,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Crawling Website</h1>
+    <h1>Tugas 1</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -383,11 +383,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-crawling">Pengertian Crawling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-import-library-yang-dibutuhkan">1. Melakukan import library yang dibutuhkan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-halaman-website-dan-memeriksa-status-request">2. Mengambil Halaman Website dan Memeriksa status request</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menemukan-dan-mengekstrak-10-berita">3. Menemukan dan Mengekstrak 10 Berita</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-yang-di-crowling-ke-dalam-tabel">4. Menampilkan data yang di crowling ke dalam tabel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crawling-website">Crawling Website</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-crawling">Pengertian Crawling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-import-library-yang-dibutuhkan">1. Melakukan import library yang dibutuhkan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-halaman-website-dan-memeriksa-status-request">2. Mengambil Halaman Website dan Memeriksa status request</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menemukan-dan-mengekstrak-10-berita">3. Menemukan dan Mengekstrak 10 Berita</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-yang-di-crowling-ke-dalam-tabel">4. Menampilkan data yang di crowling ke dalam tabel</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -399,12 +402,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="crawling-website">
-<h1>Crawling Website<a class="headerlink" href="#crawling-website" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-1">
+<h1>Tugas 1<a class="headerlink" href="#tugas-1" title="Link to this heading">#</a></h1>
+<section id="crawling-website">
+<h2>Crawling Website<a class="headerlink" href="#crawling-website" title="Link to this heading">#</a></h2>
 <p>Rafly Faldiansyah Putra</p>
 <p>210411100063</p>
 <section id="pengertian-crawling">
-<h2>Pengertian Crawling<a class="headerlink" href="#pengertian-crawling" title="Link to this heading">#</a></h2>
+<h3>Pengertian Crawling<a class="headerlink" href="#pengertian-crawling" title="Link to this heading">#</a></h3>
 <p>Crawling data adalah proses pengambilan data secara otomatis dari website oleh mesin pencari. Ketika mesin pencari mengunjungi suatu website, ia akan mengikuti semua tautan yang ada di halaman tersebut dan mengambil informasi dari setiap halaman yang dikunjungi. Hasilnya, mesin pencari akan memiliki indeks data yang sangat besar yang dapat digunakan untuk menyajikan hasil informasi data yang dibutuhkan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -434,7 +439,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-pac
 </div>
 </section>
 <section id="melakukan-import-library-yang-dibutuhkan">
-<h2>1. Melakukan import library yang dibutuhkan<a class="headerlink" href="#melakukan-import-library-yang-dibutuhkan" title="Link to this heading">#</a></h2>
+<h3>1. Melakukan import library yang dibutuhkan<a class="headerlink" href="#melakukan-import-library-yang-dibutuhkan" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing Libraries</span>
@@ -452,7 +457,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-pac
 <p>pandas: Digunakan untuk mengolah data dan menyimpan hasil ekstraksi ke dalam bentuk DataFrame.</p>
 </section>
 <section id="mengambil-halaman-website-dan-memeriksa-status-request">
-<h2>2. Mengambil Halaman Website dan Memeriksa status request<a class="headerlink" href="#mengambil-halaman-website-dan-memeriksa-status-request" title="Link to this heading">#</a></h2>
+<h3>2. Mengambil Halaman Website dan Memeriksa status request<a class="headerlink" href="#mengambil-halaman-website-dan-memeriksa-status-request" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Daftar user agents yang akan dirotasi</span>
@@ -482,7 +487,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-pac
 </div>
 </section>
 <section id="menemukan-dan-mengekstrak-10-berita">
-<h2>3. Menemukan dan Mengekstrak 10 Berita<a class="headerlink" href="#menemukan-dan-mengekstrak-10-berita" title="Link to this heading">#</a></h2>
+<h3>3. Menemukan dan Mengekstrak 10 Berita<a class="headerlink" href="#menemukan-dan-mengekstrak-10-berita" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fungsi untuk mendapatkan detail artikel dari halaman detail</span>
@@ -571,7 +576,7 @@ Mengambil: https://www.kompas.com/tag/politik?page=1
 </div>
 </section>
 <section id="menampilkan-data-yang-di-crowling-ke-dalam-tabel">
-<h2>4. Menampilkan data yang di crowling ke dalam tabel<a class="headerlink" href="#menampilkan-data-yang-di-crowling-ke-dalam-tabel" title="Link to this heading">#</a></h2>
+<h3>4. Menampilkan data yang di crowling ke dalam tabel<a class="headerlink" href="#menampilkan-data-yang-di-crowling-ke-dalam-tabel" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tampilkan 10 data acak dalam bentuk tabel</span>
@@ -587,45 +592,45 @@ Mengambil: https://www.kompas.com/tag/politik?page=1
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                judul  \
-8   Dugaan Penipuan Acara Olahraga Berkedok HUT Ko...   
-7   Menuju Indonesia Emas 2045, Kemenpora dan LPDP...   
-11  Terima Kunjungan Elite PKS, Prabowo: Teman Lam...   
-17  Makan Malam Bareng Prabowo, Jokowi: 2,5 Jam, B...   
-0   Keluar Rumah Hendak Olahraga, Anak Polisi di P...   
-19  Pakai Dasi Hijau ke Acara PKB, Prabowo: Kalau ...   
-14  Survei Litbang &quot;Kompas&quot;: Sektor Politik dan Ke...   
-4   Bagaimana Olahraga Bisa Menurunkan Gula Darah?...   
-13  Ketika Paguyuban Adat Ikut Menjaga Harmoni di ...   
-18  Port Visit KRI WSH-991, Perkuat Politik Bebas ...   
+16                    Ekonomi Hijau dan Politik Kotor   
+18  Makan Malam Bareng Prabowo, Jokowi: 2,5 Jam, B...   
+13  Ridwan Kamil Curhat Pengalaman Mengecewakan ya...   
+12  Terima Kunjungan Elite PKS, Prabowo: Teman Lam...   
+0   Perbandingan Ranking FIFA Timnas Indonesia Vs ...   
+14  Ketika Paguyuban Adat Ikut Menjaga Harmoni di ...   
+5   Bagaimana Olahraga Bisa Menurunkan Gula Darah?...   
+1   Keluar Rumah Hendak Olahraga, Anak Polisi di P...   
+15  Survei Litbang &quot;Kompas&quot;: Sektor Politik dan Ke...   
+19  Port Visit KRI WSH-991, Perkuat Politik Bebas ...   
 
                                            isi_berita                tanggal  \
-8   KOMPAS.com - Unggahan bernarasi dugaan penipua...  07/10/2024, 11:15 WIB   
-7   KOMPAS.com - Pemerintah berkomitmen untuk meni...  07/10/2024, 22:00 WIB   
-11  JAKARTA, KOMPAS.com - Presiden terpilih Prabow...  11/10/2024, 17:13 WIB   
-17  JAKARTA, KOMPAS.com - Presiden Joko Widodo men...  10/10/2024, 21:37 WIB   
-0   KOMPAS.com - Anak seorang anggota polisi di Ko...  10/10/2024, 14:45 WIB   
-19  JAKARTA, KOMPAS.com - Presiden terpilih sekali...  10/10/2024, 19:45 WIB   
-14  JAKARTA, KOMPAS.com - Masyarakat merasa puas d...  11/10/2024, 10:38 WIB   
-4   KOMPAS.com - Olahraga atau aktivitas fisik mer...  09/10/2024, 12:00 WIB   
-13  LAMPUNG, KOMPAS.com - Paguyuban adat di Lampun...  11/10/2024, 11:46 WIB   
-18  Pangkoarmada RI Laksamana Madya Denih Hendrata...      Tidak ada tanggal   
+16  TAHUN 2024 menjadi penanda penting dalam perja...  11/10/2024, 08:45 WIB   
+18  JAKARTA, KOMPAS.com - Presiden Joko Widodo men...  10/10/2024, 21:37 WIB   
+13  JAKARTA, KOMPAS.com - Calon gubernur Jakarta n...  11/10/2024, 16:34 WIB   
+12  JAKARTA, KOMPAS.com - Presiden terpilih Prabow...  11/10/2024, 17:13 WIB   
+0   Pertandingan Timnas Indonesia vs Bahrain di Ku...      Tidak ada tanggal   
+14  LAMPUNG, KOMPAS.com - Paguyuban adat di Lampun...  11/10/2024, 11:46 WIB   
+5   KOMPAS.com - Olahraga atau aktivitas fisik mer...  09/10/2024, 12:00 WIB   
+1   KOMPAS.com - Anak seorang anggota polisi di Ko...  10/10/2024, 14:45 WIB   
+15  JAKARTA, KOMPAS.com - Masyarakat merasa puas d...  11/10/2024, 10:38 WIB   
+19  Pangkoarmada RI Laksamana Madya Denih Hendrata...      Tidak ada tanggal   
 
     kategori  
-8   Olahraga  
-7   Olahraga  
-11   Politik  
-17   Politik  
-0   Olahraga  
-19   Politik  
-14   Politik  
-4   Olahraga  
-13   Politik  
+16   Politik  
 18   Politik  
+13   Politik  
+12   Politik  
+0   Olahraga  
+14   Politik  
+5   Olahraga  
+1   Olahraga  
+15   Politik  
+19   Politik  
 Proses penambangan data selesai, data tersimpan dalam &#39;kompas_articles.csv&#39; dan 10 data pertama ditampilkan.
 </pre></div>
 </div>
 <div class="output text_html">
-  <div id="df-c9cc66aa-c6fc-4a13-92ea-6a798c47afc9" class="colab-df-container">
+  <div id="df-ad1bab6f-6f2a-44aa-877a-1612667d8113" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -652,56 +657,35 @@ Proses penambangan data selesai, data tersimpan dalam &#39;kompas_articles.csv&#
   </thead>
   <tbody>
     <tr>
-      <th>11</th>
-      <td>Terima Kunjungan Elite PKS, Prabowo: Teman Lam...</td>
-      <td>JAKARTA, KOMPAS.com - Presiden terpilih Prabow...</td>
-      <td>11/10/2024, 17:13 WIB</td>
+      <th>10</th>
+      <td>Pramono Anung Tak Ingin Ada Politik Identitas ...</td>
+      <td>JAKARTA, KOMPAS.com - Calon gubernur Jakarta n...</td>
+      <td>11/10/2024, 21:27 WIB</td>
       <td>Politik</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>13</th>
+      <td>Ridwan Kamil Curhat Pengalaman Mengecewakan ya...</td>
+      <td>JAKARTA, KOMPAS.com - Calon gubernur Jakarta n...</td>
+      <td>11/10/2024, 16:34 WIB</td>
+      <td>Politik</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
+      <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
+      <td>10/10/2024, 12:30 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>9</th>
       <td>Dugaan Penipuan Acara Olahraga Berkedok HUT Ko...</td>
       <td>KOMPAS.com - Unggahan bernarasi dugaan penipua...</td>
       <td>07/10/2024, 11:15 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>Ketika Paguyuban Adat Ikut Menjaga Harmoni di ...</td>
-      <td>LAMPUNG, KOMPAS.com - Paguyuban adat di Lampun...</td>
-      <td>11/10/2024, 11:46 WIB</td>
-      <td>Politik</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Makan Malam Bareng Prabowo, Jokowi: 2,5 Jam, B...</td>
-      <td>JAKARTA, KOMPAS.com - Presiden Joko Widodo men...</td>
-      <td>10/10/2024, 21:37 WIB</td>
-      <td>Politik</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Pramono Kunjungi Uskup Agung Jakarta, Bahas Ke...</td>
-      <td>JAKARTA, KOMPAS.com - Calon Wakil Gubernur Jak...</td>
-      <td>11/10/2024, 18:50 WIB</td>
-      <td>Politik</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Menuju Indonesia Emas 2045, Kemenpora dan LPDP...</td>
-      <td>KOMPAS.com - Pemerintah berkomitmen untuk meni...</td>
-      <td>07/10/2024, 22:00 WIB</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Menpora: Peparnas XVII Solo, Olahraga untuk Se...</td>
-      <td>SOLO, KOMPAS.com - Menteri Pemuda dan Olahraga...</td>
-      <td>07/10/2024, 07:47 WIB</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>15</th>
+      <th>16</th>
       <td>Ekonomi Hijau dan Politik Kotor</td>
       <td>TAHUN 2024 menjadi penanda penting dalam perja...</td>
       <td>11/10/2024, 08:45 WIB</td>
@@ -709,16 +693,37 @@ Proses penambangan data selesai, data tersimpan dalam &#39;kompas_articles.csv&#
     </tr>
     <tr>
       <th>6</th>
-      <td>"Event" Olahraga Bikin Okupansi Hotel di Bali ...</td>
-      <td>JAKARTA, KOMPAS.com - Diselengarakannya berbag...</td>
-      <td>08/10/2024, 11:46 WIB</td>
+      <td>Studi Ungkap Durasi Olahraga agar Tensi Stabil...</td>
+      <td>KOMPAS.com - Olahraga membantu meningkatkan ke...</td>
+      <td>09/10/2024, 05:45 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
-      <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
-      <td>10/10/2024, 08:45 WIB</td>
+      <th>5</th>
+      <td>Bagaimana Olahraga Bisa Menurunkan Gula Darah?...</td>
+      <td>KOMPAS.com - Olahraga atau aktivitas fisik mer...</td>
+      <td>09/10/2024, 12:00 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Pramono Kunjungi Uskup Agung Jakarta, Bahas Ke...</td>
+      <td>JAKARTA, KOMPAS.com - Calon Wakil Gubernur Jak...</td>
+      <td>11/10/2024, 18:50 WIB</td>
+      <td>Politik</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Terima Kunjungan Elite PKS, Prabowo: Teman Lam...</td>
+      <td>JAKARTA, KOMPAS.com - Presiden terpilih Prabow...</td>
+      <td>11/10/2024, 17:13 WIB</td>
+      <td>Politik</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>"Event" Olahraga Bikin Okupansi Hotel di Bali ...</td>
+      <td>JAKARTA, KOMPAS.com - Diselengarakannya berbag...</td>
+      <td>08/10/2024, 11:46 WIB</td>
       <td>Olahraga</td>
     </tr>
   </tbody>
@@ -727,7 +732,7 @@ Proses penambangan data selesai, data tersimpan dalam &#39;kompas_articles.csv&#
     <div class="colab-df-buttons">
       
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-c9cc66aa-c6fc-4a13-92ea-6a798c47afc9')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-ad1bab6f-6f2a-44aa-877a-1612667d8113')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
       
@@ -779,12 +784,12 @@ Proses penambangan data selesai, data tersimpan dalam &#39;kompas_articles.csv&#
 
     <script>
       const buttonEl =
-        document.querySelector('#df-c9cc66aa-c6fc-4a13-92ea-6a798c47afc9 button.colab-df-convert');
+        document.querySelector('#df-ad1bab6f-6f2a-44aa-877a-1612667d8113 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-c9cc66aa-c6fc-4a13-92ea-6a798c47afc9');
+        const element = document.querySelector('#df-ad1bab6f-6f2a-44aa-877a-1612667d8113');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -807,6 +812,7 @@ Proses penambangan data selesai, data tersimpan dalam &#39;kompas_articles.csv&#
   </div>
   </div></div>
 </div>
+</section>
 </section>
 </section>
 
@@ -874,11 +880,14 @@ Proses penambangan data selesai, data tersimpan dalam &#39;kompas_articles.csv&#
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-crawling">Pengertian Crawling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-import-library-yang-dibutuhkan">1. Melakukan import library yang dibutuhkan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-halaman-website-dan-memeriksa-status-request">2. Mengambil Halaman Website dan Memeriksa status request</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menemukan-dan-mengekstrak-10-berita">3. Menemukan dan Mengekstrak 10 Berita</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-yang-di-crowling-ke-dalam-tabel">4. Menampilkan data yang di crowling ke dalam tabel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crawling-website">Crawling Website</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-crawling">Pengertian Crawling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#melakukan-import-library-yang-dibutuhkan">1. Melakukan import library yang dibutuhkan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambil-halaman-website-dan-memeriksa-status-request">2. Mengambil Halaman Website dan Memeriksa status request</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menemukan-dan-mengekstrak-10-berita">3. Menemukan dan Mengekstrak 10 Berita</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-yang-di-crowling-ke-dalam-tabel">4. Menampilkan data yang di crowling ke dalam tabel</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

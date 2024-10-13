@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Rafly Faldiansyah Putra" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%204%20PPW.html" />
-    <link rel="prev" title="Crawling Website" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%20PPW.html" />
+    <link rel="prev" title="Tugas 1" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%20PPW.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,7 +180,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%20PPW.html">Crawling Website</a></li>
+<li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%20PPW.html">Tugas 1</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas 2</a></li>
 
 
@@ -441,7 +441,6 @@ document.write(`
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-<span class="c1"># Fungsi untuk mendapatkan detail artikel dari halaman detail</span>
 <span class="k">def</span> <span class="nf">get_article_details</span><span class="p">(</span><span class="n">detail_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">):</span>
     <span class="n">detail_soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">detail_url</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">detail_soup</span><span class="p">:</span>
@@ -449,10 +448,15 @@ document.write(`
         <span class="n">content_div</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;read__content&#39;</span><span class="p">)</span>
         <span class="n">content</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">content_div</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)])</span> <span class="k">if</span> <span class="n">content_div</span> <span class="k">else</span> <span class="s1">&#39;Tidak ada isi berita&#39;</span>
         
-        <span class="c1"># Ambil tanggal dari div dengan class &#39;read__time&#39;</span>
-        <span class="n">date_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;read__time&#39;</span><span class="p">)</span>
+        <span class="c1"># Coba ambil tanggal dari div dengan class &#39;videoKG-date&#39; terlebih dahulu</span>
+        <span class="n">date_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;videoKG-date&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">date_tag</span><span class="p">:</span>
+            <span class="c1"># Jika tidak ditemukan, ambil dari div dengan class &#39;read__time&#39;</span>
+            <span class="n">date_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;read__time&#39;</span><span class="p">)</span>
+        
         <span class="n">date</span> <span class="o">=</span> <span class="n">date_tag</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">date_tag</span> <span class="k">else</span> <span class="s1">&#39;Tidak ada tanggal&#39;</span>
         
+        <span class="c1"># Ambil judul artikel</span>
         <span class="n">title_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span>
         <span class="n">title</span> <span class="o">=</span> <span class="n">title_tag</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">title_tag</span> <span class="k">else</span> <span class="s1">&#39;Tidak ada judul&#39;</span>
         
@@ -463,6 +467,7 @@ document.write(`
             <span class="s1">&#39;kategori&#39;</span><span class="p">:</span> <span class="n">category_name</span><span class="p">,</span>
         <span class="p">}</span>
     <span class="k">return</span> <span class="kc">None</span>
+
 
 <span class="c1"># Fungsi untuk mendapatkan artikel dari suatu kategori</span>
 <span class="k">def</span> <span class="nf">get_articles</span><span class="p">(</span><span class="n">category_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">max_articles</span><span class="p">):</span>
@@ -536,19 +541,82 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-1-b1ec5a39c1a8&gt;</span> in <span class="ni">&lt;cell line: 94&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span> <span class="k">for</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">category_url</span> <span class="ow">in</span> <span class="n">categories</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Menambang kategori </span><span class="si">{</span><span class="n">category_name</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">96</span>     <span class="n">articles</span> <span class="o">=</span> <span class="n">get_articles</span><span class="p">(</span><span class="n">category_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">max_articles</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span>     <span class="n">all_articles</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span> 
+<span class="nn">&lt;ipython-input-1-db68ba0a6ff9&gt;</span> in <span class="ni">&lt;cell line: 99&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="k">for</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">category_url</span> <span class="ow">in</span> <span class="n">categories</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Menambang kategori </span><span class="si">{</span><span class="n">category_name</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">101</span>     <span class="n">articles</span> <span class="o">=</span> <span class="n">get_articles</span><span class="p">(</span><span class="n">category_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">max_articles</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span>     <span class="n">all_articles</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span> 
 
-<span class="nn">&lt;ipython-input-1-b1ec5a39c1a8&gt;</span> in <span class="ni">get_articles</span><span class="nt">(category_url, category_name, max_articles)</span>
-<span class="g g-Whitespace">     </span><span class="mi">77</span>         <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="c1">#         print(f&quot;Menunggu selama {sleep_time:.2f} detik sebelum mengambil halaman berikutnya...&quot;)</span>
-<span class="ne">---&gt; </span><span class="mi">79</span>         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span> 
-<span class="g g-Whitespace">     </span><span class="mi">81</span>         <span class="n">page</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="nn">&lt;ipython-input-1-db68ba0a6ff9&gt;</span> in <span class="ni">get_articles</span><span class="nt">(category_url, category_name, max_articles)</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span>             <span class="n">detail_url</span> <span class="o">=</span> <span class="n">title_tag</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">title_tag</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span>             <span class="k">if</span> <span class="n">detail_url</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">78</span>                 <span class="n">article_details</span> <span class="o">=</span> <span class="n">get_article_details</span><span class="p">(</span><span class="n">detail_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>                 <span class="k">if</span> <span class="n">article_details</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span>                     <span class="n">articles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">article_details</span><span class="p">)</span>
+
+<span class="nn">&lt;ipython-input-1-db68ba0a6ff9&gt;</span> in <span class="ni">get_article_details</span><span class="nt">(detail_url, category_name)</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> 
+<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">def</span> <span class="nf">get_article_details</span><span class="p">(</span><span class="n">detail_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">31</span>     <span class="n">detail_soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">detail_url</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="k">if</span> <span class="n">detail_soup</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span>         <span class="c1"># Ambil konten dari div dengan class &#39;read__content&#39;</span>
+
+<span class="nn">&lt;ipython-input-1-db68ba0a6ff9&gt;</span> in <span class="ni">get_soup</span><span class="nt">(url)</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">22</span>             <span class="k">return</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span>             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> saat mengambil </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/__init__.py</span> in <span class="ni">__init__</span><span class="nt">(self, markup, features, builder, parse_only, from_encoding, exclude_encodings, element_classes, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">333</span>             <span class="bp">self</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">initialize_soup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">334</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">335</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_feed</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">336</span>                 <span class="n">success</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">337</span>                 <span class="k">break</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/__init__.py</span> in <span class="ni">_feed</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">476</span>         <span class="bp">self</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">477</span> 
+<span class="ne">--&gt; </span><span class="mi">478</span>         <span class="bp">self</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">markup</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">479</span>         <span class="c1"># Close out any unfinished strings and close all the open tags.</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span>         <span class="bp">self</span><span class="o">.</span><span class="n">endData</span><span class="p">()</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/builder/_htmlparser.py</span> in <span class="ni">feed</span><span class="nt">(self, markup)</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span>         <span class="n">parser</span><span class="o">.</span><span class="n">soup</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">soup</span>
+<span class="g g-Whitespace">    </span><span class="mi">379</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">380</span>             <span class="n">parser</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">markup</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span>             <span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">382</span>         <span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="nn">/usr/lib/python3.10/html/parser.py</span> in <span class="ni">feed</span><span class="nt">(self, data)</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span><span class="s2">         self.rawdata = self.rawdata + data</span>
+<span class="ne">--&gt; </span><span class="mi">110</span><span class="s2">         self.goahead(0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span><span class="s2">     def close(self):</span>
+
+<span class="nn">/usr/lib/python3.10/html/parser.py</span> in <span class="ni">goahead</span><span class="nt">(self, end)</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span><span class="s2">             if startswith(&#39;&lt;&#39;, i):</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span><span class="s2">                 if starttagopen.match(rawdata, i): # &lt; + letter</span>
+<span class="ne">--&gt; </span><span class="mi">170</span><span class="s2">                     k = self.parse_starttag(i)</span>
+<span class="g g-Whitespace">    </span><span class="mi">171</span><span class="s2">                 elif startswith(&quot;&lt;/&quot;, i):</span>
+<span class="g g-Whitespace">    </span><span class="mi">172</span><span class="s2">                     k = self.parse_endtag(i)</span>
+
+<span class="nn">/usr/lib/python3.10/html/parser.py</span> in <span class="ni">parse_starttag</span><span class="nt">(self, i)</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span><span class="s2">             self.handle_starttag(tag, attrs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">345</span><span class="s2">             if tag in self.CDATA_CONTENT_ELEMENTS:</span>
+<span class="ne">--&gt; </span><span class="mi">346</span><span class="s2">                 self.set_cdata_mode(tag)</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span><span class="s2">         return endpos</span>
+<span class="g g-Whitespace">    </span><span class="mi">348</span><span class="s2"> </span>
+
+<span class="nn">/usr/lib/python3.10/html/parser.py</span> in <span class="ni">set_cdata_mode</span><span class="nt">(self, elem)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span><span class="s2">         return self.__starttag_text</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">122</span><span class="s2">     def set_cdata_mode(self, elem):</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span><span class="s2">         self.cdata_elem = elem.lower()</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span><span class="s2">         self.interesting = re.compile(r&#39;&lt;/\s*</span><span class="si">%s</span><span class="s2">\s*&gt;&#39; </span><span class="si">% s</span><span class="s2">elf.cdata_elem, re.I)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -590,37 +658,37 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
   <tbody>
     <tr>
       <th>0</th>
+      <td>Perbandingan Ranking FIFA Timnas Indonesia Vs ...</td>
+      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
+      <td>10 Oktober 2024, 19:49 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>1</th>
       <td>Keluar Rumah Hendak Olahraga, Anak Polisi di P...</td>
       <td>KOMPAS.com - Anak seorang anggota polisi di Ko...</td>
       <td>10/10/2024, 14:45 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>2</th>
       <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
       <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
       <td>10/10/2024, 12:30 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>3</th>
       <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
       <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
       <td>10/10/2024, 08:45 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>4</th>
       <td>Potret Reijnders-Hilgers Berseragam Indonesia,...</td>
       <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>Tidak ada tanggal</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Bagaimana Olahraga Bisa Menurunkan Gula Darah?...</td>
-      <td>KOMPAS.com - Olahraga atau aktivitas fisik mer...</td>
-      <td>09/10/2024, 12:00 WIB</td>
+      <td>9 Oktober 2024, 20:07 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
@@ -632,37 +700,37 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
     </tr>
     <tr>
       <th>95</th>
-      <td>Antusias Warga Berdatangan ke Monas untuk Saks...</td>
-      <td>Perayaan Hari Ulang Tahun (HUT) ke-79 TNI jatu...</td>
-      <td>Tidak ada tanggal</td>
+      <td>Momen Kedatangan Jokowi dan Prabowo di HUT Ke-...</td>
+      <td>Presiden Jokowi tiba di Monas, Jakarta Pusat, ...</td>
+      <td>5 Oktober 2024, 09:03 WIB</td>
       <td>Politik</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>Soal Pengelolaan Tol IKN, Menteri Basuki Sebut...</td>
-      <td>Pengelolaan jalan tol di Ibu Kota Nusantara (I...</td>
-      <td>Tidak ada tanggal</td>
+      <td>Suasana Monas Jelang Dimulainya HUT TNI, Warga...</td>
+      <td>Masyarakat tampak antusias ketika melihat kend...</td>
+      <td>5 Oktober 2024, 08:28 WIB</td>
       <td>Politik</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>Kapolda Sulsel Ajak Masyarakat Hindari Politik...</td>
-      <td>KOMPAS.com - Jelang Pemilihan Kepala Daerah (P...</td>
-      <td>04/10/2024, 21:06 WIB</td>
+      <td>Antusias Warga Berdatangan ke Monas untuk Saks...</td>
+      <td>Perayaan Hari Ulang Tahun (HUT) ke-79 TNI jatu...</td>
+      <td>5 Oktober 2024, 07:49 WIB</td>
       <td>Politik</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>Ma'ruf Amin Berkelakar Zulkifli Hasan Masih Ak...</td>
-      <td>Wakil Presiden RI Ma'ruf Amin berkelakar bahwa...</td>
-      <td>Tidak ada tanggal</td>
+      <td>Soal Pengelolaan Tol IKN, Menteri Basuki Sebut...</td>
+      <td>Pengelolaan jalan tol di Ibu Kota Nusantara (I...</td>
+      <td>4 Oktober 2024, 21:43 WIB</td>
       <td>Politik</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>Ima Mahdiah Eks Staf Ahok Jadi Wakil Ketua DPR...</td>
-      <td>Eks gubernur Jakarta Basuki Tjahaja Purnama al...</td>
-      <td>Tidak ada tanggal</td>
+      <td>Kapolda Sulsel Ajak Masyarakat Hindari Politik...</td>
+      <td>KOMPAS.com - Jelang Pemilihan Kepala Daerah (P...</td>
+      <td>04/10/2024, 21:06 WIB</td>
       <td>Politik</td>
     </tr>
   </tbody>
@@ -706,37 +774,37 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
   <tbody>
     <tr>
       <th>0</th>
+      <td>Perbandingan Ranking FIFA Timnas Indonesia Vs ...</td>
+      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
+      <td>10 Oktober 2024, 19:49 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>1</th>
       <td>Keluar Rumah Hendak Olahraga, Anak Polisi di P...</td>
       <td>KOMPAS.com - Anak seorang anggota polisi di Ko...</td>
       <td>10/10/2024, 14:45 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>2</th>
       <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
       <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
       <td>10/10/2024, 12:30 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>3</th>
       <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
       <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
       <td>10/10/2024, 08:45 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>4</th>
       <td>Potret Reijnders-Hilgers Berseragam Indonesia,...</td>
       <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>Tidak ada tanggal</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Bagaimana Olahraga Bisa Menurunkan Gula Darah?...</td>
-      <td>KOMPAS.com - Olahraga atau aktivitas fisik mer...</td>
-      <td>09/10/2024, 12:00 WIB</td>
+      <td>9 Oktober 2024, 20:07 WIB</td>
       <td>Olahraga</td>
     </tr>
   </tbody>
@@ -839,6 +907,14 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
   <tbody>
     <tr>
       <th>0</th>
+      <td>Perbandingan Ranking FIFA Timnas Indonesia Vs ...</td>
+      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
+      <td>10 Oktober 2024, 19:49 WIB</td>
+      <td>Olahraga</td>
+      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
+    </tr>
+    <tr>
+      <th>1</th>
       <td>Keluar Rumah Hendak Olahraga, Anak Polisi di P...</td>
       <td>KOMPAS.com - Anak seorang anggota polisi di Ko...</td>
       <td>10/10/2024, 14:45 WIB</td>
@@ -846,7 +922,7 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>KOMPAScom  Anak seorang anggota polisi di Kota...</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>2</th>
       <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
       <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
       <td>10/10/2024, 12:30 WIB</td>
@@ -854,7 +930,7 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>KOMPAScom  Pekan Paralimpiade Nasional Peparna...</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>3</th>
       <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
       <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
       <td>10/10/2024, 08:45 WIB</td>
@@ -862,20 +938,12 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>KOMPAScom  Dalam hal penurunan berat badan tid...</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>4</th>
       <td>Potret Reijnders-Hilgers Berseragam Indonesia,...</td>
       <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>Tidak ada tanggal</td>
+      <td>9 Oktober 2024, 20:07 WIB</td>
       <td>Olahraga</td>
       <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Bagaimana Olahraga Bisa Menurunkan Gula Darah?...</td>
-      <td>KOMPAS.com - Olahraga atau aktivitas fisik mer...</td>
-      <td>09/10/2024, 12:00 WIB</td>
-      <td>Olahraga</td>
-      <td>KOMPAScom  Olahraga atau aktivitas fisik merup...</td>
     </tr>
   </tbody>
 </table>
@@ -930,6 +998,15 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
   <tbody>
     <tr>
       <th>0</th>
+      <td>Perbandingan Ranking FIFA Timnas Indonesia Vs ...</td>
+      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
+      <td>10 Oktober 2024, 19:49 WIB</td>
+      <td>Olahraga</td>
+      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
+      <td>pertandingan timnas indonesia vs bahrain di ku...</td>
+    </tr>
+    <tr>
+      <th>1</th>
       <td>Keluar Rumah Hendak Olahraga, Anak Polisi di P...</td>
       <td>KOMPAS.com - Anak seorang anggota polisi di Ko...</td>
       <td>10/10/2024, 14:45 WIB</td>
@@ -938,7 +1015,7 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>kompascom  anak seorang anggota polisi di kota...</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>2</th>
       <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
       <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
       <td>10/10/2024, 12:30 WIB</td>
@@ -947,7 +1024,7 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>kompascom  pekan paralimpiade nasional peparna...</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>3</th>
       <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
       <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
       <td>10/10/2024, 08:45 WIB</td>
@@ -956,22 +1033,13 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>kompascom  dalam hal penurunan berat badan tid...</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>4</th>
       <td>Potret Reijnders-Hilgers Berseragam Indonesia,...</td>
       <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>Tidak ada tanggal</td>
+      <td>9 Oktober 2024, 20:07 WIB</td>
       <td>Olahraga</td>
       <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
       <td>dua pemain baru timnas indonesia eliano reijnd...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Bagaimana Olahraga Bisa Menurunkan Gula Darah?...</td>
-      <td>KOMPAS.com - Olahraga atau aktivitas fisik mer...</td>
-      <td>09/10/2024, 12:00 WIB</td>
-      <td>Olahraga</td>
-      <td>KOMPAScom  Olahraga atau aktivitas fisik merup...</td>
-      <td>kompascom  olahraga atau aktivitas fisik merup...</td>
     </tr>
   </tbody>
 </table>
@@ -1028,6 +1096,16 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
   <tbody>
     <tr>
       <th>0</th>
+      <td>Perbandingan Ranking FIFA Timnas Indonesia Vs ...</td>
+      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
+      <td>10 Oktober 2024, 19:49 WIB</td>
+      <td>Olahraga</td>
+      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
+      <td>pertandingan timnas indonesia vs bahrain di ku...</td>
+      <td>[pertandingan, timnas, indonesia, vs, bahrain,...</td>
+    </tr>
+    <tr>
+      <th>1</th>
       <td>Keluar Rumah Hendak Olahraga, Anak Polisi di P...</td>
       <td>KOMPAS.com - Anak seorang anggota polisi di Ko...</td>
       <td>10/10/2024, 14:45 WIB</td>
@@ -1037,7 +1115,7 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>[kompascom, anak, seorang, anggota, polisi, di...</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>2</th>
       <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
       <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
       <td>10/10/2024, 12:30 WIB</td>
@@ -1047,7 +1125,7 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>[kompascom, pekan, paralimpiade, nasional, pep...</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>3</th>
       <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
       <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
       <td>10/10/2024, 08:45 WIB</td>
@@ -1057,24 +1135,14 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>[kompascom, dalam, hal, penurunan, berat, bada...</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>4</th>
       <td>Potret Reijnders-Hilgers Berseragam Indonesia,...</td>
       <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>Tidak ada tanggal</td>
+      <td>9 Oktober 2024, 20:07 WIB</td>
       <td>Olahraga</td>
       <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
       <td>dua pemain baru timnas indonesia eliano reijnd...</td>
       <td>[dua, pemain, baru, timnas, indonesia, eliano,...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Bagaimana Olahraga Bisa Menurunkan Gula Darah?...</td>
-      <td>KOMPAS.com - Olahraga atau aktivitas fisik mer...</td>
-      <td>09/10/2024, 12:00 WIB</td>
-      <td>Olahraga</td>
-      <td>KOMPAScom  Olahraga atau aktivitas fisik merup...</td>
-      <td>kompascom  olahraga atau aktivitas fisik merup...</td>
-      <td>[kompascom, olahraga, atau, aktivitas, fisik, ...</td>
     </tr>
   </tbody>
 </table>
@@ -1145,6 +1213,17 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
   <tbody>
     <tr>
       <th>0</th>
+      <td>Perbandingan Ranking FIFA Timnas Indonesia Vs ...</td>
+      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
+      <td>10 Oktober 2024, 19:49 WIB</td>
+      <td>Olahraga</td>
+      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
+      <td>pertandingan timnas indonesia vs bahrain di ku...</td>
+      <td>[pertandingan, timnas, indonesia, vs, bahrain,...</td>
+      <td>pertandingan timnas indonesia vs bahrain kuali...</td>
+    </tr>
+    <tr>
+      <th>1</th>
       <td>Keluar Rumah Hendak Olahraga, Anak Polisi di P...</td>
       <td>KOMPAS.com - Anak seorang anggota polisi di Ko...</td>
       <td>10/10/2024, 14:45 WIB</td>
@@ -1155,7 +1234,7 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>kompascom anak anggota polisi kota probolinggo...</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>2</th>
       <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
       <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
       <td>10/10/2024, 12:30 WIB</td>
@@ -1166,7 +1245,7 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>kompascom pekan paralimpiade nasional peparnas...</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>3</th>
       <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
       <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
       <td>10/10/2024, 08:45 WIB</td>
@@ -1177,26 +1256,15 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>kompascom penurunan berat badan solusi cocok o...</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>4</th>
       <td>Potret Reijnders-Hilgers Berseragam Indonesia,...</td>
       <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>Tidak ada tanggal</td>
+      <td>9 Oktober 2024, 20:07 WIB</td>
       <td>Olahraga</td>
       <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
       <td>dua pemain baru timnas indonesia eliano reijnd...</td>
       <td>[dua, pemain, baru, timnas, indonesia, eliano,...</td>
       <td>pemain timnas indonesia eliano reijnders mees ...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Bagaimana Olahraga Bisa Menurunkan Gula Darah?...</td>
-      <td>KOMPAS.com - Olahraga atau aktivitas fisik mer...</td>
-      <td>09/10/2024, 12:00 WIB</td>
-      <td>Olahraga</td>
-      <td>KOMPAScom  Olahraga atau aktivitas fisik merup...</td>
-      <td>kompascom  olahraga atau aktivitas fisik merup...</td>
-      <td>[kompascom, olahraga, atau, aktivitas, fisik, ...</td>
-      <td>kompascom olahraga aktivitas fisik salah berma...</td>
     </tr>
   </tbody>
 </table>
@@ -1256,7 +1324,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     <tr style="text-align: right;">
       <th></th>
       <th>abadi</th>
-      <th>abang</th>
       <th>abba</th>
       <th>abdu</th>
       <th>abdul</th>
@@ -1265,6 +1332,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <th>aboe</th>
       <th>academy</th>
       <th>acak</th>
+      <th>acara</th>
       <th>...</th>
       <th>zilky</th>
       <th>zilkyproduser</th>
@@ -1281,7 +1349,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1290,14 +1358,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.104233</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1305,7 +1373,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>1</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1314,14 +1382,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1329,7 +1397,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>2</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1338,14 +1406,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.026902</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1353,7 +1421,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>3</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1362,14 +1430,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.11536</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1377,7 +1445,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>4</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1386,14 +1454,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.108226</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1401,7 +1469,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>5</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1410,14 +1478,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1425,7 +1493,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>6</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1434,14 +1502,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1449,7 +1517,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>7</th>
-      <td>0.04932</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1458,14 +1526,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.038116</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1473,7 +1541,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>8</th>
-      <td>0.00000</td>
+      <td>0.0488</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1482,14 +1550,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1497,7 +1565,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>9</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1506,14 +1574,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.254490</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1521,7 +1589,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
   </tbody>
 </table>
-<p>10 rows × 4491 columns</p>
+<p>10 rows × 4502 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1569,7 +1637,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     <tr style="text-align: right;">
       <th></th>
       <th>abadi</th>
-      <th>abang</th>
       <th>abba</th>
       <th>abdu</th>
       <th>abdul</th>
@@ -1578,6 +1645,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <th>aboe</th>
       <th>academy</th>
       <th>acak</th>
+      <th>acara</th>
       <th>...</th>
       <th>zilky</th>
       <th>zilkyproduser</th>
@@ -1594,7 +1662,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1603,14 +1671,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.104233</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1618,7 +1686,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>1</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1627,14 +1695,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1642,7 +1710,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>2</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1651,14 +1719,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.026902</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1666,7 +1734,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>3</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1675,14 +1743,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.11536</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1690,7 +1758,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>4</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1699,14 +1767,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.108226</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1714,7 +1782,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>5</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1723,14 +1791,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1738,7 +1806,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>6</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1747,14 +1815,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1762,7 +1830,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>7</th>
-      <td>0.04932</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1771,14 +1839,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.038116</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1786,7 +1854,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>8</th>
-      <td>0.00000</td>
+      <td>0.0488</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1795,14 +1863,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1810,7 +1878,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>9</th>
-      <td>0.00000</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1819,14 +1887,14 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.254490</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1834,7 +1902,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
   </tbody>
 </table>
-<p>10 rows × 4491 columns</p>
+<p>10 rows × 4502 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -1890,23 +1958,23 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix:
-[[8 4]
+[[9 3]
  [0 8]]
 
 Hasil Klasifikasi:
               precision    recall  f1-score   support
 
-    Olahraga       1.00      0.67      0.80        12
-     Politik       0.67      1.00      0.80         8
+    Olahraga       1.00      0.75      0.86        12
+     Politik       0.73      1.00      0.84         8
 
-    accuracy                           0.80        20
-   macro avg       0.83      0.83      0.80        20
-weighted avg       0.87      0.80      0.80        20
+    accuracy                           0.85        20
+   macro avg       0.86      0.88      0.85        20
+weighted avg       0.89      0.85      0.85        20
 
-Akurasi Model: 0.80
+Akurasi Model: 0.85
 </pre></div>
 </div>
-<img alt="_images/247c76387b0ab0eb1432b1843c283336606a8f7b22c76d0495ab154bfd147018.png" src="_images/247c76387b0ab0eb1432b1843c283336606a8f7b22c76d0495ab154bfd147018.png" />
+<img alt="_images/caa371c103b354e1e35ca98b489d198db542c774480d05922691c00c15f22445.png" src="_images/caa371c103b354e1e35ca98b489d198db542c774480d05922691c00c15f22445.png" />
 </div>
 </div>
 </section>
@@ -1947,7 +2015,7 @@ Akurasi Model: 0.80
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Crawling Website</p>
+        <p class="prev-next-title">Tugas 1</p>
       </div>
     </a>
     <a class="right-next"
