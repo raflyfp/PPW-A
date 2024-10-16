@@ -1,4 +1,15 @@
 Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 782, in _async_poll_for_reply
+    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
+  File "/usr/local/lib/python3.10/dist-packages/jupyter_core/utils/__init__.py", line 198, in ensure_async
+    result = await obj
+  File "/usr/local/lib/python3.10/dist-packages/jupyter_client/asynchronous/channels.py", line 48, in get_msg
+    raise Empty
+_queue.Empty
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
   File "/usr/local/lib/python3.10/dist-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
   File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1314, in execute
@@ -9,37 +20,18 @@ Traceback (most recent call last):
     return future.result()
   File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1062, in async_execute_cell
-    await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 918, in _check_raise_for_error
-    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
-nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
-------------------
-url = 'https://jatim.tribunnews.com/'
-response = requests.get(url)
-
-# Periksa apakah request berhasil
-if response.status_code == 200:
-    print("Request berhasil!")
-    page_content = response.content
-else:
-    print(f"Gagal mengambil halaman, status code: {response.status_code}")
-
-# Parsing HTML
-soup = BeautifulSoup(page_content, 'html.parser')
-
-------------------
-
------ stdout -----
-Gagal mengambil halaman, status code: 403
-------------------
-
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m<ipython-input-3-2a68fc1ae31a>[0m in [0;36m<cell line: 12>[0;34m()[0m
-[1;32m     10[0m [0;34m[0m[0m
-[1;32m     11[0m [0;31m# Parsing HTML[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 12[0;31m [0msoup[0m [0;34m=[0m [0mBeautifulSoup[0m[0;34m([0m[0mpage_content[0m[0;34m,[0m [0;34m'html.parser'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-[0;31mNameError[0m: name 'page_content' is not defined
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1005, in async_execute_cell
+    exec_reply = await self.task_poll_for_reply
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 806, in _async_poll_for_reply
+    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 856, in _async_handle_timeout
+    raise CellTimeoutError.error_from_timeout_and_cell(
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
+The message was: Cell execution timed out.
+Here is a preview of the cell contents:
+-------------------
+['# Fungsi untuk mendapatkan detail artikel dari halaman detail', 'def get_article_details(detail_url, category_name):', '    detail_soup = get_soup(detail_url)', '    if detail_soup:', "        # Ambil konten dari div dengan class 'read__content'"]
+...
+['# Simpan ke dalam DataFrame', 'df = pd.DataFrame(all_articles)', '', "# Simpan ke dalam file CSV tanpa kolom 'url'", "df.to_csv('kompas_articles.csv', index=False)"]
+-------------------
 
