@@ -194,10 +194,6 @@
 <li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%204%20PPW.html">Rafly Faldiansyah Putra</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%204_2%20PPW.html">Tugas 4 part 2</a></li>
-
-
-
 </ul>
 
     </div>
@@ -582,25 +578,6 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
 Mengambil: https://www.kompas.com/tag/politik?page=1
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-4-d5ca02bce936&gt;</span> in <span class="ni">&lt;cell line: 62&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="k">for</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">category_url</span> <span class="ow">in</span> <span class="n">categories</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Menambang kategori </span><span class="si">{</span><span class="n">category_name</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">64</span>     <span class="n">articles</span> <span class="o">=</span> <span class="n">get_articles</span><span class="p">(</span><span class="n">category_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">max_articles</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span>     <span class="n">all_articles</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="c1"># Simpan ke dalam DataFrame</span>
-
-<span class="nn">&lt;ipython-input-4-d5ca02bce936&gt;</span> in <span class="ni">get_articles</span><span class="nt">(category_url, category_name, max_articles)</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span> 
-<span class="g g-Whitespace">     </span><span class="mi">48</span>         <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">49</span>         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span> 
-<span class="g g-Whitespace">     </span><span class="mi">51</span>         <span class="n">page</span> <span class="o">+=</span> <span class="mi">1</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
 </div>
 </div>
 </section>
@@ -621,44 +598,46 @@ Mengambil: https://www.kompas.com/tag/politik?page=1
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                judul  \
-9   Menpora: Peparnas XVII Solo, Olahraga untuk Se...   
-14                    Ekonomi Hijau dan Politik Kotor   
-3   Potret Reijnders-Hilgers Berseragam Indonesia,...   
-11  Ridwan Kamil Curhat Pengalaman Mengecewakan ya...   
-13  Survei Litbang &quot;Kompas&quot;: Sektor Politik dan Ke...   
-1   Sama-sama Ajang Olahraga Tingkat Nasional, Apa...   
-0   Keluar Rumah Hendak Olahraga, Anak Polisi di P...   
-2   Wanita 54 Tahun Berhasil Turunkan Berat Badan ...   
-10  Terima Kunjungan Elite PKS, Prabowo: Teman Lam...   
-15  Jokowi dan Kendaraan Politiknya Jelang Pensiun...   
+19  Survei Indikator Pilkada Jawa Barat: Dedi-Erwa...   
+3   Apa Manfaat Olahraga untuk Penderita Diabetes?...   
+2   Taufik Hidayat Mengaku Ditugasi Prabowo Genjot...   
+10  Budi Gunawan Mantan Kepala BIN Ikut Pembekalan...   
+4       Perubahan Iklim Ancam Eksistensi Olahraga Ski   
+12  6 Perempuan Calon Menteri di Kabinet Prabowo, ...   
+6   Dipanggil Prabowo, Dito Ariotedjo Sebut Diskus...   
+15  Pramono Anung Sambangi Kediaman Prabowo, Penga...   
+9   Olahraga Apa yang Membuat Perut Kempes? Coba 5...   
+18  Gantikan Budi Gunawan, Segini Harta Kekayaan K...   
 
                                            isi_berita                tanggal  \
-9   SOLO, KOMPAS.com - Menteri Pemuda dan Olahraga...  07/10/2024, 07:47 WIB   
-14  TAHUN 2024 menjadi penanda penting dalam perja...  11/10/2024, 08:45 WIB   
-3   Dua pemain baru Timnas Indonesia Eliano Reijnd...      Tidak ada tanggal   
-11  JAKARTA, KOMPAS.com - Calon gubernur Jakarta n...  11/10/2024, 16:34 WIB   
-13  JAKARTA, KOMPAS.com - Masyarakat merasa puas d...  11/10/2024, 10:38 WIB   
-1   KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...  10/10/2024, 12:30 WIB   
-0   KOMPAS.com - Anak seorang anggota polisi di Ko...  10/10/2024, 14:45 WIB   
-2   KOMPAS.com - Dalam hal penurunan berat badan, ...  10/10/2024, 08:45 WIB   
-10  JAKARTA, KOMPAS.com - Presiden terpilih Prabow...  11/10/2024, 17:13 WIB   
-15  JAKARTA, KOMPAS.com - Bertambah lagi organisas...  11/10/2024, 06:14 WIB   
+19  BANDUNG, KOMPAS.com - Lembaga survei Indikator...  15/10/2024, 13:17 WIB   
+3   KOMPAS.com - Ada banyak manfaat dari olahraga ...  15/10/2024, 12:00 WIB   
+2   JAKARTA, KOMPAS.com - Legenda bulu tangkis Ind...  15/10/2024, 16:43 WIB   
+10  Mantan Kepala Badan Intelijen Negara (BIN) Bud...      Tidak ada tanggal   
+4   KOMPAS.com - Olahraga musim dingin, ski teranc...  15/10/2024, 09:30 WIB   
+12  Presiden Indonesia terpilih Prabowo Subianto s...      Tidak ada tanggal   
+6   JAKARTA, KOMPAS.com - Menteri Pemuda dan Olahr...  14/10/2024, 21:18 WIB   
+15  KOMPAS.com - Calon gubernur DKI Jakarta sekali...  15/10/2024, 19:00 WIB   
+9     KOMPAS.com - Lemak perut yang menggantung se...  13/10/2024, 09:35 WIB   
+18  Harta kekayaan Kepala BIN yang baru pengganti ...      Tidak ada tanggal   
 
     kategori  
-9   Olahraga  
-14   Politik  
+19   Politik  
 3   Olahraga  
-11   Politik  
-13   Politik  
-1   Olahraga  
-0   Olahraga  
 2   Olahraga  
 10   Politik  
+4   Olahraga  
+12   Politik  
+6   Olahraga  
 15   Politik  
+9   Olahraga  
+18   Politik  
 Proses penambangan data selesai, data tersimpan dalam &#39;kompas_articles.csv&#39; dan 10 data pertama ditampilkan.
 </pre></div>
 </div>
-<div class="output text_html"><div>
+<div class="output text_html">
+  <div id="df-a60b8f41-bc96-442f-ac76-36a101b3ac17" class="colab-df-container">
+    <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -684,78 +663,160 @@ Proses penambangan data selesai, data tersimpan dalam &#39;kompas_articles.csv&#
   </thead>
   <tbody>
     <tr>
-      <th>5</th>
-      <td>Studi Ungkap Durasi Olahraga agar Tensi Stabil...</td>
-      <td>KOMPAS.com - Olahraga membantu meningkatkan ke...</td>
-      <td>09/10/2024, 05:45 WIB</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Port Visit KRI WSH-991, Perkuat Politik Bebas ...</td>
-      <td>Pangkoarmada RI Laksamana Madya Denih Hendrata...</td>
+      <th>14</th>
+      <td>Relawan Pendukung Jokowi Ikut Dipanggil Prabow...</td>
+      <td>Relawan pendukung Presiden Joko Widodo ikut di...</td>
       <td>Tidak ada tanggal</td>
       <td>Politik</td>
     </tr>
     <tr>
-      <th>14</th>
-      <td>Ekonomi Hijau dan Politik Kotor</td>
-      <td>TAHUN 2024 menjadi penanda penting dalam perja...</td>
-      <td>11/10/2024, 08:45 WIB</td>
+      <th>13</th>
+      <td>Ini Nama-nama Ketum Parpol yang Dipanggil Prab...</td>
+      <td>Presiden terpilih Prabowo Subianto memanggil s...</td>
+      <td>Tidak ada tanggal</td>
       <td>Politik</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
-      <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
-      <td>10/10/2024, 12:30 WIB</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Bagaimana Olahraga Bisa Menurunkan Gula Darah?...</td>
-      <td>KOMPAS.com - Olahraga atau aktivitas fisik mer...</td>
-      <td>09/10/2024, 12:00 WIB</td>
+      <th>7</th>
+      <td>Gelar SIS Olympics 2024, SIS Group of Schools ...</td>
+      <td>KOMPAS.com – SIS Group of Schools menghadirkan...</td>
+      <td>14/10/2024, 20:22 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>Siap Jadi Parpol, Bara JP Tunggu Arahan Jokowi</td>
-      <td>JAKARTA, KOMPAS.com - Barisan Relawan Jokowi P...</td>
-      <td>10/10/2024, 19:27 WIB</td>
+      <td>Survei Indikator Pilkada Jawa Barat: Dedi-Erwa...</td>
+      <td>BANDUNG, KOMPAS.com - Lembaga survei Indikator...</td>
+      <td>15/10/2024, 13:17 WIB</td>
       <td>Politik</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>Terima Kunjungan Elite PKS, Prabowo: Teman Lam...</td>
-      <td>JAKARTA, KOMPAS.com - Presiden terpilih Prabow...</td>
-      <td>11/10/2024, 17:13 WIB</td>
-      <td>Politik</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>"Event" Olahraga Bikin Okupansi Hotel di Bali ...</td>
-      <td>JAKARTA, KOMPAS.com - Diselengarakannya berbag...</td>
-      <td>08/10/2024, 11:46 WIB</td>
+      <th>3</th>
+      <td>Apa Manfaat Olahraga untuk Penderita Diabetes?...</td>
+      <td>KOMPAS.com - Ada banyak manfaat dari olahraga ...</td>
+      <td>15/10/2024, 12:00 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>Survei Litbang "Kompas": Sektor Politik dan Ke...</td>
-      <td>JAKARTA, KOMPAS.com - Masyarakat merasa puas d...</td>
-      <td>11/10/2024, 10:38 WIB</td>
+      <th>15</th>
+      <td>Pramono Anung Sambangi Kediaman Prabowo, Penga...</td>
+      <td>KOMPAS.com - Calon gubernur DKI Jakarta sekali...</td>
+      <td>15/10/2024, 19:00 WIB</td>
       <td>Politik</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
-      <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
-      <td>10/10/2024, 08:45 WIB</td>
+      <th>16</th>
+      <td>Pramono Temui Prabowo, PDI-P Pastikan Masih Ca...</td>
+      <td>Juru bicara PDI-Perjuangan (PDIP) Chicco Hakim...</td>
+      <td>Tidak ada tanggal</td>
+      <td>Politik</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Dariyanto Pastikan Mundur dari Tim Pemenangan ...</td>
+      <td>BEKASI, KOMPAS.com – Politikus Partai Golkar K...</td>
+      <td>15/10/2024, 15:32 WIB</td>
+      <td>Politik</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Prabowo Panggil Calon Wakil Menteri, Taufik Hi...</td>
+      <td>Legenda badminton Indonesia, Taufik Hidayat, m...</td>
+      <td>Tidak ada tanggal</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Olahraga Apa yang Membuat Perut Kempes? Coba 5...</td>
+      <td>KOMPAS.com - Lemak perut yang menggantung se...</td>
+      <td>13/10/2024, 09:35 WIB</td>
       <td>Olahraga</td>
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-a60b8f41-bc96-442f-ac76-36a101b3ac17')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-a60b8f41-bc96-442f-ac76-36a101b3ac17 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-a60b8f41-bc96-442f-ac76-36a101b3ac17');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
 </div>
 </section>
 </section>
