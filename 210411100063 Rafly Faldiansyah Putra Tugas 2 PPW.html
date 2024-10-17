@@ -194,6 +194,10 @@
 <li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%204%20PPW.html">Rafly Faldiansyah Putra</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%204_2%20PPW.html">Tugas 4 part 2</a></li>
+
+
+
 </ul>
 
     </div>
@@ -398,7 +402,13 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency"><strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#regresi-logistik">Regresi Logistik</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#regresi-logistik">Regresi Logistik</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#link-streamlite">Link Streamlite :</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#https-ppw-stream-kwgpiudmsemgufy4uwjiwa-streamlit-app">https://ppw-stream-kwgpiudmsemgufy4uwjiwa.streamlit.app/</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -453,19 +463,19 @@ document.write(`
         <span class="c1"># Ambil konten dari div dengan class &#39;read__content&#39;</span>
         <span class="n">content_div</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;read__content&#39;</span><span class="p">)</span>
         <span class="n">content</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">content_div</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)])</span> <span class="k">if</span> <span class="n">content_div</span> <span class="k">else</span> <span class="s1">&#39;Tidak ada isi berita&#39;</span>
-
+        
         <span class="c1"># Coba ambil tanggal dari div dengan class &#39;videoKG-date&#39; terlebih dahulu</span>
         <span class="n">date_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;videoKG-date&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">date_tag</span><span class="p">:</span>
             <span class="c1"># Jika tidak ditemukan, ambil dari div dengan class &#39;read__time&#39;</span>
             <span class="n">date_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;read__time&#39;</span><span class="p">)</span>
-
+        
         <span class="n">date</span> <span class="o">=</span> <span class="n">date_tag</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">date_tag</span> <span class="k">else</span> <span class="s1">&#39;Tidak ada tanggal&#39;</span>
-
+        
         <span class="c1"># Ambil judul artikel</span>
         <span class="n">title_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span>
         <span class="n">title</span> <span class="o">=</span> <span class="n">title_tag</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">title_tag</span> <span class="k">else</span> <span class="s1">&#39;Tidak ada judul&#39;</span>
-
+        
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;judul&#39;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
             <span class="s1">&#39;isi_berita&#39;</span><span class="p">:</span> <span class="n">content</span><span class="p">,</span>
@@ -498,11 +508,11 @@ document.write(`
                 <span class="n">article_details</span> <span class="o">=</span> <span class="n">get_article_details</span><span class="p">(</span><span class="n">detail_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">article_details</span><span class="p">:</span>
                     <span class="n">articles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">article_details</span><span class="p">)</span>
-
+        
         <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="c1">#         print(f&quot;Menunggu selama {sleep_time:.2f} detik sebelum mengambil halaman berikutnya...&quot;)</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>
-
+        
         <span class="n">page</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">articles</span>
 
@@ -512,7 +522,7 @@ document.write(`
     <span class="s1">&#39;Politik&#39;</span><span class="p">:</span> <span class="s1">&#39;https://www.kompas.com/tag/politik&#39;</span><span class="p">,</span>
 <span class="p">}</span>
 
-<span class="n">max_articles</span><span class="o">=</span><span class="mi">50</span>
+<span class="n">max_articles</span><span class="o">=</span><span class="mi">100</span>
 
 <span class="c1"># Mengumpulkan semua data</span>
 <span class="n">all_articles</span> <span class="o">=</span> <span class="p">[]</span>
@@ -547,28 +557,28 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-1-a92e4a2f3f1a&gt;</span> in <span class="ni">&lt;cell line: 99&gt;</span><span class="nt">()</span>
+<span class="nn">&lt;ipython-input-1-368f7a614798&gt;</span> in <span class="ni">&lt;cell line: 99&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="k">for</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">category_url</span> <span class="ow">in</span> <span class="n">categories</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
 <span class="g g-Whitespace">    </span><span class="mi">100</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Menambang kategori </span><span class="si">{</span><span class="n">category_name</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
 <span class="ne">--&gt; </span><span class="mi">101</span>     <span class="n">articles</span> <span class="o">=</span> <span class="n">get_articles</span><span class="p">(</span><span class="n">category_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">,</span> <span class="n">max_articles</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">102</span>     <span class="n">all_articles</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">103</span> 
 
-<span class="nn">&lt;ipython-input-1-a92e4a2f3f1a&gt;</span> in <span class="ni">get_articles</span><span class="nt">(category_url, category_name, max_articles)</span>
+<span class="nn">&lt;ipython-input-1-368f7a614798&gt;</span> in <span class="ni">get_articles</span><span class="nt">(category_url, category_name, max_articles)</span>
 <span class="g g-Whitespace">     </span><span class="mi">76</span>             <span class="n">detail_url</span> <span class="o">=</span> <span class="n">title_tag</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">title_tag</span> <span class="k">else</span> <span class="kc">None</span>
 <span class="g g-Whitespace">     </span><span class="mi">77</span>             <span class="k">if</span> <span class="n">detail_url</span><span class="p">:</span>
 <span class="ne">---&gt; </span><span class="mi">78</span>                 <span class="n">article_details</span> <span class="o">=</span> <span class="n">get_article_details</span><span class="p">(</span><span class="n">detail_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">79</span>                 <span class="k">if</span> <span class="n">article_details</span><span class="p">:</span>
 <span class="g g-Whitespace">     </span><span class="mi">80</span>                     <span class="n">articles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">article_details</span><span class="p">)</span>
 
-<span class="nn">&lt;ipython-input-1-a92e4a2f3f1a&gt;</span> in <span class="ni">get_article_details</span><span class="nt">(detail_url, category_name)</span>
+<span class="nn">&lt;ipython-input-1-368f7a614798&gt;</span> in <span class="ni">get_article_details</span><span class="nt">(detail_url, category_name)</span>
 <span class="g g-Whitespace">     </span><span class="mi">29</span> 
 <span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">def</span> <span class="nf">get_article_details</span><span class="p">(</span><span class="n">detail_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">31</span>     <span class="n">detail_soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">detail_url</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="k">if</span> <span class="n">detail_soup</span><span class="p">:</span>
 <span class="g g-Whitespace">     </span><span class="mi">33</span>         <span class="c1"># Ambil konten dari div dengan class &#39;read__content&#39;</span>
 
-<span class="nn">&lt;ipython-input-1-a92e4a2f3f1a&gt;</span> in <span class="ni">get_soup</span><span class="nt">(url)</span>
+<span class="nn">&lt;ipython-input-1-368f7a614798&gt;</span> in <span class="ni">get_soup</span><span class="nt">(url)</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="p">}</span>
 <span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="k">try</span><span class="p">:</span>
 <span class="ne">---&gt; </span><span class="mi">20</span>         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
@@ -595,6 +605,27 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
 <span class="ne">--&gt; </span><span class="mi">589</span><span class="s2">         resp = self.send(prep, **send_kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">590</span><span class="s2"> </span>
 <span class="g g-Whitespace">    </span><span class="mi">591</span><span class="s2">         return resp</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">send</span><span class="nt">(self, request, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">722</span><span class="s2">             # Redirect resolving generator.</span>
+<span class="g g-Whitespace">    </span><span class="mi">723</span><span class="s2">             gen = self.resolve_redirects(r, request, **kwargs)</span>
+<span class="ne">--&gt; </span><span class="mi">724</span><span class="s2">             history = [resp for resp in gen]</span>
+<span class="g g-Whitespace">    </span><span class="mi">725</span><span class="s2">         else:</span>
+<span class="g g-Whitespace">    </span><span class="mi">726</span><span class="s2">             history = []</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">722</span><span class="s2">             # Redirect resolving generator.</span>
+<span class="g g-Whitespace">    </span><span class="mi">723</span><span class="s2">             gen = self.resolve_redirects(r, request, **kwargs)</span>
+<span class="ne">--&gt; </span><span class="mi">724</span><span class="s2">             history = [resp for resp in gen]</span>
+<span class="g g-Whitespace">    </span><span class="mi">725</span><span class="s2">         else:</span>
+<span class="g g-Whitespace">    </span><span class="mi">726</span><span class="s2">             history = []</span>
+
+<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">resolve_redirects</span><span class="nt">(self, resp, req, stream, timeout, verify, cert, proxies, yield_requests, **adapter_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span><span class="s2">                 yield req</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span><span class="s2">             else:</span>
+<span class="ne">--&gt; </span><span class="mi">265</span><span class="s2">                 resp = self.send(</span>
+<span class="g g-Whitespace">    </span><span class="mi">266</span><span class="s2">                     req,</span>
+<span class="g g-Whitespace">    </span><span class="mi">267</span><span class="s2">                     stream=stream,</span>
 
 <span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">send</span><span class="nt">(self, request, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">701</span><span class="s2"> </span>
@@ -659,6 +690,20 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
 <span class="g g-Whitespace">    </span><span class="mi">706</span><span class="s2">             except timeout:</span>
 <span class="g g-Whitespace">    </span><span class="mi">707</span><span class="s2">                 self._timeout_occurred = True</span>
 
+<span class="nn">/usr/lib/python3.10/ssl.py</span> in <span class="ni">recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1301</span><span class="s2">                   &quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot; %</span>
+<span class="g g-Whitespace">   </span><span class="mi">1302</span><span class="s2">                   self.__class__)</span>
+<span class="ne">-&gt; </span><span class="mi">1303</span><span class="s2">             return self.read(nbytes, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1304</span><span class="s2">         else:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1305</span><span class="s2">             return super().recv_into(buffer, nbytes, flags)</span>
+
+<span class="nn">/usr/lib/python3.10/ssl.py</span> in <span class="ni">read</span><span class="nt">(self, len, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1157</span><span class="s2">         try:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1158</span><span class="s2">             if buffer is not None:</span>
+<span class="ne">-&gt; </span><span class="mi">1159</span><span class="s2">                 return self._sslobj.read(len, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1160</span><span class="s2">             else:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1161</span><span class="s2">                 return self._sslobj.read(len)</span>
+
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
@@ -699,37 +744,37 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
   <tbody>
     <tr>
       <th>0</th>
-      <td>Perbandingan Ranking FIFA Timnas Indonesia Vs ...</td>
-      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
-      <td>10 Oktober 2024, 19:49 WIB</td>
+      <td>Jokowi Minta Stadion Utama Sumut Dirawat, Jang...</td>
+      <td>JAKARTA, KOMPAS.com - Presiden Joko Widodo ber...</td>
+      <td>15/10/2024, 18:58 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Keluar Rumah Hendak Olahraga, Anak Polisi di P...</td>
-      <td>KOMPAS.com - Anak seorang anggota polisi di Ko...</td>
-      <td>10/10/2024, 14:45 WIB</td>
+      <td>Prabowo Panggil Calon Wakil Menteri, Taufik Hi...</td>
+      <td>Legenda badminton Indonesia, Taufik Hidayat, m...</td>
+      <td>15 Oktober 2024, 16:45 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
-      <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
-      <td>10/10/2024, 12:30 WIB</td>
+      <td>Taufik Hidayat Mengaku Ditugasi Prabowo Genjot...</td>
+      <td>JAKARTA, KOMPAS.com - Legenda bulu tangkis Ind...</td>
+      <td>15/10/2024, 16:43 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
-      <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
-      <td>10/10/2024, 08:45 WIB</td>
+      <td>Apa Manfaat Olahraga untuk Penderita Diabetes?...</td>
+      <td>KOMPAS.com - Ada banyak manfaat dari olahraga ...</td>
+      <td>15/10/2024, 12:00 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Potret Reijnders-Hilgers Berseragam Indonesia,...</td>
-      <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>9 Oktober 2024, 20:07 WIB</td>
+      <td>Perubahan Iklim Ancam Eksistensi Olahraga Ski</td>
+      <td>KOMPAS.com - Olahraga musim dingin, ski teranc...</td>
+      <td>15/10/2024, 09:30 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
@@ -740,43 +785,43 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
       <td>...</td>
     </tr>
     <tr>
-      <th>95</th>
-      <td>Momen Kedatangan Jokowi dan Prabowo di HUT Ke-...</td>
-      <td>Presiden Jokowi tiba di Monas, Jakarta Pusat, ...</td>
-      <td>5 Oktober 2024, 09:03 WIB</td>
+      <th>195</th>
+      <td>Puan Ungkap Alasan PDI-P Pilih Bambang Pacul J...</td>
+      <td>Ketua DPP PDI-P Puan Maharani mengungkapkan al...</td>
+      <td>3 Oktober 2024, 15:49 WIB</td>
       <td>Politik</td>
     </tr>
     <tr>
-      <th>96</th>
-      <td>Suasana Monas Jelang Dimulainya HUT TNI, Warga...</td>
-      <td>Masyarakat tampak antusias ketika melihat kend...</td>
-      <td>5 Oktober 2024, 08:28 WIB</td>
+      <th>196</th>
+      <td>Pilkada NTB: Memaknai Sikap Politik Simbolik TGB</td>
+      <td>JELANG Pilkada Nusa Tenggara Barat (NTB) akhir...</td>
+      <td>03/10/2024, 15:20 WIB</td>
       <td>Politik</td>
     </tr>
     <tr>
-      <th>97</th>
-      <td>Antusias Warga Berdatangan ke Monas untuk Saks...</td>
-      <td>Perayaan Hari Ulang Tahun (HUT) ke-79 TNI jatu...</td>
-      <td>5 Oktober 2024, 07:49 WIB</td>
+      <th>197</th>
+      <td>Pilkada Sukabumi, Bawaslu Hentikan Laporan Dug...</td>
+      <td>SUKABUMI, KOMPAS.com - Badan Pengawas Pemilu (...</td>
+      <td>03/10/2024, 08:28 WIB</td>
       <td>Politik</td>
     </tr>
     <tr>
-      <th>98</th>
-      <td>Soal Pengelolaan Tol IKN, Menteri Basuki Sebut...</td>
-      <td>Pengelolaan jalan tol di Ibu Kota Nusantara (I...</td>
-      <td>4 Oktober 2024, 21:43 WIB</td>
+      <th>198</th>
+      <td>Fenomena Dinasti Politik di DPR, Peneliti BRIN...</td>
+      <td>JAKARTA, KOMPAS.com - Peneliti Pusat Riset Pol...</td>
+      <td>03/10/2024, 06:31 WIB</td>
       <td>Politik</td>
     </tr>
     <tr>
-      <th>99</th>
-      <td>Kapolda Sulsel Ajak Masyarakat Hindari Politik...</td>
-      <td>KOMPAS.com - Jelang Pemilihan Kepala Daerah (P...</td>
-      <td>04/10/2024, 21:06 WIB</td>
+      <th>199</th>
+      <td>Banyak Dinasti Politik di DPR, Peneliti BRIN: ...</td>
+      <td>JAKARTA, KOMPAS.com - Peneliti Pusat Riset Pol...</td>
+      <td>02/10/2024, 22:40 WIB</td>
       <td>Politik</td>
     </tr>
   </tbody>
 </table>
-<p>100 rows × 4 columns</p>
+<p>200 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -815,37 +860,37 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
   <tbody>
     <tr>
       <th>0</th>
-      <td>Perbandingan Ranking FIFA Timnas Indonesia Vs ...</td>
-      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
-      <td>10 Oktober 2024, 19:49 WIB</td>
+      <td>Jokowi Minta Stadion Utama Sumut Dirawat, Jang...</td>
+      <td>JAKARTA, KOMPAS.com - Presiden Joko Widodo ber...</td>
+      <td>15/10/2024, 18:58 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Keluar Rumah Hendak Olahraga, Anak Polisi di P...</td>
-      <td>KOMPAS.com - Anak seorang anggota polisi di Ko...</td>
-      <td>10/10/2024, 14:45 WIB</td>
+      <td>Prabowo Panggil Calon Wakil Menteri, Taufik Hi...</td>
+      <td>Legenda badminton Indonesia, Taufik Hidayat, m...</td>
+      <td>15 Oktober 2024, 16:45 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
-      <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
-      <td>10/10/2024, 12:30 WIB</td>
+      <td>Taufik Hidayat Mengaku Ditugasi Prabowo Genjot...</td>
+      <td>JAKARTA, KOMPAS.com - Legenda bulu tangkis Ind...</td>
+      <td>15/10/2024, 16:43 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
-      <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
-      <td>10/10/2024, 08:45 WIB</td>
+      <td>Apa Manfaat Olahraga untuk Penderita Diabetes?...</td>
+      <td>KOMPAS.com - Ada banyak manfaat dari olahraga ...</td>
+      <td>15/10/2024, 12:00 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Potret Reijnders-Hilgers Berseragam Indonesia,...</td>
-      <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>9 Oktober 2024, 20:07 WIB</td>
+      <td>Perubahan Iklim Ancam Eksistensi Olahraga Ski</td>
+      <td>KOMPAS.com - Olahraga musim dingin, ski teranc...</td>
+      <td>15/10/2024, 09:30 WIB</td>
       <td>Olahraga</td>
     </tr>
   </tbody>
@@ -883,7 +928,7 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
 <span class="k">def</span> <span class="nf">remove_emoji</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
     <span class="c1"># Fungsi untuk menghapus emoji dari teks.</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>  <span class="c1"># Memastikan text adalah string</span>
-        <span class="n">emoji_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;[&quot;</span>
+        <span class="n">emoji_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;[&quot;</span> 
             <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\U0001F600</span><span class="s2">-</span><span class="se">\U0001F64F</span><span class="s2">&quot;</span>  <span class="c1"># emotikon wajah</span>
             <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\U0001F300</span><span class="s2">-</span><span class="se">\U0001F5FF</span><span class="s2">&quot;</span>  <span class="c1"># simbol &amp; gambar</span>
             <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\U0001F680</span><span class="s2">-</span><span class="se">\U0001F6FF</span><span class="s2">&quot;</span>  <span class="c1"># transportasi &amp; simbol</span>
@@ -948,43 +993,43 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
   <tbody>
     <tr>
       <th>0</th>
-      <td>Perbandingan Ranking FIFA Timnas Indonesia Vs ...</td>
-      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
-      <td>10 Oktober 2024, 19:49 WIB</td>
+      <td>Jokowi Minta Stadion Utama Sumut Dirawat, Jang...</td>
+      <td>JAKARTA, KOMPAS.com - Presiden Joko Widodo ber...</td>
+      <td>15/10/2024, 18:58 WIB</td>
       <td>Olahraga</td>
-      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
+      <td>JAKARTA KOMPAScom  Presiden Joko Widodo berhar...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Keluar Rumah Hendak Olahraga, Anak Polisi di P...</td>
-      <td>KOMPAS.com - Anak seorang anggota polisi di Ko...</td>
-      <td>10/10/2024, 14:45 WIB</td>
+      <td>Prabowo Panggil Calon Wakil Menteri, Taufik Hi...</td>
+      <td>Legenda badminton Indonesia, Taufik Hidayat, m...</td>
+      <td>15 Oktober 2024, 16:45 WIB</td>
       <td>Olahraga</td>
-      <td>KOMPAScom  Anak seorang anggota polisi di Kota...</td>
+      <td>Legenda badminton Indonesia Taufik Hidayat men...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
-      <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
-      <td>10/10/2024, 12:30 WIB</td>
+      <td>Taufik Hidayat Mengaku Ditugasi Prabowo Genjot...</td>
+      <td>JAKARTA, KOMPAS.com - Legenda bulu tangkis Ind...</td>
+      <td>15/10/2024, 16:43 WIB</td>
       <td>Olahraga</td>
-      <td>KOMPAScom  Pekan Paralimpiade Nasional Peparna...</td>
+      <td>JAKARTA KOMPAScom  Legenda bulu tangkis Indone...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
-      <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
-      <td>10/10/2024, 08:45 WIB</td>
+      <td>Apa Manfaat Olahraga untuk Penderita Diabetes?...</td>
+      <td>KOMPAS.com - Ada banyak manfaat dari olahraga ...</td>
+      <td>15/10/2024, 12:00 WIB</td>
       <td>Olahraga</td>
-      <td>KOMPAScom  Dalam hal penurunan berat badan tid...</td>
+      <td>KOMPAScom  Ada banyak manfaat dari olahraga sa...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Potret Reijnders-Hilgers Berseragam Indonesia,...</td>
-      <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>9 Oktober 2024, 20:07 WIB</td>
+      <td>Perubahan Iklim Ancam Eksistensi Olahraga Ski</td>
+      <td>KOMPAS.com - Olahraga musim dingin, ski teranc...</td>
+      <td>15/10/2024, 09:30 WIB</td>
       <td>Olahraga</td>
-      <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
+      <td>KOMPAScom  Olahraga musim dingin ski terancam ...</td>
     </tr>
   </tbody>
 </table>
@@ -1039,48 +1084,48 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
   <tbody>
     <tr>
       <th>0</th>
-      <td>Perbandingan Ranking FIFA Timnas Indonesia Vs ...</td>
-      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
-      <td>10 Oktober 2024, 19:49 WIB</td>
+      <td>Jokowi Minta Stadion Utama Sumut Dirawat, Jang...</td>
+      <td>JAKARTA, KOMPAS.com - Presiden Joko Widodo ber...</td>
+      <td>15/10/2024, 18:58 WIB</td>
       <td>Olahraga</td>
-      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
-      <td>pertandingan timnas indonesia vs bahrain di ku...</td>
+      <td>JAKARTA KOMPAScom  Presiden Joko Widodo berhar...</td>
+      <td>jakarta kompascom  presiden joko widodo berhar...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Keluar Rumah Hendak Olahraga, Anak Polisi di P...</td>
-      <td>KOMPAS.com - Anak seorang anggota polisi di Ko...</td>
-      <td>10/10/2024, 14:45 WIB</td>
+      <td>Prabowo Panggil Calon Wakil Menteri, Taufik Hi...</td>
+      <td>Legenda badminton Indonesia, Taufik Hidayat, m...</td>
+      <td>15 Oktober 2024, 16:45 WIB</td>
       <td>Olahraga</td>
-      <td>KOMPAScom  Anak seorang anggota polisi di Kota...</td>
-      <td>kompascom  anak seorang anggota polisi di kota...</td>
+      <td>Legenda badminton Indonesia Taufik Hidayat men...</td>
+      <td>legenda badminton indonesia taufik hidayat men...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
-      <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
-      <td>10/10/2024, 12:30 WIB</td>
+      <td>Taufik Hidayat Mengaku Ditugasi Prabowo Genjot...</td>
+      <td>JAKARTA, KOMPAS.com - Legenda bulu tangkis Ind...</td>
+      <td>15/10/2024, 16:43 WIB</td>
       <td>Olahraga</td>
-      <td>KOMPAScom  Pekan Paralimpiade Nasional Peparna...</td>
-      <td>kompascom  pekan paralimpiade nasional peparna...</td>
+      <td>JAKARTA KOMPAScom  Legenda bulu tangkis Indone...</td>
+      <td>jakarta kompascom  legenda bulu tangkis indone...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
-      <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
-      <td>10/10/2024, 08:45 WIB</td>
+      <td>Apa Manfaat Olahraga untuk Penderita Diabetes?...</td>
+      <td>KOMPAS.com - Ada banyak manfaat dari olahraga ...</td>
+      <td>15/10/2024, 12:00 WIB</td>
       <td>Olahraga</td>
-      <td>KOMPAScom  Dalam hal penurunan berat badan tid...</td>
-      <td>kompascom  dalam hal penurunan berat badan tid...</td>
+      <td>KOMPAScom  Ada banyak manfaat dari olahraga sa...</td>
+      <td>kompascom  ada banyak manfaat dari olahraga sa...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Potret Reijnders-Hilgers Berseragam Indonesia,...</td>
-      <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>9 Oktober 2024, 20:07 WIB</td>
+      <td>Perubahan Iklim Ancam Eksistensi Olahraga Ski</td>
+      <td>KOMPAS.com - Olahraga musim dingin, ski teranc...</td>
+      <td>15/10/2024, 09:30 WIB</td>
       <td>Olahraga</td>
-      <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>dua pemain baru timnas indonesia eliano reijnd...</td>
+      <td>KOMPAScom  Olahraga musim dingin ski terancam ...</td>
+      <td>kompascom  olahraga musim dingin ski terancam ...</td>
     </tr>
   </tbody>
 </table>
@@ -1137,53 +1182,53 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
   <tbody>
     <tr>
       <th>0</th>
-      <td>Perbandingan Ranking FIFA Timnas Indonesia Vs ...</td>
-      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
-      <td>10 Oktober 2024, 19:49 WIB</td>
+      <td>Jokowi Minta Stadion Utama Sumut Dirawat, Jang...</td>
+      <td>JAKARTA, KOMPAS.com - Presiden Joko Widodo ber...</td>
+      <td>15/10/2024, 18:58 WIB</td>
       <td>Olahraga</td>
-      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
-      <td>pertandingan timnas indonesia vs bahrain di ku...</td>
-      <td>[pertandingan, timnas, indonesia, vs, bahrain,...</td>
+      <td>JAKARTA KOMPAScom  Presiden Joko Widodo berhar...</td>
+      <td>jakarta kompascom  presiden joko widodo berhar...</td>
+      <td>[jakarta, kompascom, presiden, joko, widodo, b...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Keluar Rumah Hendak Olahraga, Anak Polisi di P...</td>
-      <td>KOMPAS.com - Anak seorang anggota polisi di Ko...</td>
-      <td>10/10/2024, 14:45 WIB</td>
+      <td>Prabowo Panggil Calon Wakil Menteri, Taufik Hi...</td>
+      <td>Legenda badminton Indonesia, Taufik Hidayat, m...</td>
+      <td>15 Oktober 2024, 16:45 WIB</td>
       <td>Olahraga</td>
-      <td>KOMPAScom  Anak seorang anggota polisi di Kota...</td>
-      <td>kompascom  anak seorang anggota polisi di kota...</td>
-      <td>[kompascom, anak, seorang, anggota, polisi, di...</td>
+      <td>Legenda badminton Indonesia Taufik Hidayat men...</td>
+      <td>legenda badminton indonesia taufik hidayat men...</td>
+      <td>[legenda, badminton, indonesia, taufik, hidaya...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
-      <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
-      <td>10/10/2024, 12:30 WIB</td>
+      <td>Taufik Hidayat Mengaku Ditugasi Prabowo Genjot...</td>
+      <td>JAKARTA, KOMPAS.com - Legenda bulu tangkis Ind...</td>
+      <td>15/10/2024, 16:43 WIB</td>
       <td>Olahraga</td>
-      <td>KOMPAScom  Pekan Paralimpiade Nasional Peparna...</td>
-      <td>kompascom  pekan paralimpiade nasional peparna...</td>
-      <td>[kompascom, pekan, paralimpiade, nasional, pep...</td>
+      <td>JAKARTA KOMPAScom  Legenda bulu tangkis Indone...</td>
+      <td>jakarta kompascom  legenda bulu tangkis indone...</td>
+      <td>[jakarta, kompascom, legenda, bulu, tangkis, i...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
-      <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
-      <td>10/10/2024, 08:45 WIB</td>
+      <td>Apa Manfaat Olahraga untuk Penderita Diabetes?...</td>
+      <td>KOMPAS.com - Ada banyak manfaat dari olahraga ...</td>
+      <td>15/10/2024, 12:00 WIB</td>
       <td>Olahraga</td>
-      <td>KOMPAScom  Dalam hal penurunan berat badan tid...</td>
-      <td>kompascom  dalam hal penurunan berat badan tid...</td>
-      <td>[kompascom, dalam, hal, penurunan, berat, bada...</td>
+      <td>KOMPAScom  Ada banyak manfaat dari olahraga sa...</td>
+      <td>kompascom  ada banyak manfaat dari olahraga sa...</td>
+      <td>[kompascom, ada, banyak, manfaat, dari, olahra...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Potret Reijnders-Hilgers Berseragam Indonesia,...</td>
-      <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>9 Oktober 2024, 20:07 WIB</td>
+      <td>Perubahan Iklim Ancam Eksistensi Olahraga Ski</td>
+      <td>KOMPAS.com - Olahraga musim dingin, ski teranc...</td>
+      <td>15/10/2024, 09:30 WIB</td>
       <td>Olahraga</td>
-      <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>dua pemain baru timnas indonesia eliano reijnd...</td>
-      <td>[dua, pemain, baru, timnas, indonesia, eliano,...</td>
+      <td>KOMPAScom  Olahraga musim dingin ski terancam ...</td>
+      <td>kompascom  olahraga musim dingin ski terancam ...</td>
+      <td>[kompascom, olahraga, musim, dingin, ski, tera...</td>
     </tr>
   </tbody>
 </table>
@@ -1254,58 +1299,58 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
   <tbody>
     <tr>
       <th>0</th>
-      <td>Perbandingan Ranking FIFA Timnas Indonesia Vs ...</td>
-      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
-      <td>10 Oktober 2024, 19:49 WIB</td>
+      <td>Jokowi Minta Stadion Utama Sumut Dirawat, Jang...</td>
+      <td>JAKARTA, KOMPAS.com - Presiden Joko Widodo ber...</td>
+      <td>15/10/2024, 18:58 WIB</td>
       <td>Olahraga</td>
-      <td>Pertandingan Timnas Indonesia vs Bahrain di Ku...</td>
-      <td>pertandingan timnas indonesia vs bahrain di ku...</td>
-      <td>[pertandingan, timnas, indonesia, vs, bahrain,...</td>
-      <td>pertandingan timnas indonesia vs bahrain kuali...</td>
+      <td>JAKARTA KOMPAScom  Presiden Joko Widodo berhar...</td>
+      <td>jakarta kompascom  presiden joko widodo berhar...</td>
+      <td>[jakarta, kompascom, presiden, joko, widodo, b...</td>
+      <td>jakarta kompascom presiden joko widodo berhara...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Keluar Rumah Hendak Olahraga, Anak Polisi di P...</td>
-      <td>KOMPAS.com - Anak seorang anggota polisi di Ko...</td>
-      <td>10/10/2024, 14:45 WIB</td>
+      <td>Prabowo Panggil Calon Wakil Menteri, Taufik Hi...</td>
+      <td>Legenda badminton Indonesia, Taufik Hidayat, m...</td>
+      <td>15 Oktober 2024, 16:45 WIB</td>
       <td>Olahraga</td>
-      <td>KOMPAScom  Anak seorang anggota polisi di Kota...</td>
-      <td>kompascom  anak seorang anggota polisi di kota...</td>
-      <td>[kompascom, anak, seorang, anggota, polisi, di...</td>
-      <td>kompascom anak anggota polisi kota probolinggo...</td>
+      <td>Legenda badminton Indonesia Taufik Hidayat men...</td>
+      <td>legenda badminton indonesia taufik hidayat men...</td>
+      <td>[legenda, badminton, indonesia, taufik, hidaya...</td>
+      <td>legenda badminton indonesia taufik hidayat rum...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Sama-sama Ajang Olahraga Tingkat Nasional, Apa...</td>
-      <td>KOMPAS.com - Pekan Paralimpiade Nasional (Pepa...</td>
-      <td>10/10/2024, 12:30 WIB</td>
+      <td>Taufik Hidayat Mengaku Ditugasi Prabowo Genjot...</td>
+      <td>JAKARTA, KOMPAS.com - Legenda bulu tangkis Ind...</td>
+      <td>15/10/2024, 16:43 WIB</td>
       <td>Olahraga</td>
-      <td>KOMPAScom  Pekan Paralimpiade Nasional Peparna...</td>
-      <td>kompascom  pekan paralimpiade nasional peparna...</td>
-      <td>[kompascom, pekan, paralimpiade, nasional, pep...</td>
-      <td>kompascom pekan paralimpiade nasional peparnas...</td>
+      <td>JAKARTA KOMPAScom  Legenda bulu tangkis Indone...</td>
+      <td>jakarta kompascom  legenda bulu tangkis indone...</td>
+      <td>[jakarta, kompascom, legenda, bulu, tangkis, i...</td>
+      <td>jakarta kompascom legenda bulu tangkis indones...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Wanita 54 Tahun Berhasil Turunkan Berat Badan ...</td>
-      <td>KOMPAS.com - Dalam hal penurunan berat badan, ...</td>
-      <td>10/10/2024, 08:45 WIB</td>
+      <td>Apa Manfaat Olahraga untuk Penderita Diabetes?...</td>
+      <td>KOMPAS.com - Ada banyak manfaat dari olahraga ...</td>
+      <td>15/10/2024, 12:00 WIB</td>
       <td>Olahraga</td>
-      <td>KOMPAScom  Dalam hal penurunan berat badan tid...</td>
-      <td>kompascom  dalam hal penurunan berat badan tid...</td>
-      <td>[kompascom, dalam, hal, penurunan, berat, bada...</td>
-      <td>kompascom penurunan berat badan solusi cocok o...</td>
+      <td>KOMPAScom  Ada banyak manfaat dari olahraga sa...</td>
+      <td>kompascom  ada banyak manfaat dari olahraga sa...</td>
+      <td>[kompascom, ada, banyak, manfaat, dari, olahra...</td>
+      <td>kompascom manfaat olahraga menderita diabetes ...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Potret Reijnders-Hilgers Berseragam Indonesia,...</td>
-      <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>9 Oktober 2024, 20:07 WIB</td>
+      <td>Perubahan Iklim Ancam Eksistensi Olahraga Ski</td>
+      <td>KOMPAS.com - Olahraga musim dingin, ski teranc...</td>
+      <td>15/10/2024, 09:30 WIB</td>
       <td>Olahraga</td>
-      <td>Dua pemain baru Timnas Indonesia Eliano Reijnd...</td>
-      <td>dua pemain baru timnas indonesia eliano reijnd...</td>
-      <td>[dua, pemain, baru, timnas, indonesia, eliano,...</td>
-      <td>pemain timnas indonesia eliano reijnders mees ...</td>
+      <td>KOMPAScom  Olahraga musim dingin ski terancam ...</td>
+      <td>kompascom  olahraga musim dingin ski terancam ...</td>
+      <td>[kompascom, olahraga, musim, dingin, ski, tera...</td>
+      <td>kompascom olahraga musim dingin ski terancam e...</td>
     </tr>
   </tbody>
 </table>
@@ -1364,33 +1409,32 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>aakash</th>
       <th>abadi</th>
       <th>abba</th>
       <th>abdu</th>
       <th>abdul</th>
+      <th>abdullah</th>
       <th>abdurrahman</th>
       <th>abnormal</th>
       <th>aboe</th>
-      <th>academy</th>
-      <th>acak</th>
-      <th>acara</th>
+      <th>abuabu</th>
       <th>...</th>
-      <th>zilky</th>
-      <th>zilkyproduser</th>
-      <th>zilkyvideo</th>
       <th>zintan</th>
+      <th>zneistilah</th>
       <th>zon</th>
       <th>zona</th>
-      <th>zuhala</th>
+      <th>zudan</th>
+      <th>zuhro</th>
+      <th>zulkieflimansyah</th>
       <th>zulkifli</th>
-      <th>zumba</th>
+      <th>zulkiflihasan</th>
       <th>zvezda</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1399,14 +1443,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.104233</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1414,7 +1459,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>1</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1423,14 +1467,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1438,7 +1483,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>2</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1447,14 +1491,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.026902</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1462,7 +1507,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>3</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1471,14 +1515,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1486,7 +1531,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>4</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1495,14 +1539,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.108226</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1510,7 +1555,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>5</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1519,14 +1563,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1534,7 +1579,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>6</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1543,14 +1587,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1558,7 +1603,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>7</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1567,14 +1611,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.038116</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1582,7 +1627,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>8</th>
-      <td>0.0488</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1591,14 +1635,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1606,7 +1651,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>9</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1615,14 +1659,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.254490</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1630,7 +1675,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
   </tbody>
 </table>
-<p>10 rows × 4502 columns</p>
+<p>10 rows × 6396 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1677,33 +1722,32 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>aakash</th>
       <th>abadi</th>
       <th>abba</th>
       <th>abdu</th>
       <th>abdul</th>
+      <th>abdullah</th>
       <th>abdurrahman</th>
       <th>abnormal</th>
       <th>aboe</th>
-      <th>academy</th>
-      <th>acak</th>
-      <th>acara</th>
+      <th>abuabu</th>
       <th>...</th>
-      <th>zilky</th>
-      <th>zilkyproduser</th>
-      <th>zilkyvideo</th>
       <th>zintan</th>
+      <th>zneistilah</th>
       <th>zon</th>
       <th>zona</th>
-      <th>zuhala</th>
+      <th>zudan</th>
+      <th>zuhro</th>
+      <th>zulkieflimansyah</th>
       <th>zulkifli</th>
-      <th>zumba</th>
+      <th>zulkiflihasan</th>
       <th>zvezda</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1712,14 +1756,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.104233</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1727,7 +1772,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>1</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1736,14 +1780,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1751,7 +1796,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>2</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1760,14 +1804,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.026902</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1775,7 +1820,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>3</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1784,14 +1828,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1799,7 +1844,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>4</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1808,14 +1852,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.108226</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1823,7 +1868,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>5</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1832,14 +1876,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1847,7 +1892,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>6</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1856,14 +1900,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1871,7 +1916,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>7</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1880,14 +1924,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.038116</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1895,7 +1940,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>8</th>
-      <td>0.0488</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1904,14 +1948,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1919,7 +1964,6 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
     <tr>
       <th>9</th>
-      <td>0.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1928,14 +1972,15 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.254490</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1943,7 +1988,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
     </tr>
   </tbody>
 </table>
-<p>10 rows × 4502 columns</p>
+<p>10 rows × 6396 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -1962,7 +2007,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span>  <span class="c1"># Target adalah kategori berita</span>
 
 <span class="c1"># Pisahkan dataset menjadi set pelatihan dan pengujian</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">tfidf_df</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># Inisialisasi model Regresi Logistik</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
@@ -1988,7 +2033,7 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
 
 <span class="c1"># Visualisasi Confusion Matrix</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">conf_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">conf_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> 
             <span class="n">xticklabels</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
@@ -1999,25 +2044,31 @@ Term Frequency (TF), yang menghitung seberapa sering sebuah kata muncul dalam do
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion Matrix:
-[[9 3]
- [0 8]]
+[[20  1]
+ [ 4 15]]
 
 Hasil Klasifikasi:
               precision    recall  f1-score   support
 
-    Olahraga       1.00      0.75      0.86        12
-     Politik       0.73      1.00      0.84         8
+    Olahraga       0.83      0.95      0.89        21
+     Politik       0.94      0.79      0.86        19
 
-    accuracy                           0.85        20
-   macro avg       0.86      0.88      0.85        20
-weighted avg       0.89      0.85      0.85        20
+    accuracy                           0.88        40
+   macro avg       0.89      0.87      0.87        40
+weighted avg       0.88      0.88      0.87        40
 
-Akurasi Model: 0.85
+Akurasi Model: 0.88
 </pre></div>
 </div>
-<img alt="_images/caa371c103b354e1e35ca98b489d198db542c774480d05922691c00c15f22445.png" src="_images/caa371c103b354e1e35ca98b489d198db542c774480d05922691c00c15f22445.png" />
+<img alt="_images/a537dd555e3d424875e8135aff221cf7f57ce95240b45641db1227d9b559370c.png" src="_images/a537dd555e3d424875e8135aff221cf7f57ce95240b45641db1227d9b559370c.png" />
 </div>
 </div>
+<section id="link-streamlite">
+<h2>Link Streamlite :<a class="headerlink" href="#link-streamlite" title="Link to this heading">#</a></h2>
+<section id="https-ppw-stream-kwgpiudmsemgufy4uwjiwa-streamlit-app">
+<h3><a class="reference external" href="https://ppw-stream-kwgpiudmsemgufy4uwjiwa.streamlit.app/">https://ppw-stream-kwgpiudmsemgufy4uwjiwa.streamlit.app/</a><a class="headerlink" href="#https-ppw-stream-kwgpiudmsemgufy4uwjiwa-streamlit-app" title="Link to this heading">#</a></h3>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2093,7 +2144,13 @@ Akurasi Model: 0.85
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency"><strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#regresi-logistik">Regresi Logistik</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#regresi-logistik">Regresi Logistik</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#link-streamlite">Link Streamlite :</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#https-ppw-stream-kwgpiudmsemgufy4uwjiwa-streamlit-app">https://ppw-stream-kwgpiudmsemgufy4uwjiwa.streamlit.app/</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
   </nav></div>

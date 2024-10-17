@@ -612,15 +612,15 @@ Data berita telah disimpan ke artikel_idn_preprocessing.csv
 <span class="n">mean_tfidf</span> <span class="o">=</span> <span class="n">tfidf_df</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Memilih 10 kata dengan nilai TF-IDF rata-rata tertinggi</span>
-<span class="n">top_10_tfidf</span> <span class="o">=</span> <span class="n">mean_tfidf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">top_tfidf</span> <span class="o">=</span> <span class="n">mean_tfidf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="c1"># Menampilkan hasil</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;10 Kata Teratas berdasarkan TF-IDF:&quot;</span><span class="p">,</span> <span class="n">top_10_tfidf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rank Kata Teratas berdasarkan TF-IDF:&quot;</span><span class="p">,</span> <span class="n">top_tfidf</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 Kata Teratas berdasarkan TF-IDF: jokowi      0.470882
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rank Kata Teratas berdasarkan TF-IDF: jokowi      0.470882
 kaesang     0.329617
 bebingah    0.282529
 nama        0.235441
@@ -647,7 +647,7 @@ dtype: float64
 <span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
 
 <span class="c1"># Ambil 10 kata teratas dari TF-IDF</span>
-<span class="n">top_words</span> <span class="o">=</span> <span class="n">top_10_tfidf</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">top_words</span> <span class="o">=</span> <span class="n">top_tfidf</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
 <span class="c1"># Membuat co-occurrence matrix dengan penimbangan TF-IDF</span>
 <span class="n">co_occurrence_weighted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">top_words</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">top_words</span><span class="p">)</span>
@@ -801,7 +801,7 @@ Filtered Top Words:
 
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">font_family</span><span class="o">=</span><span class="s1">&#39;sans-serif&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Graf Kata 10 Teratas Berdasarkan Co-occurrence&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Graf Kata 10 Teratas&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -826,7 +826,7 @@ Jumlah Node (Kata): 10
 Jumlah Edges (Hubungan antar Kata): 42
 </pre></div>
 </div>
-<img alt="_images/2458a80e77d9a6e37d405a4f7a65246d55e0c9a7265879507f5d4336c650374e.png" src="_images/2458a80e77d9a6e37d405a4f7a65246d55e0c9a7265879507f5d4336c650374e.png" />
+<img alt="_images/b7faf1b6bdc61aa58780d82be5449a39d8543cd86d104c0fd9ac8983dc4161af.png" src="_images/b7faf1b6bdc61aa58780d82be5449a39d8543cd86d104c0fd9ac8983dc4161af.png" />
 </div>
 </div>
 </section>
