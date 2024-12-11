@@ -1,0 +1,1728 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tugas 6 &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '210411100063 Rafly Faldiansyah Putra Tugas 6';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Tugas 5" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%205%20PPWA.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%20PPW.html">Tugas 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%202%20PPW.html">Tugas 2</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%203%20PPW.html">Nama : Rafly Faldiansyah Putra</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Tugas%204.html">Tugas 4 Ringkasan Dokumen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%205%20PPWA.html">Tugas 5</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas 6</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F210411100063 Rafly Faldiansyah Putra Tugas 6.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/210411100063 Rafly Faldiansyah Putra Tugas 6.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tugas 6</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-web-dengan-fuzzy-c-means">Clustering Web dengan Fuzzy C-Means|</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#link-app-clustering-dengan-fuzzy-c-means">Link App Clustering dengan Fuzzy C-Means :</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#https-huggingface-co-spaces-raflyyy-clustering-news">https://huggingface.co/spaces/Raflyyy/Clustering_News</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-6">
+<h1>Tugas 6<a class="headerlink" href="#tugas-6" title="Link to this heading">#</a></h1>
+<section id="clustering-web-dengan-fuzzy-c-means">
+<h2>Clustering Web dengan Fuzzy C-Means|<a class="headerlink" href="#clustering-web-dengan-fuzzy-c-means" title="Link to this heading">#</a></h2>
+<p>Rafly Faldiansyah Putra</p>
+<p>21041100063</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="kn">import</span> <span class="nn">skfuzzy</span> <span class="k">as</span> <span class="nn">fuzz</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="c1"># 1. Membaca Dataset</span>
+<span class="c1"># Membaca file CSV yang berisi dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;preprocessing-kompas.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Mengganti nilai NaN dengan string kosong agar tidak ada data kosong yang menyebabkan error</span>
+<span class="c1"># df[&#39;stopword_removal&#39;] = df[&#39;stopword_removal&#39;].fillna(&#39;&#39;)</span>
+
+<span class="c1"># 2. Mengonversi Data Teks ke TF-IDF</span>
+<span class="c1"># Menginisialisasi TfidfVectorizer dengan normalisasi L2</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span>
+
+<span class="c1"># Menghitung nilai TF-IDF untuk setiap dokumen</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">])</span>
+
+<span class="c1"># Mengubah hasil TF-IDF menjadi DataFrame untuk kemudahan akses</span>
+<span class="n">tfidf_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
+
+<span class="c1"># 3. Reduksi Dimensi dengan Truncated SVD</span>
+<span class="c1"># Menginisialisasi TruncatedSVD untuk mereduksi dimensi menjadi 100 komponen (atau sesuai kebutuhan)</span>
+<span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Mengaplikasikan SVD pada matriks TF-IDF untuk menghasilkan matriks dengan dimensi yang lebih rendah</span>
+<span class="n">svd_matrix</span> <span class="o">=</span> <span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">)</span>
+
+<span class="c1"># Menyimpan hasil SVD dalam DataFrame untuk digunakan dalam perhitungan kemiripan</span>
+<span class="n">svd_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">svd_matrix</span><span class="p">)</span>
+
+<span class="c1"># Menampilkan 10 baris pertama dari DataFrame hasil SVD</span>
+<span class="n">svd_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-1-a3a4135cd8a6&gt;</span> in <span class="ni">&lt;cell line: 8&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">skfuzzy</span> <span class="k">as</span> <span class="nn">fuzz</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;skfuzzy&#39;
+
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NOTE</span>: If your import is failing due to a missing package, you can
+<span class="n">manually</span> <span class="n">install</span> <span class="n">dependencies</span> <span class="n">using</span> <span class="n">either</span> <span class="o">!</span>pip<span class="w"> </span>or<span class="w"> </span>!apt.
+
+<span class="n">To</span> <span class="n">view</span> <span class="n">examples</span> <span class="n">of</span> <span class="n">installing</span> <span class="n">some</span> <span class="n">common</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">click</span> <span class="n">the</span>
+<span class="s2">&quot;Open Examples&quot;</span> <span class="n">button</span> <span class="n">below</span><span class="o">.</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>abcnetau</th>
+      <th>abdi</th>
+      <th>abdul</th>
+      <th>abi</th>
+      <th>academy</th>
+      <th>acara</th>
+      <th>acaraacara</th>
+      <th>ace</th>
+      <th>aceh</th>
+      <th>acep</th>
+      <th>...</th>
+      <th>zac</th>
+      <th>zaenuddin</th>
+      <th>zakiyuddin</th>
+      <th>zaman</th>
+      <th>zamannya</th>
+      <th>zamrud</th>
+      <th>zat</th>
+      <th>zulhas</th>
+      <th>zulkieflimansyahsuhaili</th>
+      <th>zulkifli</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.058451</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.068032</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.063166</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 4917 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">skfuzzy</span> <span class="k">as</span> <span class="nn">fuzz</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="c1"># 4. Menghapus Label Kategori dari Data untuk Clustering</span>
+<span class="c1"># Misalkan kolom &#39;kategori&#39; berisi label kategori asli, kita drop kolom tersebut untuk proses clustering</span>
+<span class="n">data_features</span> <span class="o">=</span> <span class="n">svd_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>  <span class="c1"># Buat pastikan kolom kategori memang ada</span>
+
+<span class="c1"># 5. Proses Fuzzy C-Means Clustering</span>
+<span class="c1"># Menentukan jumlah kluster (misalnya 2 kluster)</span>
+<span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Menjalankan Fuzzy C-Means</span>
+<span class="n">cntr</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">jm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">fpc</span> <span class="o">=</span> <span class="n">fuzz</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">cmeans</span><span class="p">(</span>
+    <span class="n">data_features</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="c1"># Menentukan kluster akhir untuk setiap data berdasarkan derajat keanggotaan tertinggi</span>
+<span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># 6. Mengukur Akurasi Clustering</span>
+<span class="c1"># Misalkan kolom &#39;kategori&#39; menyimpan label asli</span>
+<span class="k">if</span> <span class="s1">&#39;kategori&#39;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="c1"># Mengonversi label kategori ke bentuk numerik jika belum</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori_numerik&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1"># Menghitung akurasi dengan membandingkan hasil clustering dengan label asli</span>
+    <span class="n">akurasi</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori_numerik&#39;</span><span class="p">],</span> <span class="n">cluster_labels</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi Clustering Fuzzy C-Means: </span><span class="si">{</span><span class="n">akurasi</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kolom &#39;kategori&#39; tidak ditemukan pada dataset; akurasi tidak dapat dihitung.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Clustering Fuzzy C-Means: 0.73
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+    
+<span class="c1"># 7. Menambahkan Kolom Kluster ke DataFrame</span>
+<span class="c1"># Menyimpan hasil kluster di dalam DataFrame asli untuk memudahkan tampilan</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_labels</span>
+
+<span class="c1"># Menampilkan beberapa dokumen beserta kluster mereka</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">,</span> <span class="s1">&#39;kategori&#39;</span><span class="p">,</span> <span class="s1">&#39;cluster&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="c1"># 8. Visualisasi Kluster</span>
+<span class="c1"># Menggunakan PCA untuk mereduksi data ke dalam 2 dimensi agar bisa divisualisasikan</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pca_result</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_features</span><span class="p">)</span>
+
+<span class="c1"># Mengonversi hasil PCA ke DataFrame untuk kemudahan visualisasi</span>
+<span class="n">pca_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pca_result</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">,</span> <span class="s1">&#39;PC2&#39;</span><span class="p">])</span>
+<span class="n">pca_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_labels</span>
+
+<span class="c1"># Plot hasil klustering</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">]</span>  <span class="c1"># Sesuaikan warna untuk setiap kluster</span>
+
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_clusters</span><span class="p">):</span>
+    <span class="n">subset</span> <span class="o">=</span> <span class="n">pca_df</span><span class="p">[</span><span class="n">pca_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cluster</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">subset</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">],</span> <span class="n">subset</span><span class="p">[</span><span class="s1">&#39;PC2&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">cluster</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">cluster</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Menambahkan keterangan dan judul grafik</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Visualisasi Hasil Clustering Fuzzy C-Means&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Principal Component 1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Principal Component 2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>stopword_removal</th>
+      <th>kategori</th>
+      <th>cluster</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>jakarta kompascom aktris soraya larasati konsi...</td>
+      <td>Olahraga</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>jakarta kompascom olahraga gaya hidup masyarak...</td>
+      <td>Olahraga</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>jakarta kompascom olahraga kerap kali sulit or...</td>
+      <td>Olahraga</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>medan kompascom pasangan calon paslon wali kot...</td>
+      <td>Olahraga</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>jakarta kompascom aktris model soraya larasati...</td>
+      <td>Olahraga</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>kemenangan dikenang rakyat amerika kendali neg...</td>
+      <td>Politik</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>kupang kompascom serena cosgrova francis akrab...</td>
+      <td>Politik</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>kompascom pasangan calon gubernur cagub calon ...</td>
+      <td>Politik</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>ketegasan kerap melekat sosok presiden prabowo...</td>
+      <td>Politik</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>new york city kompascom robert f kennedy jr ma...</td>
+      <td>Politik</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 3 columns</p>
+</div></div><img alt="_images/fdea91b46c50edd9ae993c82b7e532df23f9354c6c84d675c77e6d0b4c139516.png" src="_images/fdea91b46c50edd9ae993c82b7e532df23f9354c6c84d675c77e6d0b4c139516.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">import</span> <span class="nn">skfuzzy</span> <span class="k">as</span> <span class="nn">fuzz</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># 1. Membaca Dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;preprocessing-kompas.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2. TF-IDF Vectorizer</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">])</span>
+
+<span class="c1"># 3. Inisialisasi Akurasi untuk Plot</span>
+<span class="n">component_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>  <span class="c1"># Ubah sesuai rentang yang diinginkan</span>
+<span class="n">akurasi_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># 4. Perulangan untuk Mengurangi Komponen</span>
+<span class="k">for</span> <span class="n">n_components</span> <span class="ow">in</span> <span class="n">component_range</span><span class="p">:</span>
+    <span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">svd_matrix</span> <span class="o">=</span> <span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">)</span>
+
+    <span class="n">data_features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">svd_matrix</span><span class="p">)</span>
+
+    <span class="c1"># 5. Fuzzy C-Means Clustering</span>
+    <span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">cntr</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">jm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">fpc</span> <span class="o">=</span> <span class="n">fuzz</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">cmeans</span><span class="p">(</span>
+        <span class="n">data_features</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+    <span class="p">)</span>
+    <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># 6. Mengukur Akurasi (Jika Kategori Ada)</span>
+    <span class="k">if</span> <span class="s1">&#39;kategori&#39;</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori_numerik&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">akurasi</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori_numerik&#39;</span><span class="p">],</span> <span class="n">cluster_labels</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">akurasi</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Tidak ada pengukuran jika tidak ada label kategori</span>
+
+    <span class="n">akurasi_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">akurasi</span><span class="p">)</span>
+
+<span class="c1"># 7. Plot Akurasi Berdasarkan Komponen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">component_range</span><span class="p">,</span> <span class="n">akurasi_list</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Akurasi&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Performa Clustering Berdasarkan Jumlah Komponen SVD&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Jumlah Komponen SVD&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Akurasi Clustering&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7d388d01253891bbda684ed03002d4221e26605fd7678f7476ef7ee9ea2388e6.png" src="_images/7d388d01253891bbda684ed03002d4221e26605fd7678f7476ef7ee9ea2388e6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">skfuzzy</span> <span class="k">as</span> <span class="nn">fuzz</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">TruncatedSVD</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Fungsi untuk membersihkan data</span>
+<span class="k">def</span> <span class="nf">clean_data</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">posinf</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">neginf</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">matrix</span>
+
+<span class="c1"># Fungsi untuk melakukan clustering dan evaluasi</span>
+<span class="k">def</span> <span class="nf">evaluate_clustering</span><span class="p">(</span><span class="n">data_features</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Membersihkan data sebelum clustering</span>
+        <span class="n">data_features</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">data_features</span><span class="p">)</span>
+        
+        <span class="c1"># Menjalankan Fuzzy C-Means</span>
+        <span class="n">cntr</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">jm</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">fpc</span> <span class="o">=</span> <span class="n">fuzz</span><span class="o">.</span><span class="n">cluster</span><span class="o">.</span><span class="n">cmeans</span><span class="p">(</span>
+            <span class="n">data_features</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># Menentukan kluster akhir</span>
+        <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># Mengonversi label true ke numerik jika belum</span>
+        <span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+        <span class="n">true_labels_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">true_labels</span><span class="p">)</span>
+        
+        <span class="c1"># Menghitung akurasi</span>
+        <span class="n">akurasi</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">true_labels_encoded</span><span class="p">,</span> <span class="n">cluster_labels</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">akurasi</span><span class="p">,</span> <span class="n">cluster_labels</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error dalam clustering: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">reduce_features_and_evaluate</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">,</span> 
+                                 <span class="n">max_features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                                 <span class="n">min_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                                 <span class="n">component_reduction</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>  <span class="c1"># Tambahkan parameter component_reduction</span>
+    <span class="c1"># Jika max_features tidak ditentukan, gunakan jumlah fitur asli</span>
+    <span class="k">if</span> <span class="n">max_features</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">max_features</span> <span class="o">=</span> <span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="c1"># Daftar untuk menyimpan hasil</span>
+    <span class="n">feature_counts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">accuracies</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">all_cluster_labels</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># Konversi sparse matrix ke dense dan bersihkan</span>
+    <span class="n">tfidf_matrix_dense</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+    
+    <span class="c1"># Tahap 1: Reduksi cepat ke 500 fitur</span>
+    <span class="n">current_features</span> <span class="o">=</span> <span class="n">max_features</span>
+    <span class="k">while</span> <span class="n">current_features</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Reduksi dimensi dengan SVD</span>
+            <span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span>
+                <span class="n">n_components</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">current_features</span><span class="p">,</span> <span class="n">tfidf_matrix_dense</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> 
+                <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+            <span class="p">)</span>
+            <span class="n">svd_matrix</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix_dense</span><span class="p">))</span>
+            
+            <span class="c1"># Evaluasi clustering</span>
+            <span class="n">akurasi</span><span class="p">,</span> <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">evaluate_clustering</span><span class="p">(</span><span class="n">svd_matrix</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">)</span>
+            
+            <span class="c1"># Jika clustering berhasil</span>
+            <span class="k">if</span> <span class="n">akurasi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">feature_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_features</span><span class="p">)</span>
+                <span class="n">accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">akurasi</span><span class="p">)</span>
+                <span class="n">all_cluster_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">)</span>
+                
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fitur: </span><span class="si">{</span><span class="n">current_features</span><span class="si">}</span><span class="s2">, Akurasi: </span><span class="si">{</span><span class="n">akurasi</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+            <span class="c1"># Kurangi jumlah fitur secara signifikan</span>
+            <span class="n">current_features</span> <span class="o">-=</span> <span class="n">component_reduction</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Terjadi kesalahan dengan </span><span class="si">{</span><span class="n">current_features</span><span class="si">}</span><span class="s2"> fitur: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">current_features</span> <span class="o">-=</span> <span class="n">component_reduction</span>
+            <span class="k">continue</span>
+    
+    <span class="c1"># Tahap 2: Reduksi perlahan dari 500 ke 2</span>
+    <span class="k">while</span> <span class="n">current_features</span> <span class="o">&gt;=</span> <span class="n">min_components</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Reduksi dimensi dengan SVD</span>
+            <span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span>
+                <span class="n">n_components</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">current_features</span><span class="p">,</span> <span class="n">tfidf_matrix_dense</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> 
+                <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+            <span class="p">)</span>
+            <span class="n">svd_matrix</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix_dense</span><span class="p">))</span>
+            
+            <span class="c1"># Evaluasi clustering</span>
+            <span class="n">akurasi</span><span class="p">,</span> <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">evaluate_clustering</span><span class="p">(</span><span class="n">svd_matrix</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">)</span>
+            
+            <span class="c1"># Jika clustering berhasil</span>
+            <span class="k">if</span> <span class="n">akurasi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">feature_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_features</span><span class="p">)</span>
+                <span class="n">accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">akurasi</span><span class="p">)</span>
+                <span class="n">all_cluster_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">)</span>
+                
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fitur: </span><span class="si">{</span><span class="n">current_features</span><span class="si">}</span><span class="s2">, Akurasi: </span><span class="si">{</span><span class="n">akurasi</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+            <span class="c1"># Kurangi jumlah fitur satu per satu</span>
+            <span class="n">current_features</span> <span class="o">-=</span> <span class="mi">1</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Terjadi kesalahan dengan </span><span class="si">{</span><span class="n">current_features</span><span class="si">}</span><span class="s2"> fitur: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">current_features</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+    
+    <span class="k">return</span> <span class="n">feature_counts</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> <span class="n">all_cluster_labels</span>
+
+
+<span class="c1"># Membaca Dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;preprocessing-kompas.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Inisialisasi TF-IDF Vectorizer</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;stopword_removal&#39;</span><span class="p">])</span>
+
+<span class="c1"># Lakukan reduksi fitur dan evaluasi</span>
+<span class="n">feature_counts</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> <span class="n">all_cluster_labels</span> <span class="o">=</span> <span class="n">reduce_features_and_evaluate</span><span class="p">(</span>
+    <span class="n">tfidf_matrix</span><span class="p">,</span> 
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">],</span> 
+    <span class="n">min_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">component_reduction</span><span class="o">=</span><span class="mi">200</span>  <span class="c1"># Anda bisa sesuaikan jumlah pengurangan</span>
+<span class="p">)</span>
+
+<span class="c1"># Siapkan plot dengan 3 subplot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># 1. Plot Akurasi vs Jumlah Fitur (Line Plot)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">feature_counts</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Akurasi Clustering vs Jumlah Fitur&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Fitur&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Akurasi&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 2. Scatter Plot Akurasi vs Jumlah Fitur</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">feature_counts</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> 
+                      <span class="n">c</span><span class="o">=</span><span class="n">accuracies</span><span class="p">,</span> 
+                      <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+                      <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
+                      <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Scatter Plot Akurasi vs Jumlah Fitur&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Fitur&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Akurasi&#39;</span><span class="p">)</span>
+
+<span class="c1"># 3. Scatter Plot dengan Ukuran Proporional pada Akurasi</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="p">[(</span><span class="n">acc</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span> <span class="k">for</span> <span class="n">acc</span> <span class="ow">in</span> <span class="n">accuracies</span><span class="p">]</span>  <span class="c1"># Skala ukuran titik</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">feature_counts</span><span class="p">,</span> <span class="n">accuracies</span><span class="p">,</span> 
+                      <span class="n">c</span><span class="o">=</span><span class="n">accuracies</span><span class="p">,</span> 
+                      <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span> 
+                      <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+                      <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Scatter Plot Akurasi</span><span class="se">\n</span><span class="s1">(Ukuran Titik Proporsional)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Fitur&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Akurasi&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Temukan indeks akurasi tertinggi</span>
+<span class="n">best_index</span> <span class="o">=</span> <span class="n">accuracies</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">accuracies</span><span class="p">))</span>
+<span class="n">best_features</span> <span class="o">=</span> <span class="n">feature_counts</span><span class="p">[</span><span class="n">best_index</span><span class="p">]</span>
+<span class="n">best_cluster_labels</span> <span class="o">=</span> <span class="n">all_cluster_labels</span><span class="p">[</span><span class="n">best_index</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Jumlah fitur terbaik: </span><span class="si">{</span><span class="n">best_features</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi terbaik: </span><span class="si">{</span><span class="n">accuracies</span><span class="p">[</span><span class="n">best_index</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualisasi kluster terbaik dengan PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="c1"># Konversi sparse matrix ke dense dan bersihkan</span>
+<span class="n">tfidf_matrix_dense</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+
+<span class="c1"># Reduksi dimensi untuk visualisasi</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">best_features</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">svd_matrix</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix_dense</span><span class="p">))</span>
+<span class="n">pca_result</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">svd_matrix</span><span class="p">)</span>
+
+<span class="c1"># Plot scatter dengan warna kluster</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pca_result</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pca_result</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> 
+                      <span class="n">c</span><span class="o">=</span><span class="n">best_cluster_labels</span><span class="p">,</span> 
+                      <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+                      <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Clustering dengan </span><span class="si">{</span><span class="n">best_features</span><span class="si">}</span><span class="s1"> Fitur</span><span class="se">\n</span><span class="s1">Akurasi: </span><span class="si">{</span><span class="n">accuracies</span><span class="p">[</span><span class="n">best_index</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Tambahan: Tabel hasil untuk referensi</span>
+<span class="n">hasil_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Jumlah Fitur&#39;</span><span class="p">:</span> <span class="n">feature_counts</span><span class="p">,</span>
+    <span class="s1">&#39;Akurasi&#39;</span><span class="p">:</span> <span class="n">accuracies</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Tabel Hasil Reduksi Fitur:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hasil_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Terjadi kesalahan dengan 4917 fitur: array must not contain infs or NaNs
+Terjadi kesalahan dengan 4717 fitur: array must not contain infs or NaNs
+Fitur: 4517, Akurasi: 0.7300
+Fitur: 4317, Akurasi: 0.7300
+Fitur: 4117, Akurasi: 0.7300
+Fitur: 3917, Akurasi: 0.7300
+Fitur: 3717, Akurasi: 0.7300
+Fitur: 3517, Akurasi: 0.7300
+Fitur: 3317, Akurasi: 0.7300
+Fitur: 3117, Akurasi: 0.7300
+Fitur: 2917, Akurasi: 0.7300
+Fitur: 2717, Akurasi: 0.7300
+Fitur: 2517, Akurasi: 0.7300
+Fitur: 2317, Akurasi: 0.7300
+Fitur: 2117, Akurasi: 0.7300
+Fitur: 1917, Akurasi: 0.7300
+Fitur: 1717, Akurasi: 0.7300
+Fitur: 1517, Akurasi: 0.7300
+Fitur: 1317, Akurasi: 0.7300
+Fitur: 1117, Akurasi: 0.7300
+Fitur: 917, Akurasi: 0.7300
+Fitur: 717, Akurasi: 0.7300
+Fitur: 517, Akurasi: 0.7300
+Fitur: 317, Akurasi: 0.7300
+Fitur: 316, Akurasi: 0.7300
+Fitur: 315, Akurasi: 0.7300
+Fitur: 314, Akurasi: 0.7300
+Fitur: 313, Akurasi: 0.7300
+Fitur: 312, Akurasi: 0.7300
+Fitur: 311, Akurasi: 0.7300
+Fitur: 310, Akurasi: 0.7300
+Fitur: 309, Akurasi: 0.7300
+Fitur: 308, Akurasi: 0.7300
+Fitur: 307, Akurasi: 0.7300
+Fitur: 306, Akurasi: 0.7300
+Fitur: 305, Akurasi: 0.7300
+Fitur: 304, Akurasi: 0.7300
+Fitur: 303, Akurasi: 0.7300
+Fitur: 302, Akurasi: 0.7300
+Fitur: 301, Akurasi: 0.7300
+Fitur: 300, Akurasi: 0.7300
+Fitur: 299, Akurasi: 0.7300
+Fitur: 298, Akurasi: 0.7300
+Fitur: 297, Akurasi: 0.7300
+Fitur: 296, Akurasi: 0.7300
+Fitur: 295, Akurasi: 0.7300
+Fitur: 294, Akurasi: 0.7300
+Fitur: 293, Akurasi: 0.7300
+Fitur: 292, Akurasi: 0.7300
+Fitur: 291, Akurasi: 0.7300
+Fitur: 290, Akurasi: 0.7300
+Fitur: 289, Akurasi: 0.7300
+Fitur: 288, Akurasi: 0.7300
+Fitur: 287, Akurasi: 0.7300
+Fitur: 286, Akurasi: 0.7300
+Fitur: 285, Akurasi: 0.7300
+Fitur: 284, Akurasi: 0.7300
+Fitur: 283, Akurasi: 0.7300
+Fitur: 282, Akurasi: 0.7300
+Fitur: 281, Akurasi: 0.7300
+Fitur: 280, Akurasi: 0.7300
+Fitur: 279, Akurasi: 0.7300
+Fitur: 278, Akurasi: 0.7300
+Fitur: 277, Akurasi: 0.7300
+Fitur: 276, Akurasi: 0.7300
+Fitur: 275, Akurasi: 0.7300
+Fitur: 274, Akurasi: 0.7300
+Fitur: 273, Akurasi: 0.7300
+Fitur: 272, Akurasi: 0.7300
+Fitur: 271, Akurasi: 0.7300
+Fitur: 270, Akurasi: 0.7300
+Fitur: 269, Akurasi: 0.7300
+Fitur: 268, Akurasi: 0.7300
+Fitur: 267, Akurasi: 0.7300
+Fitur: 266, Akurasi: 0.7300
+Fitur: 265, Akurasi: 0.7300
+Fitur: 264, Akurasi: 0.7300
+Fitur: 263, Akurasi: 0.7300
+Fitur: 262, Akurasi: 0.7300
+Fitur: 261, Akurasi: 0.7300
+Fitur: 260, Akurasi: 0.7300
+Fitur: 259, Akurasi: 0.7300
+Fitur: 258, Akurasi: 0.7300
+Fitur: 257, Akurasi: 0.7300
+Fitur: 256, Akurasi: 0.7300
+Fitur: 255, Akurasi: 0.7300
+Fitur: 254, Akurasi: 0.7300
+Fitur: 253, Akurasi: 0.7300
+Fitur: 252, Akurasi: 0.7300
+Fitur: 251, Akurasi: 0.7300
+Fitur: 250, Akurasi: 0.7300
+Fitur: 249, Akurasi: 0.7300
+Fitur: 248, Akurasi: 0.7300
+Fitur: 247, Akurasi: 0.7300
+Fitur: 246, Akurasi: 0.7300
+Fitur: 245, Akurasi: 0.7300
+Fitur: 244, Akurasi: 0.7300
+Fitur: 243, Akurasi: 0.7300
+Fitur: 242, Akurasi: 0.7300
+Fitur: 241, Akurasi: 0.7300
+Fitur: 240, Akurasi: 0.7300
+Fitur: 239, Akurasi: 0.7300
+Fitur: 238, Akurasi: 0.7300
+Fitur: 237, Akurasi: 0.7300
+Fitur: 236, Akurasi: 0.7300
+Fitur: 235, Akurasi: 0.7300
+Fitur: 234, Akurasi: 0.7300
+Fitur: 233, Akurasi: 0.7300
+Fitur: 232, Akurasi: 0.7300
+Fitur: 231, Akurasi: 0.7300
+Fitur: 230, Akurasi: 0.7300
+Fitur: 229, Akurasi: 0.7300
+Fitur: 228, Akurasi: 0.7300
+Fitur: 227, Akurasi: 0.7300
+Fitur: 226, Akurasi: 0.7300
+Fitur: 225, Akurasi: 0.7300
+Fitur: 224, Akurasi: 0.7300
+Fitur: 223, Akurasi: 0.7300
+Fitur: 222, Akurasi: 0.7300
+Fitur: 221, Akurasi: 0.7300
+Fitur: 220, Akurasi: 0.7300
+Fitur: 219, Akurasi: 0.7300
+Fitur: 218, Akurasi: 0.7300
+Fitur: 217, Akurasi: 0.7300
+Fitur: 216, Akurasi: 0.7300
+Fitur: 215, Akurasi: 0.7300
+Fitur: 214, Akurasi: 0.7300
+Fitur: 213, Akurasi: 0.7300
+Fitur: 212, Akurasi: 0.7300
+Fitur: 211, Akurasi: 0.7300
+Fitur: 210, Akurasi: 0.7300
+Fitur: 209, Akurasi: 0.7300
+Fitur: 208, Akurasi: 0.7300
+Fitur: 207, Akurasi: 0.7300
+Fitur: 206, Akurasi: 0.7300
+Fitur: 205, Akurasi: 0.7300
+Fitur: 204, Akurasi: 0.7300
+Fitur: 203, Akurasi: 0.7300
+Fitur: 202, Akurasi: 0.7300
+Fitur: 201, Akurasi: 0.7300
+Fitur: 200, Akurasi: 0.7300
+Fitur: 199, Akurasi: 0.7300
+Fitur: 198, Akurasi: 0.7300
+Fitur: 197, Akurasi: 0.7300
+Fitur: 196, Akurasi: 0.7300
+Fitur: 195, Akurasi: 0.7300
+Fitur: 194, Akurasi: 0.7300
+Fitur: 193, Akurasi: 0.7300
+Fitur: 192, Akurasi: 0.7300
+Fitur: 191, Akurasi: 0.7300
+Fitur: 190, Akurasi: 0.7300
+Fitur: 189, Akurasi: 0.7300
+Fitur: 188, Akurasi: 0.7300
+Fitur: 187, Akurasi: 0.7300
+Fitur: 186, Akurasi: 0.7300
+Fitur: 185, Akurasi: 0.7300
+Fitur: 184, Akurasi: 0.7300
+Fitur: 183, Akurasi: 0.7300
+Fitur: 182, Akurasi: 0.7300
+Fitur: 181, Akurasi: 0.7300
+Fitur: 180, Akurasi: 0.7300
+Fitur: 179, Akurasi: 0.7300
+Fitur: 178, Akurasi: 0.7300
+Fitur: 177, Akurasi: 0.7300
+Fitur: 176, Akurasi: 0.7300
+Fitur: 175, Akurasi: 0.7300
+Fitur: 174, Akurasi: 0.7300
+Fitur: 173, Akurasi: 0.7300
+Fitur: 172, Akurasi: 0.7300
+Fitur: 171, Akurasi: 0.7300
+Fitur: 170, Akurasi: 0.7300
+Fitur: 169, Akurasi: 0.7300
+Fitur: 168, Akurasi: 0.7300
+Fitur: 167, Akurasi: 0.7300
+Fitur: 166, Akurasi: 0.7300
+Fitur: 165, Akurasi: 0.7300
+Fitur: 164, Akurasi: 0.7300
+Fitur: 163, Akurasi: 0.7300
+Fitur: 162, Akurasi: 0.7300
+Fitur: 161, Akurasi: 0.7300
+Fitur: 160, Akurasi: 0.7300
+Fitur: 159, Akurasi: 0.7300
+Fitur: 158, Akurasi: 0.7300
+Fitur: 157, Akurasi: 0.7300
+Fitur: 156, Akurasi: 0.7300
+Fitur: 155, Akurasi: 0.7300
+Fitur: 154, Akurasi: 0.7300
+Fitur: 153, Akurasi: 0.7300
+Fitur: 152, Akurasi: 0.7300
+Fitur: 151, Akurasi: 0.7300
+Fitur: 150, Akurasi: 0.7300
+Fitur: 149, Akurasi: 0.7300
+Fitur: 148, Akurasi: 0.7300
+Fitur: 147, Akurasi: 0.7300
+Fitur: 146, Akurasi: 0.7300
+Fitur: 145, Akurasi: 0.7300
+Fitur: 144, Akurasi: 0.7300
+Fitur: 143, Akurasi: 0.7300
+Fitur: 142, Akurasi: 0.7300
+Fitur: 141, Akurasi: 0.7300
+Fitur: 140, Akurasi: 0.7300
+Fitur: 139, Akurasi: 0.7300
+Fitur: 138, Akurasi: 0.7300
+Fitur: 137, Akurasi: 0.7300
+Fitur: 136, Akurasi: 0.7300
+Fitur: 135, Akurasi: 0.7300
+Fitur: 134, Akurasi: 0.7300
+Fitur: 133, Akurasi: 0.7300
+Fitur: 132, Akurasi: 0.7300
+Fitur: 131, Akurasi: 0.7300
+Fitur: 130, Akurasi: 0.7300
+Fitur: 129, Akurasi: 0.7300
+Fitur: 128, Akurasi: 0.7300
+Fitur: 127, Akurasi: 0.7300
+Fitur: 126, Akurasi: 0.7300
+Fitur: 125, Akurasi: 0.7300
+Fitur: 124, Akurasi: 0.7300
+Fitur: 123, Akurasi: 0.7300
+Fitur: 122, Akurasi: 0.7300
+Fitur: 121, Akurasi: 0.7300
+Fitur: 120, Akurasi: 0.7300
+Fitur: 119, Akurasi: 0.7300
+Fitur: 118, Akurasi: 0.7300
+Fitur: 117, Akurasi: 0.7300
+Fitur: 116, Akurasi: 0.7300
+Fitur: 115, Akurasi: 0.7300
+Fitur: 114, Akurasi: 0.7300
+Fitur: 113, Akurasi: 0.7300
+Fitur: 112, Akurasi: 0.7300
+Fitur: 111, Akurasi: 0.7300
+Fitur: 110, Akurasi: 0.7300
+Fitur: 109, Akurasi: 0.7300
+Fitur: 108, Akurasi: 0.7300
+Fitur: 107, Akurasi: 0.7300
+Fitur: 106, Akurasi: 0.7300
+Fitur: 105, Akurasi: 0.7300
+Fitur: 104, Akurasi: 0.7300
+Fitur: 103, Akurasi: 0.7300
+Fitur: 102, Akurasi: 0.7300
+Fitur: 101, Akurasi: 0.7300
+Fitur: 100, Akurasi: 0.7300
+Fitur: 99, Akurasi: 0.7200
+Fitur: 98, Akurasi: 0.6800
+Fitur: 97, Akurasi: 0.6800
+Fitur: 96, Akurasi: 0.6800
+Fitur: 95, Akurasi: 0.6700
+Fitur: 94, Akurasi: 0.6800
+Fitur: 93, Akurasi: 0.6700
+Fitur: 92, Akurasi: 0.6600
+Fitur: 91, Akurasi: 0.6600
+Fitur: 90, Akurasi: 0.6600
+Fitur: 89, Akurasi: 0.6600
+Fitur: 88, Akurasi: 0.6600
+Fitur: 87, Akurasi: 0.6600
+Fitur: 86, Akurasi: 0.6500
+Fitur: 85, Akurasi: 0.6600
+Fitur: 84, Akurasi: 0.6700
+Fitur: 83, Akurasi: 0.6800
+Fitur: 82, Akurasi: 0.6800
+Fitur: 81, Akurasi: 0.6700
+Fitur: 80, Akurasi: 0.7000
+Fitur: 79, Akurasi: 0.7000
+Fitur: 78, Akurasi: 0.7000
+Fitur: 77, Akurasi: 0.6900
+Fitur: 76, Akurasi: 0.7000
+Fitur: 75, Akurasi: 0.7000
+Fitur: 74, Akurasi: 0.7100
+Fitur: 73, Akurasi: 0.7000
+Fitur: 72, Akurasi: 0.6800
+Fitur: 71, Akurasi: 0.7000
+Fitur: 70, Akurasi: 0.7000
+Fitur: 69, Akurasi: 0.7100
+Fitur: 68, Akurasi: 0.7400
+Fitur: 67, Akurasi: 0.7100
+Fitur: 66, Akurasi: 0.7200
+Fitur: 65, Akurasi: 0.7300
+Fitur: 64, Akurasi: 0.7300
+Fitur: 63, Akurasi: 0.7500
+Fitur: 62, Akurasi: 0.7600
+Fitur: 61, Akurasi: 0.7400
+Fitur: 60, Akurasi: 0.7200
+Fitur: 59, Akurasi: 0.7500
+Fitur: 58, Akurasi: 0.7500
+Fitur: 57, Akurasi: 0.7500
+Fitur: 56, Akurasi: 0.7600
+Fitur: 55, Akurasi: 0.7700
+Fitur: 54, Akurasi: 0.7600
+Fitur: 53, Akurasi: 0.7400
+Fitur: 52, Akurasi: 0.7600
+Fitur: 51, Akurasi: 0.7600
+Fitur: 50, Akurasi: 0.7800
+Fitur: 49, Akurasi: 0.7800
+Fitur: 48, Akurasi: 0.7700
+Fitur: 47, Akurasi: 0.7700
+Fitur: 46, Akurasi: 0.7600
+Fitur: 45, Akurasi: 0.7600
+Fitur: 44, Akurasi: 0.7700
+Fitur: 43, Akurasi: 0.7600
+Fitur: 42, Akurasi: 0.8000
+Fitur: 41, Akurasi: 0.8000
+Fitur: 40, Akurasi: 0.7700
+Fitur: 39, Akurasi: 0.7900
+Fitur: 38, Akurasi: 0.8000
+Fitur: 37, Akurasi: 0.7700
+Fitur: 36, Akurasi: 0.7800
+Fitur: 35, Akurasi: 0.7700
+Fitur: 34, Akurasi: 0.7700
+Fitur: 33, Akurasi: 0.7800
+Fitur: 32, Akurasi: 0.7600
+Fitur: 31, Akurasi: 0.7800
+Fitur: 30, Akurasi: 0.7800
+Fitur: 29, Akurasi: 0.7800
+Fitur: 28, Akurasi: 0.7300
+Fitur: 27, Akurasi: 0.7700
+Fitur: 26, Akurasi: 0.7600
+Fitur: 25, Akurasi: 0.7700
+Fitur: 24, Akurasi: 0.7600
+Fitur: 23, Akurasi: 0.7400
+Fitur: 22, Akurasi: 0.7700
+Fitur: 21, Akurasi: 0.7000
+Fitur: 20, Akurasi: 0.7900
+Fitur: 19, Akurasi: 0.6600
+Fitur: 18, Akurasi: 0.7500
+Fitur: 17, Akurasi: 0.7100
+Fitur: 16, Akurasi: 0.6600
+Fitur: 15, Akurasi: 0.7500
+Fitur: 14, Akurasi: 0.7000
+Fitur: 13, Akurasi: 0.7200
+Fitur: 12, Akurasi: 0.6800
+Fitur: 11, Akurasi: 0.8700
+Fitur: 10, Akurasi: 0.8700
+Fitur: 9, Akurasi: 0.8600
+Fitur: 8, Akurasi: 0.9000
+Fitur: 7, Akurasi: 0.8400
+Fitur: 6, Akurasi: 0.8600
+Fitur: 5, Akurasi: 0.8600
+Fitur: 4, Akurasi: 0.8100
+Fitur: 3, Akurasi: 0.8400
+Fitur: 2, Akurasi: 0.8100
+</pre></div>
+</div>
+<img alt="_images/6d51b0ad3736286cbdf075a5e87e99764693eeaf920969280dd9e000c7e10233.png" src="_images/6d51b0ad3736286cbdf075a5e87e99764693eeaf920969280dd9e000c7e10233.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah fitur terbaik: 8
+Akurasi terbaik: 0.9000
+</pre></div>
+</div>
+<img alt="_images/651769e6c00460e9b77bbe3ea6219ea96612fb76bee2b145c780df6dc85e3103.png" src="_images/651769e6c00460e9b77bbe3ea6219ea96612fb76bee2b145c780df6dc85e3103.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tabel Hasil Reduksi Fitur:
+     Jumlah Fitur  Akurasi
+0            4517     0.73
+1            4317     0.73
+2            4117     0.73
+3            3917     0.73
+4            3717     0.73
+..            ...      ...
+332             6     0.86
+333             5     0.86
+334             4     0.81
+335             3     0.84
+336             2     0.81
+
+[337 rows x 2 columns]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="link-app-clustering-dengan-fuzzy-c-means">
+<h2>Link App Clustering dengan Fuzzy C-Means :<a class="headerlink" href="#link-app-clustering-dengan-fuzzy-c-means" title="Link to this heading">#</a></h2>
+<section id="https-huggingface-co-spaces-raflyyy-clustering-news">
+<h3><a class="reference external" href="https://huggingface.co/spaces/Raflyyy/Clustering_News">https://huggingface.co/spaces/Raflyyy/Clustering_News</a><a class="headerlink" href="#https-huggingface-co-spaces-raflyyy-clustering-news" title="Link to this heading">#</a></h3>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%205%20PPWA.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tugas 5</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-web-dengan-fuzzy-c-means">Clustering Web dengan Fuzzy C-Means|</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#link-app-clustering-dengan-fuzzy-c-means">Link App Clustering dengan Fuzzy C-Means :</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#https-huggingface-co-spaces-raflyyy-clustering-news">https://huggingface.co/spaces/Raflyyy/Clustering_News</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

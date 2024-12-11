@@ -1,0 +1,84 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/lib/python3.10/dist-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Fungsi untuk mencari dokumen terkait
+def search_documents(query, top_n=100, similarity_threshold=0.5):
+    # 4. Menghitung TF-IDF untuk kalimat inputan
+    query_tfidf = vectorizer.transform([query])
+    
+    # 5. Mengurangi dimensi kalimat inputan
+    query_svd = svd.transform(query_tfidf)
+    
+    # 6. Menghitung kemiripan kosinus
+    cosine_similarities = cosine_similarity(query_svd, svd_df)
+    
+    # 7. Menyaring hasil kemiripan berdasarkan threshold
+    similar_indices = [
+        idx for idx, score in enumerate(cosine_similarities[0])
+        if score >= similarity_threshold
+    ]
+    
+    # 8. Mengambil dokumen terkait berdasarkan threshold
+    related_docs = df.iloc[similar_indices]
+    
+    # Membatasi jumlah dokumen yang diambil
+    return related_docs.head(top_n)
+
+# Contoh penggunaan - Input dari pengguna
+input_query = input("Masukkan kalimat pencarian Anda: ")
+related_documents = search_documents(input_query)
+
+# Menampilkan dokumen terkait dengan detail yang diminta
+print("=" * 50)
+print(f"{'Dokumen Terkait':^50}")
+print("=" * 50)
+displayed_count = 0
+
+for index, row in related_documents.iterrows():
+    print(f"Dokumen #{displayed_count + 1}")
+    print(f"Judul    : {row['judul']}")
+    print(f"Tanggal  : {row['tanggal']}")
+    print(f"Kategori : {row['kategori']}")
+    print(f"Isi Berita:\n{row['isi_berita']}")
+    print("-" * 50)  # Pemisah antar dokumen
+    displayed_count += 1
+
+# Menampilkan jumlah dokumen yang ditampilkan
+print(f"\nJumlah dokumen yang ditampilkan: {displayed_count}")
+print("=" * 50)
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mStdinNotImplementedError[0m                  Traceback (most recent call last)
+[0;32m<ipython-input-2-87774db695bb>[0m in [0;36m<cell line: 25>[0;34m()[0m
+[1;32m     23[0m [0;34m[0m[0m
+[1;32m     24[0m [0;31m# Contoh penggunaan - Input dari pengguna[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 25[0;31m [0minput_query[0m [0;34m=[0m [0minput[0m[0;34m([0m[0;34m"Masukkan kalimat pencarian Anda: "[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     26[0m [0mrelated_documents[0m [0;34m=[0m [0msearch_documents[0m[0;34m([0m[0minput_query[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     27[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/ipykernel/kernelbase.py[0m in [0;36mraw_input[0;34m(self, prompt)[0m
+[1;32m    846[0m         """
+[1;32m    847[0m         [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0m_allow_stdin[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 848[0;31m             raise StdinNotImplementedError(
+[0m[1;32m    849[0m                 [0;34m"raw_input was called, but this frontend does not support input requests."[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    850[0m             )
+
+[0;31mStdinNotImplementedError[0m: raw_input was called, but this frontend does not support input requests.
+
