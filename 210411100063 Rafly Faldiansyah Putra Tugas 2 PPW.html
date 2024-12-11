@@ -179,7 +179,13 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="Tugas%204.html">Tugas 4 Ringkasan Dokumen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%204%20PPW.html">Rafly Faldiansyah Putra</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%204_2%20PPW.html">Tugas 4 part 2</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="210411100063%20Rafly%20Faldiansyah%20Putra%20Tugas%205%20PPWA.html">Tugas 5</a></li>
 
 
@@ -559,137 +565,67 @@ Mengambil: https://www.kompas.com/tag/olahraga?page=1
 <span class="g g-Whitespace">     </span><span class="mi">80</span>                     <span class="n">articles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">article_details</span><span class="p">)</span>
 
 <span class="nn">&lt;ipython-input-1-db68ba0a6ff9&gt;</span> in <span class="ni">get_article_details</span><span class="nt">(detail_url, category_name)</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span> 
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">def</span> <span class="nf">get_article_details</span><span class="p">(</span><span class="n">detail_url</span><span class="p">,</span> <span class="n">category_name</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">31</span>     <span class="n">detail_soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">detail_url</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="k">if</span> <span class="n">detail_soup</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span>         <span class="c1"># Ambil konten dari div dengan class &#39;read__content&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">date_tag</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span>             <span class="c1"># Jika tidak ditemukan, ambil dari div dengan class &#39;read__time&#39;</span>
+<span class="ne">---&gt; </span><span class="mi">41</span>             <span class="n">date_tag</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;read__time&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span> 
+<span class="g g-Whitespace">     </span><span class="mi">43</span>         <span class="n">date</span> <span class="o">=</span> <span class="n">date_tag</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">date_tag</span> <span class="k">else</span> <span class="s1">&#39;Tidak ada tanggal&#39;</span>
 
-<span class="nn">&lt;ipython-input-1-db68ba0a6ff9&gt;</span> in <span class="ni">get_soup</span><span class="nt">(url)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="p">}</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">20</span>         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span>         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span>             <span class="k">return</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/element.py</span> in <span class="ni">find</span><span class="nt">(self, name, attrs, recursive, string, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2004</span><span class="w">         </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">2005</span><span class="sd">         r = None</span>
+<span class="ne">-&gt; </span><span class="mi">2006</span><span class="sd">         l = self.find_all(name, attrs, recursive, string, 1, _stacklevel=3,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2007</span><span class="sd">                           **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2008</span><span class="sd">         if l:</span>
 
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/api.py</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span><span class="s2"> </span>
-<span class="ne">---&gt; </span><span class="mi">73</span><span class="s2">     return request(&quot;get&quot;, url, params=params, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">75</span><span class="s2"> </span>
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/element.py</span> in <span class="ni">find_all</span><span class="nt">(self, name, attrs, recursive, string, limit, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2033</span><span class="sd">             generator = self.children</span>
+<span class="g g-Whitespace">   </span><span class="mi">2034</span><span class="sd">         _stacklevel = kwargs.pop(&#39;_stacklevel&#39;, 2)</span>
+<span class="ne">-&gt; </span><span class="mi">2035</span><span class="sd">         return self._find_all(name, attrs, string, limit, generator,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2036</span><span class="sd">                               _stacklevel=_stacklevel+1, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2037</span><span class="sd">     findAll = find_all       # BS3</span>
 
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/api.py</span> in <span class="ni">request</span><span class="nt">(method, url, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span><span class="s2">     # cases, and look like a memory leak in others.</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span><span class="s2">     with sessions.Session() as session:</span>
-<span class="ne">---&gt; </span><span class="mi">59</span><span class="s2">         return session.request(method=method, url=url, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span><span class="s2"> </span>
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/element.py</span> in <span class="ni">_find_all</span><span class="nt">(self, name, attrs, string, limit, generator, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">839</span><span class="sd">                 break</span>
+<span class="g g-Whitespace">    </span><span class="mi">840</span><span class="sd">             if i:</span>
+<span class="ne">--&gt; </span><span class="mi">841</span><span class="sd">                 found = strainer.search(i)</span>
+<span class="g g-Whitespace">    </span><span class="mi">842</span><span class="sd">                 if found:</span>
+<span class="g g-Whitespace">    </span><span class="mi">843</span><span class="sd">                     results.append(found)</span>
 
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
-<span class="g g-Whitespace">    </span><span class="mi">587</span><span class="s2">         }</span>
-<span class="g g-Whitespace">    </span><span class="mi">588</span><span class="s2">         send_kwargs.update(settings)</span>
-<span class="ne">--&gt; </span><span class="mi">589</span><span class="s2">         resp = self.send(prep, **send_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">590</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">591</span><span class="s2">         return resp</span>
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/element.py</span> in <span class="ni">search</span><span class="nt">(self, markup)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2323</span><span class="sd">         elif isinstance(markup, Tag):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2324</span><span class="sd">             if not self.string or self.name or self.attrs:</span>
+<span class="ne">-&gt; </span><span class="mi">2325</span><span class="sd">                 found = self.search_tag(markup)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2326</span><span class="sd">         # If it&#39;s text, make sure the text matches.</span>
+<span class="g g-Whitespace">   </span><span class="mi">2327</span><span class="sd">         elif isinstance(markup, NavigableString) or \</span>
 
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">send</span><span class="nt">(self, request, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">722</span><span class="s2">             # Redirect resolving generator.</span>
-<span class="g g-Whitespace">    </span><span class="mi">723</span><span class="s2">             gen = self.resolve_redirects(r, request, **kwargs)</span>
-<span class="ne">--&gt; </span><span class="mi">724</span><span class="s2">             history = [resp for resp in gen]</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span><span class="s2">         else:</span>
-<span class="g g-Whitespace">    </span><span class="mi">726</span><span class="s2">             history = []</span>
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/element.py</span> in <span class="ni">search_tag</span><span class="nt">(self, markup_name, markup_attrs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2286</span><span class="sd">                                 markup_attr_map[k] = v</span>
+<span class="g g-Whitespace">   </span><span class="mi">2287</span><span class="sd">                     attr_value = markup_attr_map.get(attr)</span>
+<span class="ne">-&gt; </span><span class="mi">2288</span><span class="sd">                     if not self._matches(attr_value, match_against):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2289</span><span class="sd">                         match = False</span>
+<span class="g g-Whitespace">   </span><span class="mi">2290</span><span class="sd">                         break</span>
 
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">722</span><span class="s2">             # Redirect resolving generator.</span>
-<span class="g g-Whitespace">    </span><span class="mi">723</span><span class="s2">             gen = self.resolve_redirects(r, request, **kwargs)</span>
-<span class="ne">--&gt; </span><span class="mi">724</span><span class="s2">             history = [resp for resp in gen]</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span><span class="s2">         else:</span>
-<span class="g g-Whitespace">    </span><span class="mi">726</span><span class="s2">             history = []</span>
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/element.py</span> in <span class="ni">_matches</span><span class="nt">(self, markup, match_against, already_tried)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2346</span><span class="sd">             # attribute, but maybe we match the attribute value when</span>
+<span class="g g-Whitespace">   </span><span class="mi">2347</span><span class="sd">             # considered as a string.</span>
+<span class="ne">-&gt; </span><span class="mi">2348</span><span class="sd">             if self._matches(&#39; &#39;.join(markup), match_against):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2349</span><span class="sd">                 return True</span>
+<span class="g g-Whitespace">   </span><span class="mi">2350</span><span class="sd">             return False</span>
 
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">resolve_redirects</span><span class="nt">(self, resp, req, stream, timeout, verify, cert, proxies, yield_requests, **adapter_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span><span class="s2">                 yield req</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span><span class="s2">             else:</span>
-<span class="ne">--&gt; </span><span class="mi">265</span><span class="s2">                 resp = self.send(</span>
-<span class="g g-Whitespace">    </span><span class="mi">266</span><span class="s2">                     req,</span>
-<span class="g g-Whitespace">    </span><span class="mi">267</span><span class="s2">                     stream=stream,</span>
+<span class="nn">/usr/local/lib/python3.10/dist-packages/bs4/element.py</span> in <span class="ni">_matches</span><span class="nt">(self, markup, match_against, already_tried)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2354</span><span class="sd">             return markup is not None</span>
+<span class="g g-Whitespace">   </span><span class="mi">2355</span><span class="sd"> </span>
+<span class="ne">-&gt; </span><span class="mi">2356</span><span class="sd">         if isinstance(match_against, Callable):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2357</span><span class="sd">             return match_against(markup)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2358</span><span class="sd"> </span>
 
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/sessions.py</span> in <span class="ni">send</span><span class="nt">(self, request, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">702</span><span class="s2">         # Send the request</span>
-<span class="ne">--&gt; </span><span class="mi">703</span><span class="s2">         r = adapter.send(request, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span><span class="s2">         # Total elapsed time of the request (approximately)</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/requests/adapters.py</span> in <span class="ni">send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">665</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">666</span><span class="s2">         try:</span>
-<span class="ne">--&gt; </span><span class="mi">667</span><span class="s2">             resp = conn.urlopen(</span>
-<span class="g g-Whitespace">    </span><span class="mi">668</span><span class="s2">                 method=request.method,</span>
-<span class="g g-Whitespace">    </span><span class="mi">669</span><span class="s2">                 url=url,</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py</span> in <span class="ni">urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">787</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">788</span><span class="s2">             # Make the request on the HTTPConnection object</span>
-<span class="ne">--&gt; </span><span class="mi">789</span><span class="s2">             response = self._make_request(</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span><span class="s2">                 conn,</span>
-<span class="g g-Whitespace">    </span><span class="mi">791</span><span class="s2">                 method,</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)</span>
-<span class="g g-Whitespace">    </span><span class="mi">534</span><span class="s2">         # Receive the response from the server</span>
-<span class="g g-Whitespace">    </span><span class="mi">535</span><span class="s2">         try:</span>
-<span class="ne">--&gt; </span><span class="mi">536</span><span class="s2">             response = conn.getresponse()</span>
-<span class="g g-Whitespace">    </span><span class="mi">537</span><span class="s2">         except (BaseSSLError, OSError) as e:</span>
-<span class="g g-Whitespace">    </span><span class="mi">538</span><span class="s2">             self._raise_timeout(err=e, url=url, timeout_value=read_timeout)</span>
-
-<span class="nn">/usr/local/lib/python3.10/dist-packages/urllib3/connection.py</span> in <span class="ni">getresponse</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">505</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">506</span><span class="s2">         # Get the response from http.client.HTTPConnection</span>
-<span class="ne">--&gt; </span><span class="mi">507</span><span class="s2">         httplib_response = super().getresponse()</span>
-<span class="g g-Whitespace">    </span><span class="mi">508</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">509</span><span class="s2">         try:</span>
-
-<span class="nn">/usr/lib/python3.10/http/client.py</span> in <span class="ni">getresponse</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1373</span><span class="s2">         try:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1374</span><span class="s2">             try:</span>
-<span class="ne">-&gt; </span><span class="mi">1375</span><span class="s2">                 response.begin()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1376</span><span class="s2">             except ConnectionError:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1377</span><span class="s2">                 self.close()</span>
-
-<span class="nn">/usr/lib/python3.10/http/client.py</span> in <span class="ni">begin</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">316</span><span class="s2">         # read until we get a non-100 response</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span><span class="s2">         while True:</span>
-<span class="ne">--&gt; </span><span class="mi">318</span><span class="s2">             version, status, reason = self._read_status()</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span><span class="s2">             if status != CONTINUE:</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span><span class="s2">                 break</span>
-
-<span class="nn">/usr/lib/python3.10/http/client.py</span> in <span class="ni">_read_status</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">277</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">278</span><span class="s2">     def _read_status(self):</span>
-<span class="ne">--&gt; </span><span class="mi">279</span><span class="s2">         line = str(self.fp.readline(_MAXLINE + 1), &quot;iso-8859-1&quot;)</span>
-<span class="g g-Whitespace">    </span><span class="mi">280</span><span class="s2">         if len(line) &gt; _MAXLINE:</span>
-<span class="g g-Whitespace">    </span><span class="mi">281</span><span class="s2">             raise LineTooLong(&quot;status line&quot;)</span>
-
-<span class="nn">/usr/lib/python3.10/socket.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span><span class="s2">         while True:</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span><span class="s2">             try:</span>
-<span class="ne">--&gt; </span><span class="mi">705</span><span class="s2">                 return self._sock.recv_into(b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">706</span><span class="s2">             except timeout:</span>
-<span class="g g-Whitespace">    </span><span class="mi">707</span><span class="s2">                 self._timeout_occurred = True</span>
-
-<span class="nn">/usr/lib/python3.10/ssl.py</span> in <span class="ni">recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1301</span><span class="s2">                   &quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot; %</span>
-<span class="g g-Whitespace">   </span><span class="mi">1302</span><span class="s2">                   self.__class__)</span>
-<span class="ne">-&gt; </span><span class="mi">1303</span><span class="s2">             return self.read(nbytes, buffer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1304</span><span class="s2">         else:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1305</span><span class="s2">             return super().recv_into(buffer, nbytes, flags)</span>
-
-<span class="nn">/usr/lib/python3.10/ssl.py</span> in <span class="ni">read</span><span class="nt">(self, len, buffer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1157</span><span class="s2">         try:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1158</span><span class="s2">             if buffer is not None:</span>
-<span class="ne">-&gt; </span><span class="mi">1159</span><span class="s2">                 return self._sslobj.read(len, buffer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1160</span><span class="s2">             else:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1161</span><span class="s2">                 return self._sslobj.read(len)</span>
+<span class="nn">/usr/lib/python3.10/abc.py</span> in <span class="ni">__instancecheck__</span><span class="nt">(cls, instance)</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span><span class="sd">         def __instancecheck__(cls, instance):</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span><span class="sd">             &quot;&quot;&quot;</span><span class="n">Override</span> <span class="k">for</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">119</span><span class="s2">             return _abc_instancecheck(cls, instance)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span><span class="s2">         def __subclasscheck__(cls, subclass):</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
