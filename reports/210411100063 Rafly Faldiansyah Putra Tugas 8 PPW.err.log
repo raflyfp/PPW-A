@@ -1,0 +1,82 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/lib/python3.10/dist-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import TruncatedSVD
+from sklearn.metrics.pairwise import cosine_similarity
+import re
+import numpy as np
+from IPython.display import display, Markdown
+import skfuzzy as fuzz
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import LabelEncoder
+from IPython.display import display, Markdown
+# 1. Membaca Dataset
+# Membaca file CSV yang berisi dataset
+df = pd.read_csv("preprocessing-kompas.csv")
+
+# Mengganti nilai NaN dengan string kosong agar tidak ada data kosong yang menyebabkan error
+# df['stopword_removal'] = df['stopword_removal'].fillna('')
+
+# 2. Mengonversi Data Teks ke TF-IDF
+# Menginisialisasi TfidfVectorizer dengan normalisasi L2
+vectorizer = TfidfVectorizer(norm='l2')
+
+# Menghitung nilai TF-IDF untuk setiap dokumen
+tfidf_matrix = vectorizer.fit_transform(df['stopword_removal'])
+
+# Mengubah hasil TF-IDF menjadi DataFrame untuk kemudahan akses
+tfidf_df = pd.DataFrame(tfidf_matrix.toarray(), columns=vectorizer.get_feature_names_out())
+
+# 3. Reduksi Dimensi dengan Truncated SVD
+# Menginisialisasi TruncatedSVD untuk mereduksi dimensi menjadi 100 komponen (atau sesuai kebutuhan)
+svd = TruncatedSVD(n_components=100, random_state=42)
+
+# Mengaplikasikan SVD pada matriks TF-IDF untuk menghasilkan matriks dengan dimensi yang lebih rendah
+svd_matrix = svd.fit_transform(tfidf_matrix)
+
+# Menyimpan hasil SVD dalam DataFrame untuk digunakan dalam perhitungan kemiripan
+svd_df = pd.DataFrame(svd_matrix)
+
+# Menampilkan 10 baris pertama dari DataFrame hasil SVD
+svd_df.head(1000)
+
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-a3a4135cd8a6>[0m in [0;36m<cell line: 8>[0;34m()[0m
+[1;32m      6[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mdisplay[0m [0;32mimport[0m [0mdisplay[0m[0;34m,[0m [0mMarkdown[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 8[0;31m [0;32mimport[0m [0mskfuzzy[0m [0;32mas[0m [0mfuzz[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      9[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mmetrics[0m [0;32mimport[0m [0maccuracy_score[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mpreprocessing[0m [0;32mimport[0m [0mLabelEncoder[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'skfuzzy'
+
+[0;31m---------------------------------------------------------------------------[0;32m
+NOTE: If your import is failing due to a missing package, you can
+manually install dependencies using either !pip or !apt.
+
+To view examples of installing some common dependencies, click the
+"Open Examples" button below.
+[0;31m---------------------------------------------------------------------------[0m
+
+

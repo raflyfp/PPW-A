@@ -2,7 +2,7 @@
 title: 210411100063 Rafly Faldiansyah Putra PPWA
 
 ---
-
+# Tugas 3 Word Embedding
  ### Nama : Rafly Faldiansyah Putra
  ### NIM :210411100063
  ### Kelas : PPW A
